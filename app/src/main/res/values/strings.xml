@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">pmp-android-sample</string>
+    <string name="tab_text_sdk">Appier SDK</string>
+    <string name="tab_text_mopub_mediation">MoPub Mediation</string>
+</resources>
