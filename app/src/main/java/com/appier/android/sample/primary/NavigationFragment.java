@@ -1,4 +1,4 @@
-package com.appier.android.sample;
+package com.appier.android.sample.primary;
 
 import android.os.Bundle;
 
@@ -8,15 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SampleNavigationFragment extends Fragment {
+import com.appier.android.sample.R;
+
+public class NavigationFragment extends Fragment {
     private static final String ARG_POSITION = "position";
 
     private String mPosition;
 
-    public SampleNavigationFragment() {}
+    public NavigationFragment() {}
 
-    public static SampleNavigationFragment newInstance(int position) {
-        SampleNavigationFragment fragment = new SampleNavigationFragment();
+    public static NavigationFragment newInstance(int position) {
+        NavigationFragment fragment = new NavigationFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);

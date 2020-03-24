@@ -1,4 +1,4 @@
-package com.appier.android.sample.ui.main;
+package com.appier.android.sample.primary;
 
 import android.content.Context;
 
@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.appier.android.sample.R;
-import com.appier.android.sample.SampleNavigationFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -27,7 +26,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return SampleNavigationFragment.newInstance(position);
+        return NavigationFragment.newInstance(position);
     }
 
     @Nullable
