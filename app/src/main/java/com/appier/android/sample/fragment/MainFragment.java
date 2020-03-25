@@ -15,20 +15,23 @@ import android.widget.TextView;
 
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
-import com.appier.android.sample.primary.SectionsPagerAdapter;
+import com.appier.android.sample.activity.sdk.BannerActivity;
 import com.appier.android.sample.secondary.NavigationAdapter;
 
 public class MainFragment extends Fragment {
     private static final String ARG_POSITION = "position";
+    private static final String ARG_TITLE = "title";
 
     private int mPosition;
+    private String mTitle;
 
     public MainFragment() {}
 
-    public static MainFragment newInstance(int position) {
+    public static MainFragment newInstance(int position, String title) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
+        args.putString(ARG_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,6 +41,7 @@ public class MainFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mPosition = getArguments().getInt(ARG_POSITION);
+            mTitle = getArguments().getString(ARG_TITLE);
         }
     }
 
@@ -63,7 +67,7 @@ public class MainFragment extends Fragment {
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_banner),
                 new Pair[] {
-                        new Pair<>("Banner - basic format", BaseActivity.class),
+                        new Pair<>("Banner - basic format", BannerActivity.class),
                         new Pair<>("Banner - in a listview", BaseActivity.class),
                         new Pair<>("Banner - in a floating window", BaseActivity.class)
                 }
@@ -120,7 +124,7 @@ public class MainFragment extends Fragment {
                 Pair<String, Class<?>> item = navigationAdapter.getItem(position);
                 Intent intent = new Intent(getContext(), item.second);
                 intent.putExtra(BaseActivity.EXTRA_TITLE, item.first);
-                intent.putExtra(BaseActivity.EXTRA_SUB_TITLE, getContext().getResources().getString(SectionsPagerAdapter.TAB_TITLES[mPosition]));
+                intent.putExtra(BaseActivity.EXTRA_SUB_TITLE, mTitle);
                 startActivity(intent);
             }
         });

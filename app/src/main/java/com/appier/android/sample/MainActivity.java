@@ -2,12 +2,14 @@ package com.appier.android.sample;
 
 import android.os.Bundle;
 
+import com.appier.android.sample.fragment.MainFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.appier.android.sample.primary.SectionsPagerAdapter;
+import com.appier.android.sample.common.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,12 +17,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        final String[] titles = new String[] {
+            "Appier SDK", "MoPub Mediation"
+        };
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), titles) {
+            @Override
+            public Fragment getItem(int position) {
+                return MainFragment.newInstance(position, titles[position]);
+            }
+        };
+
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
-        // Use following line to make tab title scrollable
-        // tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabs.setupWithViewPager(viewPager);
     }
 }
