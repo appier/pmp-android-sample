@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
+import com.appier.android.sample.primary.SectionsPagerAdapter;
 import com.appier.android.sample.secondary.NavigationAdapter;
 
 public class MainFragment extends Fragment {
@@ -118,6 +119,8 @@ public class MainFragment extends Fragment {
             public void onItemClick(AdapterView<?> paramAdapterView, View paramView, int position, long paramLong) {
                 Pair<String, Class<?>> item = navigationAdapter.getItem(position);
                 Intent intent = new Intent(getContext(), item.second);
+                intent.putExtra(BaseActivity.EXTRA_TITLE, item.first);
+                intent.putExtra(BaseActivity.EXTRA_SUB_TITLE, getContext().getResources().getString(SectionsPagerAdapter.TAB_TITLES[mPosition]));
                 startActivity(intent);
             }
         });

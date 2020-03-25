@@ -14,7 +14,7 @@ import com.appier.android.sample.fragment.MainFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[] {
+    public static final int[] TAB_TITLES = new int[] {
         R.string.tab_text_sdk,
         R.string.tab_text_mopub_mediation
     };
