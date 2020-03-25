@@ -1,16 +1,30 @@
 package com.appier.android.sample.activity;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.appier.android.sample.R;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
 
-public class BaseActivity extends Activity {
+import com.appier.android.sample.R;
+import com.appier.android.sample.common.SectionsPagerAdapter;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
+
+public class BaseActivity extends FragmentActivity {
     public static final String EXTRA_SUB_TITLE = "SUB_TITLE";
     public static final String EXTRA_TITLE = "TITLE";
+
+    public static int getThemeAccentColor(Context context) {
+        final TypedValue value = new TypedValue();
+        context.getTheme ().resolveAttribute(R.attr.colorAccent, value, true);
+        return value.data;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +45,24 @@ public class BaseActivity extends Activity {
                 onBackPressed();
             }
         });
+    }
+
+    protected void addTabbedViewPager(SectionsPagerAdapter sectionsPagerAdapter) {
+        addTabbedViewPager(sectionsPagerAdapter, false);
+    }
+
+    protected void addTabbedViewPager(SectionsPagerAdapter sectionsPagerAdapter, boolean scrollableTabTitle) {
+        AppBarLayout appBar = findViewById(R.id.appBar);
+        TabLayout tabs = new TabLayout(this);
+        appBar.addView(tabs);
+
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+
+        if (scrollableTabTitle) {
+             tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }
+        tabs.setupWithViewPager(viewPager);
+        tabs.setTabTextColors(Color.parseColor("#b9c6f7"), getThemeAccentColor(BaseActivity.this));
     }
 }
