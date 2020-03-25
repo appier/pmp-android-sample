@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".primary.NavigationFragment">
+    tools:context=".fragment.MainFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,13 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Interstitial"
                 android:textSize="14dp"
+                android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary" />
@@ -30,10 +32,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
+                android:paddingBottom="4dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/illustration_interstitial" />
 
         </LinearLayout>
+
+        <com.appier.android.sample.secondary.NavigationListView
+            android:id="@+id/secondary_nav_interstitial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -46,13 +54,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Banner"
                 android:textSize="14dp"
+                android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary" />
@@ -60,10 +70,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
+                android:paddingBottom="4dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/illustration_banner" />
 
         </LinearLayout>
+
+        <com.appier.android.sample.secondary.NavigationListView
+            android:id="@+id/secondary_nav_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -76,13 +92,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Native"
                 android:textSize="14dp"
+                android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary" />
@@ -90,10 +108,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
+                android:paddingBottom="4dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/illustration_native" />
 
         </LinearLayout>
+
+        <com.appier.android.sample.secondary.NavigationListView
+            android:id="@+id/secondary_nav_native"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TableRow
             android:layout_width="match_parent"
