@@ -10,6 +10,96 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Interstitial -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Interstitial"
+                android:textSize="14dp"
+                android:paddingBottom="8dp"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/illustration_interstitial" />
+
+        </LinearLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#d8d8d8" />
+
+        <!-- Banner -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Banner"
+                android:textSize="14dp"
+                android:paddingBottom="8dp"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/illustration_banner" />
+
+        </LinearLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#d8d8d8" />
+
+        <!-- Native -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Native"
+                android:textSize="14dp"
+                android:paddingBottom="8dp"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/illustration_native" />
+
+        </LinearLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#d8d8d8" />
+
         <!-- Version Text -->
 
         <TextView
