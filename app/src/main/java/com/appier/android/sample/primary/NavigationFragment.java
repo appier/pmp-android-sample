@@ -13,7 +13,7 @@ import com.appier.android.sample.R;
 public class NavigationFragment extends Fragment {
     private static final String ARG_POSITION = "position";
 
-    private String mPosition;
+    private int mPosition;
 
     public NavigationFragment() {}
 
@@ -29,7 +29,7 @@ public class NavigationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mPosition = getArguments().getString(ARG_POSITION);
+            mPosition = getArguments().getInt(ARG_POSITION);
         }
     }
 
