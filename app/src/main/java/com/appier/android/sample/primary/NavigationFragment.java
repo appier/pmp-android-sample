@@ -37,7 +37,7 @@ public class NavigationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_sample_navigation, container, false);
+        View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
         TextView textVersion = layout.findViewById(R.id.text_version);
         if (mPosition == 0) {
             textVersion.setText("Appier SDK version : 1.0.0-rc5");
