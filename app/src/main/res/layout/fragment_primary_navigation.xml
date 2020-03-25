@@ -106,11 +106,12 @@
             android:id="@+id/text_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="10dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:gravity="center"
-            android:textColor="#b4b4b4" />
+            android:textColor="#b4b4b4"
+            android:textStyle="italic" />
 
     </LinearLayout>
 
