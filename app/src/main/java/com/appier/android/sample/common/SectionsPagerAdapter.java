@@ -9,7 +9,7 @@ public abstract class SectionsPagerAdapter extends FragmentPagerAdapter {
     private String[] mTitles;
 
     public SectionsPagerAdapter(FragmentManager fm, String[] titles) {
-        super(fm);
+        super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mTitles = titles;
     }
 
