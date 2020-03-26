@@ -43,19 +43,19 @@
             android:orientation="vertical"
             android:background="#cccccc" />
 
-        <!-- 300x400 -->
+        <!-- 320x480 -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="300x400"
+            android:text="320x480"
             android:paddingTop="20dp"
             android:paddingBottom="4dp" />
 
         <LinearLayout
-            android:id="@+id/banner_container_300_400"
-            android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:id="@+id/banner_container_320_480"
+            android:layout_width="320dp"
+            android:layout_height="480dp"
             android:orientation="vertical"
             android:background="#cccccc" />
 

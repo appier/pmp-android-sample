@@ -78,7 +78,7 @@ public class BannerBasicActivity extends BaseActivity {
         protected void onViewVisible(View view) {
             ((LinearLayout) view.findViewById(R.id.banner_container_320_50)).removeAllViews();
             ((LinearLayout) view.findViewById(R.id.banner_container_300_250)).removeAllViews();
-            ((LinearLayout) view.findViewById(R.id.banner_container_300_400)).removeAllViews();
+            ((LinearLayout) view.findViewById(R.id.banner_container_320_480)).removeAllViews();
 
             Context context = getActivity();
             switch (mPosition) {
@@ -99,7 +99,7 @@ public class BannerBasicActivity extends BaseActivity {
             }
             insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_320_50), "6241", 320, 50);
             insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_300_250), "5933", 300, 250);
-            insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_300_400), "6242", 300, 400);
+            insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_320_480), "6242", 320, 480);
         }
 
         private void insertBanner(Context context, final LinearLayout parent, String zoneId, int width, int height) {
