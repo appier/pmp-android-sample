@@ -97,9 +97,9 @@ public class BannerBasicActivity extends BaseActivity {
                     context = myService;
                     break;
             }
-            insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_320_50), "5933", 320, 50);
+            insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_320_50), "6241", 320, 50);
             insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_300_250), "5933", 300, 250);
-            insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_300_400), "5933", 300, 400);
+            insertBanner(context, (LinearLayout) view.findViewById(R.id.banner_container_300_400), "6242", 300, 400);
         }
 
         private void insertBanner(Context context, final LinearLayout parent, String zoneId, int width, int height) {
