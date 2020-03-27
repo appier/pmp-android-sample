@@ -75,6 +75,8 @@ public class InterstitialActivity extends BaseActivity {
             mButtonLoad = view.findViewById(R.id.button_load);
             mTextIndicator = view.findViewById(R.id.text_step_indicator);
 
+            Appier.setTestMode(true);
+
             mButtonLoad.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
