@@ -5,10 +5,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appier.android.sample.R;
@@ -64,5 +67,11 @@ public class BaseActivity extends FragmentActivity {
         }
         tabs.setupWithViewPager(viewPager);
         tabs.setTabTextColors(Color.parseColor("#b9c6f7"), getThemeAccentColor(BaseActivity.this));
+    }
+
+    public void addFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.content_frame, fragment);
+        fragmentTransaction.commit();
     }
 }
