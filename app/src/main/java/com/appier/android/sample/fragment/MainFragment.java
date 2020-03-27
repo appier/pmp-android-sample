@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
+import com.appier.android.sample.activity.sdk.InterstitialActivity;
 import com.appier.android.sample.secondary.NavigationAdapter;
 
 public class MainFragment extends Fragment {
@@ -61,7 +62,7 @@ public class MainFragment extends Fragment {
         initializeNavigationList(
             layout.findViewById(R.id.secondary_nav_interstitial),
             new Pair[] {
-                new Pair<>("Interstitial", BaseActivity.class)
+                new Pair<>("Interstitial", InterstitialActivity.class)
             }
         );
         initializeNavigationList(
