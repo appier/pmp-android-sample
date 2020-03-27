@@ -25,7 +25,7 @@
             android:layout_width="320dp"
             android:layout_height="50dp"
             android:orientation="vertical"
-            android:background="#cccccc" />
+            android:background="@color/colorAdPlaceholder" />
 
         <!-- 300x250 -->
 
@@ -41,7 +41,7 @@
             android:layout_width="300dp"
             android:layout_height="250dp"
             android:orientation="vertical"
-            android:background="#cccccc" />
+            android:background="@color/colorAdPlaceholder" />
 
         <!-- 320x480 -->
 
@@ -57,7 +57,7 @@
             android:layout_width="320dp"
             android:layout_height="480dp"
             android:orientation="vertical"
-            android:background="#cccccc" />
+            android:background="@color/colorAdPlaceholder" />
 
     </LinearLayout>
 
