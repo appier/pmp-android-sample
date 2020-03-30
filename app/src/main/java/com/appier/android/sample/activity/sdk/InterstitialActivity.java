@@ -1,7 +1,5 @@
 package com.appier.android.sample.activity.sdk;
 
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,13 +26,8 @@ public class InterstitialActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Load interstitial fragment
-        InterstitialFragment interstitialFragment = InterstitialFragment.newInstance();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.content_frame, interstitialFragment);
-        fragmentTransaction.commit();
-
+        addFragment(InterstitialFragment.newInstance());
     }
 
     public static class InterstitialFragment extends BaseFragment {

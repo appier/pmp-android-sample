@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
+import com.appier.android.sample.activity.sdk.BannerFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerListActivity;
 import com.appier.android.sample.activity.sdk.InterstitialActivity;
 import com.appier.android.sample.secondary.NavigationAdapter;
@@ -71,7 +72,7 @@ public class MainFragment extends Fragment {
                 new Pair[] {
                         new Pair<>("Banner - basic format", BannerBasicActivity.class),
                         new Pair<>("Banner - in a listview", BannerListActivity.class),
-                        new Pair<>("Banner - in a floating window", BaseActivity.class)
+                        new Pair<>("Banner - in a floating window", BannerFloatingWindowActivity.class)
                 }
         );
         initializeNavigationList(

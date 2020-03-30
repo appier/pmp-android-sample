@@ -19,6 +19,7 @@
 
         <activity android:name=".activity.sdk.BannerBasicActivity" />
         <activity android:name=".activity.sdk.BannerListActivity" />
+        <activity android:name=".activity.sdk.BannerFloatingWindowActivity" />
 
         <!-- Lock screen orientation to portrait for interstitial demo -->
         <activity android:name=".activity.sdk.InterstitialActivity" android:screenOrientation="portrait" />
