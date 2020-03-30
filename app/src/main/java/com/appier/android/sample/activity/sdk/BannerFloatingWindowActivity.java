@@ -34,6 +34,12 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
         mDemoFragment.getFloatViewManager().handleActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mDemoFragment.getFloatViewManager().close();
+    }
+
     public static class DemoFragment extends BaseFragment {
         private FloatViewManager mFloatViewManager;
         private LinearLayout mAdContainer;
@@ -47,6 +53,10 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
                 @Override
                 public void onOpen(LinearLayout contentContainer) {
                     mAdContainer = contentContainer;
+                    View view = getView();
+                    if (view != null) {
+                        view.findViewById(R.id.button_load).setVisibility(View.GONE);
+                    }
                     loadBanner(getActivity(), getResources().getString(R.string.zone_300x250), 300, 250);
                 }
 
@@ -64,6 +74,10 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
                     }
                     if (mAppierBannerAd != null) {
                         mAppierBannerAd.destroy();
+                    }
+                    View view = getView();
+                    if (view != null) {
+                        view.findViewById(R.id.button_load).setVisibility(View.VISIBLE);
                     }
                 }
             });
