@@ -103,8 +103,7 @@ public class MainFragment extends Fragment {
                 layout.findViewById(R.id.secondary_nav_banner),
                 new Pair[] {
                         new Pair<>("Banner - basic format", com.appier.android.sample.activity.mediation.mopub.BannerBasicActivity.class),
-                        new Pair<>("Banner - in a listview", BaseActivity.class),
-                        new Pair<>("Banner - in a floating window", BaseActivity.class)
+                        new Pair<>("Banner - in a floating window", com.appier.android.sample.activity.mediation.mopub.BannerFloatingWindowActivity.class)
                 }
         );
         initializeNavigationList(
