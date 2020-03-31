@@ -25,6 +25,7 @@
         <!-- Lock screen orientation to portrait for interstitial demo -->
         <activity android:name=".activity.sdk.InterstitialActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.sdk.NativeBasicActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
