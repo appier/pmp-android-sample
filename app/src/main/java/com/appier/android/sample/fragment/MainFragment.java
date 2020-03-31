@@ -58,7 +58,7 @@ public class MainFragment extends Fragment {
         if (mPosition == 0) {
             initializeSDKView(layout);
         } else if (mPosition == 1) {
-            initializeMediationView(layout);
+            initializeMoPubMediationView(layout);
         }
         return layout;
     }
@@ -90,7 +90,7 @@ public class MainFragment extends Fragment {
         textVersion.setText("Appier SDK version : 1.0.0-rc5");
     }
 
-    private void initializeMediationView(View layout) {
+    private void initializeMoPubMediationView(View layout) {
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_interstitial),
                 new Pair[] {
@@ -100,7 +100,7 @@ public class MainFragment extends Fragment {
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_banner),
                 new Pair[] {
-                        new Pair<>("Banner - basic format", BaseActivity.class),
+                        new Pair<>("Banner - basic format", com.appier.android.sample.activity.mediation.mopub.BannerBasicActivity.class),
                         new Pair<>("Banner - in a listview", BaseActivity.class),
                         new Pair<>("Banner - in a floating window", BaseActivity.class)
                 }
