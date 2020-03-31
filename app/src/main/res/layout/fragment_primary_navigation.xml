@@ -135,7 +135,8 @@
             android:paddingBottom="12dp"
             android:gravity="center"
             android:textColor="#b4b4b4"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:singleLine="false" />
 
     </LinearLayout>
 

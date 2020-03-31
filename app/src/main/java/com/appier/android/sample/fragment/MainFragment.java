@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.appier.ads.Appier;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
@@ -23,6 +24,7 @@ import com.appier.android.sample.activity.sdk.NativeBasicActivity;
 import com.appier.android.sample.activity.sdk.NativeFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.NativeListActivity;
 import com.appier.android.sample.secondary.NavigationAdapter;
+import com.mopub.mobileads.AppierAdapterConfiguration;
 
 public class MainFragment extends Fragment {
     private static final String ARG_POSITION = "position";
@@ -87,7 +89,7 @@ public class MainFragment extends Fragment {
                 }
         );
         TextView textVersion = layout.findViewById(R.id.text_version);
-        textVersion.setText("Appier SDK version : 1.0.0-rc5");
+        textVersion.setText("Appier SDK version : " + Appier.getVersionName());
     }
 
     private void initializeMoPubMediationView(View layout) {
@@ -114,7 +116,11 @@ public class MainFragment extends Fragment {
                 }
         );
         TextView textVersion = layout.findViewById(R.id.text_version);
-        textVersion.setText("Mediation SDK version : 1.0.0-rc4");
+        AppierAdapterConfiguration appierAdapterConfiguration = new AppierAdapterConfiguration();
+        textVersion.setText(
+            "Mediation SDK version : " + appierAdapterConfiguration.getAdapterVersion() + "\n" +
+            "Appier SDK version : " + appierAdapterConfiguration.getNetworkSdkVersion()
+        );
     }
 
     private void initializeNavigationList(View view, Pair<String, Class<?>>[] navigations) {
