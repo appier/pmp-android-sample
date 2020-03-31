@@ -29,6 +29,7 @@
 
         <activity android:name=".activity.sdk.NativeBasicActivity" />
         <activity android:name=".activity.sdk.NativeListActivity" />
+        <activity android:name=".activity.sdk.NativeFloatingWindowActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

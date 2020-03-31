@@ -1,7 +1,5 @@
 package com.appier.android.sample.activity.sdk;
 
-import androidx.annotation.Nullable;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +9,18 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
+
 import com.appier.ads.Appier;
-import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
+import com.appier.ads.AppierNativeAd;
+import com.appier.ads.AppierNativeViewBinder;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.common.FloatViewManager;
 import com.appier.android.sample.fragment.BaseFragment;
 
-public class BannerFloatingWindowActivity  extends BaseActivity {
+public class NativeFloatingWindowActivity extends BaseActivity {
     DemoFragment mDemoFragment;
 
     @Override
@@ -42,15 +43,18 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
     }
 
     public static class DemoFragment extends BaseFragment {
+        private Context mContext;
         private FloatViewManager mFloatViewManager;
         private LinearLayout mAdContainer;
         private FrameLayout mOverlayFrame;
         private View mAdView;
-        private AppierBannerAd mAppierBannerAd;
+        private AppierNativeAd mAppierNativeAd;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            mContext = getActivity();
+
             mFloatViewManager = new FloatViewManager(getActivity(), new FloatViewManager.OnFloatViewEventListener() {
                 @Override
                 public void onOpen(LinearLayout contentContainer) {
@@ -60,7 +64,7 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
                         view.findViewById(R.id.button_load).setVisibility(View.GONE);
                         mOverlayFrame.setVisibility(View.VISIBLE);
                     }
-                    loadBanner(getActivity(), getResources().getString(R.string.zone_300x250), 300, 250);
+                    loadNativeAdUnit(mContext, getResources().getString(R.string.zone_native));
                 }
 
                 @Override
@@ -75,8 +79,8 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
                     if (mAdView != null) {
                         contentContainer.removeView(mAdView);
                     }
-                    if (mAppierBannerAd != null) {
-                        mAppierBannerAd.destroy();
+                    if (mAppierNativeAd != null) {
+                        mAppierNativeAd.destroy();
                     }
                     View view = getView();
                     if (view != null) {
@@ -108,37 +112,84 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
             return mFloatViewManager;
         }
 
-        private void loadBanner(Context context, String zoneId, int width, int height) {
-            mAppierBannerAd = new AppierBannerAd(context, new AppierBannerAd.EventListener() {
+        private void loadNativeAdUnit(Context context, String zoneId) {
+
+            Appier.setTestMode(true);
+
+            /*
+             * (Optional) Set GDPR and COPPA explicitly to follow the regulations
+             */
+            Appier.setGDPRApplies(true);
+            Appier.setCoppaApplies(true);
+
+            /*
+             * (Required) Appier Native Ad integration
+             */
+            AppierNativeViewBinder appierNativeViewBinder = new AppierNativeViewBinder.Builder(R.layout.template_native_ad_full_2)
+                    .mainImageId(R.id.native_main_image)
+                    .iconImageId(R.id.native_icon_image)
+                    .titleId(R.id.native_title)
+                    .textId(R.id.native_text)
+                    .callToActionId(R.id.native_cta)
+                    .privacyInformationIconImageId(R.id.native_privacy_information_icon_image)
+                    .build();
+
+            mAppierNativeAd = new AppierNativeAd(context, new AppierNativeAd.EventListener() {
                 @Override
-                public void onAdLoaded(AppierBannerAd appierBannerAd) {
-                    Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
+                public void onAdLoaded(AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onAdLoaded()");
                     if (mAdContainer != null) {
-                        mAdView = appierBannerAd.getView();
+                        mAdView = appierNativeAd.getAdView();
                         mAdContainer.addView(mAdView);
                     }
                 }
 
                 @Override
-                public void onAdNoBid(AppierBannerAd appierBannerAd) {
-                    Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
+                public void onAdNoBid(AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onAdNoBid()");
                 }
 
                 @Override
-                public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
-                    Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
+                public void onAdLoadFail(AppierError appierError, AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onAdLoadFail()", appierError.toString());
                 }
 
                 @Override
-                public void onViewClick(AppierBannerAd appierBannerAd) {
-                    Appier.log("[Sample App]", "[Banner]", "onViewClick()");
+                public void onAdShown(AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onAdShown()");
+                }
+
+                @Override
+                public void onImpressionRecorded(AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onImpressionRecorded()");
+                }
+
+                @Override
+                public void onImpressionRecordFail(AppierError appierError, AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onImpressionRecordFail()", appierError.toString());
+                }
+
+                @Override
+                public void onAdClick(AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onAdClick()");
+                    mFloatViewManager.close();
+                }
+
+                @Override
+                public void onAdClickFail(AppierError appierError, AppierNativeAd appierNativeAd) {
+                    Appier.log("[Sample App] onAdClickFail()");
                 }
             });
-            mAppierBannerAd.setAdDimension(width, height);
-            mAppierBannerAd.setZoneId(zoneId);
 
-            Appier.log("[Sample App]", "====== load Appier Banner ======");
-            mAppierBannerAd.loadAd();
+            mAppierNativeAd.setViewBinder(appierNativeViewBinder);
+            mAppierNativeAd.setZoneId(zoneId);
+
+            /*
+             * Load Ad and display in the UI through the view binder
+             */
+            Appier.log("[Sample App]", "====== load Appier Native ======");
+            mAppierNativeAd.loadAd();
         }
+
     }
 }

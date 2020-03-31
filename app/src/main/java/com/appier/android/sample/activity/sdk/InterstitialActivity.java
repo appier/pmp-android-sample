@@ -60,7 +60,7 @@ public class InterstitialActivity extends BaseActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            final View view = inflater.inflate(R.layout.fragment_interstitial_content, container, false);
+            final View view = inflater.inflate(R.layout.fragment_common_interstitial, container, false);
             mContext = getActivity();
 
             mProgressLoading = view.findViewById(R.id.progress_loading);
