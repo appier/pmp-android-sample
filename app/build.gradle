@@ -21,6 +21,21 @@ android {
         }
     }
 
+    /*
+     * The following productFlavors are development only.
+     */
+    flavorDimensions "network"
+    productFlavors {
+        dev {
+            dimension "network"
+        }
+        staging {
+            dimension "network"
+        }
+        production {
+            dimension "network"
+        }
+    }
 }
 
 dependencies {
@@ -38,5 +53,15 @@ dependencies {
     implementation 'com.google.android.material:material:+'
 
     // Appier SDK
-    implementation 'com.appier.android:ads-sdk:1.0.0-rc5'
+    // implementation 'com.appier.android:ads-sdk:1.0.0-rc5'
+
+    /*
+     * The following dependencies are development only.
+     */
+
+    // memory leak checking
+    // debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
+
+    // Import Appier SDK from source
+    implementation project(':appier-sdk')
 }
