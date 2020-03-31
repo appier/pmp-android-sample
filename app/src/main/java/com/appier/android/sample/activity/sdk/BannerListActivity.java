@@ -74,7 +74,7 @@ public class BannerListActivity extends BaseActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_sdk_banner_list, container, false);
+            View view = inflater.inflate(R.layout.fragment_common_list, container, false);
             mListView = view.findViewById(R.id.list);
             mRecyclerView = view.findViewById(R.id.recycler);
             // add line between items
