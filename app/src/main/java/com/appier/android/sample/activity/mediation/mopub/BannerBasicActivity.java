@@ -24,9 +24,6 @@ public class BannerBasicActivity extends BaseActivity {
     }
 
     public static class DemoFragment extends BaseFragment {
-        private static int AD_WIDTH = 300;
-        private static int AD_HEIGHT = 250;
-
         private MoPubView mMoPubView;
 
         @Override
@@ -44,13 +41,13 @@ public class BannerBasicActivity extends BaseActivity {
 
         @Override
         protected void onViewVisible(View view) {
-            loadBanner(getResources().getString(R.string.mopub_adunit_banner_300x250));
+            loadBanner(getResources().getString(R.string.mopub_adunit_banner_300x250), 300, 250);
         }
 
-        private void loadBanner(String adUnitId) {
+        private void loadBanner(String adUnitId, int width, int height) {
             Map<String, Object> localExtras = new HashMap<>();
-            localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
-            localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
+            localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, width);
+            localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, height);
 
             mMoPubView = getView().findViewById(R.id.banner_container_300_250);
             mMoPubView.setLocalExtras(localExtras);
