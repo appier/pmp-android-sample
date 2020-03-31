@@ -1,3 +1,6 @@
 [submodule "appier-sdk"]
 	path = appier-sdk
 	url = git@bitbucket.org:plaxieappier/pmp-android-sdk.git
+[submodule "appier-mopub-mediation"]
+	path = appier-mopub-mediation
+	url = git@bitbucket.org:plaxieappier/pmp-mopub-android-mediation.git
