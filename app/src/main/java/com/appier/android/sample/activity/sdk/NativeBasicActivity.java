@@ -113,7 +113,7 @@ public class NativeBasicActivity extends BaseActivity {
             /*
              * (Required) Appier Native Ad integration
              */
-            AppierNativeViewBinder appierNativeViewBinder = new AppierNativeViewBinder.Builder(R.layout.template_native_ad)
+            AppierNativeViewBinder appierNativeViewBinder = new AppierNativeViewBinder.Builder(R.layout.template_native_ad_full_1)
                     .mainImageId(R.id.native_main_image)
                     .iconImageId(R.id.native_icon_image)
                     .titleId(R.id.native_title)

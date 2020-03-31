@@ -20,6 +20,7 @@ import com.appier.android.sample.activity.sdk.BannerFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerListActivity;
 import com.appier.android.sample.activity.sdk.InterstitialActivity;
 import com.appier.android.sample.activity.sdk.NativeBasicActivity;
+import com.appier.android.sample.activity.sdk.NativeListActivity;
 import com.appier.android.sample.secondary.NavigationAdapter;
 
 public class MainFragment extends Fragment {
@@ -80,7 +81,7 @@ public class MainFragment extends Fragment {
                 layout.findViewById(R.id.secondary_nav_native),
                 new Pair[] {
                         new Pair<>("Native - basic format", NativeBasicActivity.class),
-                        new Pair<>("Native - in a listview", BaseActivity.class),
+                        new Pair<>("Native - in a listview", NativeListActivity.class),
                         new Pair<>("Native - in a floating window", BaseActivity.class)
                 }
         );
