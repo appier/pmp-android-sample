@@ -165,10 +165,6 @@ public class MoPubInterstitialActivity extends BaseActivity {
                     updateLayoutByState(mCurrentState);
                 }}, 500
             );
-
-            // TODO: remove toast?
-            Toast toast = Toast.makeText(mContext, "Ad Loaded!", Toast.LENGTH_SHORT);
-            toast.show();
         }
 
         @Override
@@ -176,10 +172,6 @@ public class MoPubInterstitialActivity extends BaseActivity {
             Appier.log("[Sample App]", "Interstitial load failed");
             mCurrentState = getNextLoadingState(mCurrentState);
             updateLayoutByState(mCurrentState);
-
-            // TODO: remove toast?
-            Toast toast = Toast.makeText(mContext, "Ad Loading Failed!", Toast.LENGTH_SHORT);
-            toast.show();
         }
 
         @Override
@@ -187,19 +179,11 @@ public class MoPubInterstitialActivity extends BaseActivity {
             Appier.log("[Sample App]", "Interstitial shown");
             mCurrentState = getNextLoadingState(mCurrentState);
             updateLayoutByState(mCurrentState);
-
-            // TODO: remove toast?
-            Toast toast = Toast.makeText(mContext, "Ad Shown!", Toast.LENGTH_SHORT);
-            toast.show();
         }
 
         @Override
         public void onInterstitialClicked(MoPubInterstitial interstitial) {
             Appier.log("[Sample App]", "Interstitial clicked");
-
-            // TODO: remove toast?
-            Toast toast = Toast.makeText(mContext, "Clicked!", Toast.LENGTH_SHORT);
-            toast.show();
         }
 
         @Override
@@ -207,10 +191,6 @@ public class MoPubInterstitialActivity extends BaseActivity {
             Appier.log("[Sample App]", "Interstitial dismissed");
             mCurrentState = STATE_UNLOADED;
             updateLayoutByState(mCurrentState);
-
-            // TODO: remove toast?
-            Toast toast = Toast.makeText(mContext, "Dismissed!", Toast.LENGTH_SHORT);
-            toast.show();
         }
     }
 }

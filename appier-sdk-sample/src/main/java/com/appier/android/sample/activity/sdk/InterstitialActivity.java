@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appier.ads.Appier;
 import com.appier.ads.AppierError;
@@ -157,10 +156,6 @@ public class InterstitialActivity extends BaseActivity {
                             updateLayoutByState(mCurrentState);
                         }}, 500
                     );
-
-                    // TODO: remove toast?
-                    Toast toast = Toast.makeText(mContext, "Ad Loaded!", Toast.LENGTH_SHORT);
-                    toast.show();
                 }
 
                 @Override
@@ -168,10 +163,6 @@ public class InterstitialActivity extends BaseActivity {
                     Appier.log("[Sample App]", "Interstitial ad returns no bid");
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
-
-                    // TODO: remove toast?
-                    Toast toast = Toast.makeText(mContext, "No Bid!", Toast.LENGTH_SHORT);
-                    toast.show();
                 }
 
                 @Override
@@ -179,10 +170,6 @@ public class InterstitialActivity extends BaseActivity {
                     Appier.log("[Sample App]", "Interstitial load failed");
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
-
-                    // TODO: remove toast?
-                    Toast toast = Toast.makeText(mContext, "Ad Loading Failed!", Toast.LENGTH_SHORT);
-                    toast.show();
                 }
 
                 @Override
@@ -190,10 +177,6 @@ public class InterstitialActivity extends BaseActivity {
                     Appier.log("[Sample App]", "Interstitial shown");
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
-
-                    // TODO: remove toast?
-                    Toast toast = Toast.makeText(mContext, "Ad Shown!", Toast.LENGTH_SHORT);
-                    toast.show();
                 }
 
                 @Override
@@ -201,10 +184,6 @@ public class InterstitialActivity extends BaseActivity {
                     Appier.log("[Sample App]", "Interstitial show failed with error: " + appierError);
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
-
-                    // TODO: remove toast?
-                    Toast toast = Toast.makeText(mContext, "Ad Show Failed!", Toast.LENGTH_SHORT);
-                    toast.show();
                 }
 
                 @Override
@@ -212,10 +191,6 @@ public class InterstitialActivity extends BaseActivity {
                     Appier.log("[Sample App]", "Interstitial dismissed");
                     mCurrentState = STATE_UNLOADED;
                     updateLayoutByState(mCurrentState);
-
-                    // TODO: remove toast?
-                    Toast toast = Toast.makeText(mContext, "Dismissed!", Toast.LENGTH_SHORT);
-                    toast.show();
                 }
             });
 
