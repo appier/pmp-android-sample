@@ -1,4 +1,4 @@
-package com.appier.android.sample.activity.mediation.mopub;
+package com.appier.android.sample.activity.mediation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import com.mopub.mobileads.MoPubView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BannerBasicActivity extends BaseActivity {
+public class MoPubBannerBasicActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

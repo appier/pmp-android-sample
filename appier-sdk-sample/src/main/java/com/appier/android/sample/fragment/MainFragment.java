@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.appier.ads.Appier;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
+import com.appier.android.sample.activity.mediation.MoPubBannerBasicActivity;
+import com.appier.android.sample.activity.mediation.MoPubNativeBasicActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
 import com.appier.android.sample.activity.sdk.BannerFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerListActivity;
@@ -102,8 +104,8 @@ public class MainFragment extends Fragment {
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_banner),
                 new Pair[] {
-                        new Pair<>("Banner - basic format", com.appier.android.sample.activity.mediation.mopub.BannerBasicActivity.class),
-                        new Pair<>("Banner - in a floating window", com.appier.android.sample.activity.mediation.mopub.BannerFloatingWindowActivity.class)
+                        new Pair<>("Banner - basic format", MoPubBannerBasicActivity.class),
+                        new Pair<>("Banner - in a floating window", MoPubBannerFloatingWindowActivity.class)
                 }
         );
         initializeNavigationList(

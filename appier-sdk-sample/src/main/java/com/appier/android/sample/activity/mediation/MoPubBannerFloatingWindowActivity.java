@@ -1,4 +1,4 @@
-package com.appier.android.sample.activity.mediation.mopub;
+package com.appier.android.sample.activity.mediation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import com.mopub.mobileads.MoPubView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BannerFloatingWindowActivity extends BaseActivity {
+public class MoPubBannerFloatingWindowActivity extends BaseActivity {
     DemoFragment mDemoFragment;
 
     @Override

@@ -31,8 +31,9 @@
         <activity android:name=".activity.sdk.NativeListActivity" />
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" />
 
-        <activity android:name=".activity.mediation.mopub.BannerBasicActivity" />
-        <activity android:name=".activity.mediation.mopub.BannerFloatingWindowActivity" />
+        <activity android:name=".activity.mediation.MoPubBannerBasicActivity" />
+        <activity android:name=".activity.mediation.MoPubBannerFloatingWindowActivity" />
+        <activity android:name=".activity.mediation.MoPubNativeBasicActivity" />
 
         <activity
             android:name=".MainActivity"
