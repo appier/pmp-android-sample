@@ -19,6 +19,7 @@ import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.mediation.MoPubBannerBasicActivity;
 import com.appier.android.sample.activity.mediation.MoPubBannerFloatingWindowActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeBasicActivity;
+import com.appier.android.sample.activity.mediation.MoPubNativeFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
 import com.appier.android.sample.activity.sdk.BannerFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerListActivity;
@@ -114,7 +115,7 @@ public class MainFragment extends Fragment {
                 new Pair[] {
                         new Pair<>("Native - basic format", MoPubNativeBasicActivity.class),
                         new Pair<>("Native - in a listview", BaseActivity.class),
-                        new Pair<>("Native - in a floating window", BaseActivity.class)
+                        new Pair<>("Native - in a floating window", MoPubNativeFloatingWindowActivity.class)
                 }
         );
         TextView textVersion = layout.findViewById(R.id.text_version);
