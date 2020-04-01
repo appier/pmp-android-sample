@@ -31,8 +31,12 @@
         <activity android:name=".activity.sdk.NativeListActivity" />
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" />
 
+        <!-- Lock screen orientation to portrait for interstitial demo -->
+        <activity android:name=".activity.mediation.MoPubInterstitialActivity" android:screenOrientation="portrait" />
+
         <activity android:name=".activity.mediation.MoPubBannerBasicActivity" />
         <activity android:name=".activity.mediation.MoPubBannerFloatingWindowActivity" />
+
         <activity android:name=".activity.mediation.MoPubNativeBasicActivity" />
         <activity android:name=".activity.mediation.MoPubNativeFloatingWindowActivity" />
 

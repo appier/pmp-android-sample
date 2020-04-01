@@ -18,6 +18,7 @@ import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.mediation.MoPubBannerBasicActivity;
 import com.appier.android.sample.activity.mediation.MoPubBannerFloatingWindowActivity;
+import com.appier.android.sample.activity.mediation.MoPubInterstitialActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeBasicActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
@@ -100,7 +101,7 @@ public class MainFragment extends Fragment {
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_interstitial),
                 new Pair[] {
-                        new Pair<>("Interstitial", BaseActivity.class)
+                        new Pair<>("Interstitial", MoPubInterstitialActivity.class)
                 }
         );
         initializeNavigationList(
