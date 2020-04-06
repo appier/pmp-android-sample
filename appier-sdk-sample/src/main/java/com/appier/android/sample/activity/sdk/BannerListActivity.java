@@ -1,6 +1,7 @@
 package com.appier.android.sample.activity.sdk;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -19,6 +21,7 @@ import com.appier.ads.AppierAdAdapter;
 import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierRecyclerAdapter;
+import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.common.MyListViewAdapter;
@@ -50,7 +53,6 @@ public class BannerListActivity extends BaseActivity {
         private static final String ARG_POSITION = "position";
 
         private int mPosition;
-        private String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
         private ListView mListView;
         private AppierAdAdapter mAppierAdAdapter;
         private RecyclerView mRecyclerView;
@@ -77,38 +79,54 @@ public class BannerListActivity extends BaseActivity {
             View view = inflater.inflate(R.layout.fragment_common_list, container, false);
             mListView = view.findViewById(R.id.list);
             mRecyclerView = view.findViewById(R.id.recycler);
-            // add line between items
-            // mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-            DividerItemDecoration divider = new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
-            divider.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.demo_list_divider));
-            mRecyclerView.addItemDecoration(divider);
+
+            // add space between items
+            mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                @Override
+                public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                    super.getItemOffsets(outRect, view, parent, state);
+                    int space = Dimension.dipsToIntPixels(12, getContext());
+                    outRect.left = space;
+                    outRect.right = space;
+                    outRect.bottom = space;
+
+                    // Add top margin only for the first item to avoid double space between items
+                    if (parent.getChildPosition(view) == 0)
+                        outRect.top = space;
+                }
+            });
             return view;
         }
 
         @Override
         protected void onViewVisible(View view) {
             Context context = getActivity();
+            String[] items;
             switch (mPosition) {
                 case 0:
                     mRecyclerView.setVisibility(View.GONE);
                     mListView.setVisibility(View.VISIBLE);
 
+                    items = new String[] {"", "", "", "", "", "", "", "", "", ""};
                     ArrayAdapter<String> arrayAdapter = new MyListViewAdapter(context, Arrays.asList(items));
                     mAppierAdAdapter = new AppierAdAdapter(arrayAdapter);
                     mListView.setAdapter(mAppierAdAdapter);
+
+                    insertBanner(2, getResources().getString(R.string.zone_320x50), 320, 50);
                     break;
 
                 case 1:
                     mListView.setVisibility(View.GONE);
                     mRecyclerView.setVisibility(View.VISIBLE);
 
+                    items = new String[]{"", "", ""};
                     MyRecyclerViewAdapter recyclerAdapter = new MyRecyclerViewAdapter(context, Arrays.asList(items));
                     mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
                     mAppierRecyclerAdapter = new AppierRecyclerAdapter(recyclerAdapter);
                     mRecyclerView.setAdapter(mAppierRecyclerAdapter);
+                    insertBanner(1, getResources().getString(R.string.zone_300x250), 300, 250);
                     break;
             }
-            insertBanner(2, getResources().getString(R.string.zone_320x50), 320, 50);
         }
 
         private void insertBanner(final int insertPosition, String zoneId, int width, int height) {
