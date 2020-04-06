@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:drawSelectorOnTop="false"
         android:divider="@drawable/demo_list_divider"
-        android:background="@color/colorAdPlaceholder" />
+        android:background="#FFFFFF" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
