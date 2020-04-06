@@ -26,6 +26,8 @@ public class MoPubBannerBasicActivity extends BaseActivity {
     public static class DemoFragment extends BaseFragment {
         private MoPubView mMoPubView;
 
+        public DemoFragment() {}
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.fragment_mediation_mopub_banner_basic, container, false);

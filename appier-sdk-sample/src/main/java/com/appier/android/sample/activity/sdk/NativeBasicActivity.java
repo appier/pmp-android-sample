@@ -59,6 +59,8 @@ public class NativeBasicActivity extends BaseActivity {
             return fragment;
         }
 
+        public NativeAdFragment() {}
+
         public NativeAdFragment(MyServiceController myServiceController) {
             mMyServiceController = myServiceController;
         }

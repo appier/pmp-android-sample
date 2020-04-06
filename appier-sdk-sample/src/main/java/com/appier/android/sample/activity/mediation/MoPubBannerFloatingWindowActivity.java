@@ -52,6 +52,8 @@ public class MoPubBannerFloatingWindowActivity extends BaseActivity {
         private View mAdView;
         private MoPubView mMoPubView;
 
+        public DemoFragment() {}
+
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

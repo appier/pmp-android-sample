@@ -63,6 +63,8 @@ public class MoPubNativeBasicActivity extends BaseActivity {
             return fragment;
         }
 
+        public NativeAdFragment() {}
+
         public NativeAdFragment(MyServiceController myServiceController) {
             mMyServiceController = myServiceController;
         }

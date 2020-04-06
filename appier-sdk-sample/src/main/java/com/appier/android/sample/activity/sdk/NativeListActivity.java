@@ -70,6 +70,8 @@ public class NativeListActivity extends BaseActivity {
             return fragment;
         }
 
+        public NativeListFragment() {}
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

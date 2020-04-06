@@ -62,6 +62,9 @@ public class MoPubInterstitialActivity extends BaseActivity {
             fragment.setArguments(args);
             return fragment;
         }
+
+        public InterstitialFragment() {}
+
         // TODO: need refactor
         @Override
         protected void onViewVisible(View view) {
