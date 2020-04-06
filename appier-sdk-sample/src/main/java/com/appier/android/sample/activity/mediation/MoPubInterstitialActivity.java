@@ -46,9 +46,9 @@ public class MoPubInterstitialActivity extends BaseActivity {
         private static int AD_WIDTH = 320;
         private static int AD_HEIGHT = 480;
 
-        ProgressBar mProgressLoading;
+        ProgressBar mProgressLoading, mProgressStepsArt;
         Button mButtonLoad;
-        ImageView mImageSteps;
+        ImageView mImageStepsArt, mImageSteps;
         TextView mTextIndicator;
 
         private int mCurrentState = STATE_UNLOADED;
@@ -74,6 +74,8 @@ public class MoPubInterstitialActivity extends BaseActivity {
             mContext = getActivity();
 
             mProgressLoading = view.findViewById(R.id.progress_loading);
+            mProgressStepsArt = view.findViewById(R.id.progress_steps_art);
+            mImageStepsArt = view.findViewById(R.id.img_steps_art);
             mImageSteps = view.findViewById(R.id.img_step_progress);
             mButtonLoad = view.findViewById(R.id.button_load);
             mTextIndicator = view.findViewById(R.id.text_step_indicator);
@@ -110,24 +112,29 @@ public class MoPubInterstitialActivity extends BaseActivity {
         private void updateLayoutByState(int state) {
             if (state == STATE_UNLOADED) {
                 mProgressLoading.setVisibility(View.INVISIBLE);
+                mProgressStepsArt.setVisibility(View.INVISIBLE);
                 mTextIndicator.setText("Step 1: Click load and load the ad.");
                 mTextIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
                 mButtonLoad.setText("LOAD");
+                mImageStepsArt.setImageResource(R.drawable.illustration_interstitial_step0_art);
                 mImageSteps.setImageResource(R.drawable.illustration_interstitial_step0);
             } else if (state == STATE_LOADING) {
                 mProgressLoading.setVisibility(View.VISIBLE);
+                mProgressStepsArt.setVisibility(View.VISIBLE);
                 mTextIndicator.setText("Step 1: Click load and load the ad.");
                 mTextIndicator.setTextColor(getResources().getColor(R.color.colorTextFaded));
                 mButtonLoad.setText("");
+                mImageStepsArt.setImageResource(R.drawable.illustration_interstitial_step1_art);
                 mImageSteps.setImageResource(R.drawable.illustration_interstitial_step1);
             } else if (state == STATE_LOADED) {
                 mProgressLoading.setVisibility(View.INVISIBLE);
+                mProgressStepsArt.setVisibility(View.INVISIBLE);
                 mTextIndicator.setText("Step 2: Click show to see the ad.");
                 mTextIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
                 mButtonLoad.setText("SHOW");
+                mImageStepsArt.setImageResource(R.drawable.illustration_interstitial_step2_art);
                 mImageSteps.setImageResource(R.drawable.illustration_interstitial_step2);
             }
-
         }
 
         private int getNextLoadingState(int currentState) {

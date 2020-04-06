@@ -8,16 +8,36 @@
     android:orientation="vertical"
     tools:context=".fragment.BaseFragment">
 
-    <ImageView
-        android:id="@+id/img_steps_art"
-        android:layout_width="160dp"
+    <RelativeLayout
+        android:id="@+id/img_steps_art_group_layout"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="40dp"
         android:layout_height="160dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/illustration_interstitial_steps"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_horizontal|center_vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/illustration_interstitial_steps" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/img_steps_art"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/illustration_interstitial_step0_art"
+            app:srcCompat="@drawable/illustration_interstitial_step0_art" />
+
+        <ProgressBar
+            android:id="@+id/progress_steps_art"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_alignTop="@+id/img_steps_art"
+            android:layout_alignStart="@+id/img_steps_art"
+            android:layout_alignEnd="@+id/img_steps_art"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/text_intro_1"
@@ -30,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_steps_art"
+        app:layout_constraintTop_toBottomOf="@+id/img_steps_art_group_layout"
         app:layout_constraintVertical_bias="0.009" />
 
     <ImageView
@@ -50,7 +70,7 @@
         android:layout_marginBottom="28dp"
         android:text="Step 1: Click load and load the ad."
         android:textColor="@color/colorTextDefault"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/button_group_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
