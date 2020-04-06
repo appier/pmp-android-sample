@@ -66,6 +66,8 @@ public class BannerListActivity extends BaseActivity {
             return fragment;
         }
 
+        public DemoFragment() {}
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

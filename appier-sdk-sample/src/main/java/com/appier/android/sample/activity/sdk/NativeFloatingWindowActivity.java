@@ -50,6 +50,8 @@ public class NativeFloatingWindowActivity extends BaseActivity {
         private View mAdView;
         private AppierNativeAd mAppierNativeAd;
 
+        public DemoFragment() {}
+
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

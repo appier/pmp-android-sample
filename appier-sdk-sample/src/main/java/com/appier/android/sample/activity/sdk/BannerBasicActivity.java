@@ -57,6 +57,8 @@ public class BannerBasicActivity extends BaseActivity {
             return fragment;
         }
 
+        public DemoFragment() {}
+
         public DemoFragment(MyServiceController myServiceController) {
             mMyServiceController = myServiceController;
         }

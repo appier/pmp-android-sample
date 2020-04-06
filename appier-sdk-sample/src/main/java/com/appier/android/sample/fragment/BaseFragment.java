@@ -5,6 +5,9 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 public abstract class BaseFragment extends Fragment {
+
+    public BaseFragment() {}
+
     /*
      * The default FragmentPagerAdapter behavior `BEHAVIOR_SET_USER_VISIBLE_HINT` is deprecated.
      * We set it to `BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT` manually.

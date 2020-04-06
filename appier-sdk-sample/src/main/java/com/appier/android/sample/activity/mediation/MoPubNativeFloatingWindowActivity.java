@@ -54,6 +54,8 @@ public class MoPubNativeFloatingWindowActivity extends BaseActivity {
         private MoPubNative moPubNative;
         private NativeAd.MoPubNativeEventListener moPubNativeEventListener;
 
+        public DemoFragment() {}
+
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

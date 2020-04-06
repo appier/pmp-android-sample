@@ -48,6 +48,8 @@ public class BannerFloatingWindowActivity  extends BaseActivity {
         private View mAdView;
         private AppierBannerAd mAppierBannerAd;
 
+        public DemoFragment() {}
+
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
