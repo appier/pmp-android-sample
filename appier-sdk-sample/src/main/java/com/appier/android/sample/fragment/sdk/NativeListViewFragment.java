@@ -12,19 +12,19 @@ import com.appier.ads.AppierAdAdapter;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyListViewAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierBannerHelper;
+import com.appier.android.sample.helper.AppierNativeHelper;
 
 import java.util.Arrays;
 
-public class BannerListViewFragment extends BaseFragment {
+public class NativeListViewFragment extends BaseFragment {
 
     private ListView mListView;
     private AppierAdAdapter mAppierAdAdapter;
 
-    public BannerListViewFragment() {}
+    public NativeListViewFragment() {}
 
-    public static BannerListViewFragment newInstance() {
-        return new BannerListViewFragment();
+    public static NativeListViewFragment newInstance() {
+        return new NativeListViewFragment();
     }
 
     @Override
@@ -44,8 +44,8 @@ public class BannerListViewFragment extends BaseFragment {
         mAppierAdAdapter = new AppierAdAdapter(arrayAdapter);
         mListView.setAdapter(mAppierAdAdapter);
 
-        AppierBannerHelper.insertAppierBannerToListView(context, mAppierAdAdapter, 2,
-                getResources().getString(R.string.zone_320x50), 320, 50
+        AppierNativeHelper.insertAppierNativeToListView(context, mAppierAdAdapter, 2,
+                getResources().getString(R.string.zone_native), R.layout.template_native_ad_compact_1
         );
     }
 

@@ -9,11 +9,7 @@ import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierRecyclerAdapter;
 
-public class AppierAdsHelper {
-
-    public static void setAppierGlobal() {
-        // TODO: Setup Appier Global vars, include GDPR,... etc.
-    }
+public class AppierBannerHelper {
 
     public static AppierBannerAd createAppierBanner(Context context,
                                                     final LinearLayout parent,

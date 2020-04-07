@@ -16,19 +16,19 @@ import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierBannerHelper;
+import com.appier.android.sample.helper.AppierNativeHelper;
 
 import java.util.Arrays;
 
-public class BannerRecyclerViewFragment extends BaseFragment {
+public class NativeRecyclerViewFragment extends BaseFragment {
 
     private RecyclerView mRecyclerView;
     private AppierRecyclerAdapter mAppierRecyclerAdapter;
 
-    public BannerRecyclerViewFragment() {}
+    public NativeRecyclerViewFragment() {}
 
-    public static BannerRecyclerViewFragment newInstance() {
-        return new BannerRecyclerViewFragment();
+    public static NativeRecyclerViewFragment newInstance() {
+        return new NativeRecyclerViewFragment();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class BannerRecyclerViewFragment extends BaseFragment {
         mAppierRecyclerAdapter = new AppierRecyclerAdapter(recyclerAdapter);
         mRecyclerView.setAdapter(mAppierRecyclerAdapter);
 
-        AppierBannerHelper.insertAppierBannerToRecyclerView(context, mAppierRecyclerAdapter, 1,
-                getResources().getString(R.string.zone_300x250), 300, 250
+        AppierNativeHelper.insertAppierNativeToRecyclerView(context, mAppierRecyclerAdapter, 1,
+                getResources().getString(R.string.zone_native), R.layout.template_native_ad_compact_2
         );
     }
 

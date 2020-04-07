@@ -24,7 +24,7 @@ public class BannerBasicActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         // Create a dummy service to demonstrate the service context integration
-        mMyServiceController = new MyServiceController(BannerBasicActivity.this);
+        mMyServiceController = new MyServiceController(this);
         mMyServiceController.startMyService();
 
         mContext = this;
