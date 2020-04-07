@@ -25,11 +25,13 @@
 
         <activity android:name=".activity.sdk.BannerBasicActivity" />
         <activity android:name=".activity.sdk.BannerListActivity" />
-        <activity android:name=".activity.sdk.BannerFloatingWindowActivity" />
+        <!-- configChanges is required to prevent app from crashing on Android 5 devices -->
+        <activity android:name=".activity.sdk.BannerFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity android:name=".activity.sdk.NativeBasicActivity" />
         <activity android:name=".activity.sdk.NativeListActivity" />
-        <activity android:name=".activity.sdk.NativeFloatingWindowActivity" />
+        <!-- configChanges is required to prevent app from crashing on Android 5 devices -->
+        <activity android:name=".activity.sdk.NativeFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <!-- Lock screen orientation to portrait for interstitial demo -->
         <activity android:name=".activity.mediation.MoPubInterstitialActivity" android:screenOrientation="portrait" />
