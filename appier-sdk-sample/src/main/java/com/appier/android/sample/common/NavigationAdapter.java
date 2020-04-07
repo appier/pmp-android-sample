@@ -1,4 +1,4 @@
-package com.appier.android.sample.secondary;
+package com.appier.android.sample.common;
 
 import android.content.Context;
 import android.util.Pair;

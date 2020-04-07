@@ -2,7 +2,8 @@ package com.appier.android.sample;
 
 import android.os.Bundle;
 
-import com.appier.android.sample.fragment.MainFragment;
+import com.appier.android.sample.fragment.navigation.MoPubMediationNavigationFragment;
+import com.appier.android.sample.fragment.navigation.SdkNavigationFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.fragment.app.Fragment;
@@ -17,13 +18,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final String[] titles = new String[] {
-            "Appier SDK", "MoPub Mediation"
-        };
+
+        final String[] titles = new String[]{"Appier SDK", "MoPub Mediation"};
+
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), titles) {
             @Override
             public Fragment getItem(int position) {
-                return MainFragment.newInstance(position, titles[position]);
+
+                switch (position) {
+                    case 0:
+                        return SdkNavigationFragment.newInstance(titles[position]);
+                    case 1:
+                        return MoPubMediationNavigationFragment.newInstance(titles[position]);
+                    default:
+                        throw new IndexOutOfBoundsException();
+                }
+
             }
         };
 
