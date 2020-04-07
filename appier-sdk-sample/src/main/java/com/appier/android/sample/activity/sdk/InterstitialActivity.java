@@ -154,7 +154,7 @@ public class InterstitialActivity extends BaseActivity {
              */
             mAppierInterstitialAd = new AppierInterstitialAd(context, new AppierInterstitialAd.EventListener() {
                 @Override
-                public void onAdLoaded() {
+                public void onAdLoaded(AppierInterstitialAd appierInterstitialAd) {
                     Appier.log("[Sample App]", "Interstitial loaded");
 
                     // Add a delay for visual effect
@@ -169,35 +169,35 @@ public class InterstitialActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onAdNoBid() {
+                public void onAdNoBid(AppierInterstitialAd appierInterstitialAd) {
                     Appier.log("[Sample App]", "Interstitial ad returns no bid");
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
                 }
 
                 @Override
-                public void onAdLoadFail(AppierError appierError) {
+                public void onAdLoadFail(AppierError appierError, AppierInterstitialAd appierInterstitialAd) {
                     Appier.log("[Sample App]", "Interstitial load failed");
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
                 }
 
                 @Override
-                public void onShown() {
+                public void onShown(AppierInterstitialAd appierInterstitialAd) {
                     Appier.log("[Sample App]", "Interstitial shown");
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
                 }
 
                 @Override
-                public void onShowFail(AppierError appierError) {
+                public void onShowFail(AppierError appierError, AppierInterstitialAd appierInterstitialAd) {
                     Appier.log("[Sample App]", "Interstitial show failed with error: " + appierError);
                     mCurrentState = getNextLoadingState(mCurrentState);
                     updateLayoutByState(mCurrentState);
                 }
 
                 @Override
-                public void onDismiss() {
+                public void onDismiss(AppierInterstitialAd appierInterstitialAd) {
                     Appier.log("[Sample App]", "Interstitial dismissed");
                     mCurrentState = STATE_UNLOADED;
                     updateLayoutByState(mCurrentState);
