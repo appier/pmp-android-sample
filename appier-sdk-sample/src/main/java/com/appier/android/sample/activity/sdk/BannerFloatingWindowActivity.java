@@ -6,6 +6,7 @@ import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.fragment.sdk.BannerFloatingWindowFragment;
 
 public class BannerFloatingWindowActivity extends BaseActivity {
+
     BannerFloatingWindowFragment mDemoFragment;
 
     @Override
