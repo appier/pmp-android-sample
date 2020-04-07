@@ -12,14 +12,14 @@ import com.appier.ads.AppierRecyclerAdapter;
 public class AppierBannerHelper {
 
     public static AppierBannerAd createAppierBanner(Context context,
-                                                    final LinearLayout parent,
+                                                    final LinearLayout parentLayout,
                                                     String zoneId, int width, int height) {
 
         AppierBannerAd appierBannerAd = new AppierBannerAd(context, new AppierBannerAd.EventListener() {
             @Override
             public void onAdLoaded(AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
-                parent.addView(appierBannerAd.getView());
+                parentLayout.addView(appierBannerAd.getView());
             }
 
             @Override
