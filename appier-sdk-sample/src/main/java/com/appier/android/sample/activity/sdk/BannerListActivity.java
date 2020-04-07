@@ -20,9 +20,9 @@ public class BannerListActivity extends BaseActivity {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return BannerListViewFragment.newInstance();
+                        return new BannerListViewFragment();
                     case 1:
-                        return BannerRecyclerViewFragment.newInstance();
+                        return new BannerRecyclerViewFragment();
                     default:
                         throw new IndexOutOfBoundsException();
                 }

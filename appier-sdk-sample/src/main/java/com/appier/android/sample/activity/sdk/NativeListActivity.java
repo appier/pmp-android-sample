@@ -21,9 +21,9 @@ public class NativeListActivity extends BaseActivity {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return NativeListViewFragment.newInstance();
+                        return new NativeListViewFragment();
                     case 1:
-                        return NativeRecyclerViewFragment.newInstance();
+                        return new NativeRecyclerViewFragment();
                     default:
                         throw new IndexOutOfBoundsException();
                 }

@@ -23,10 +23,6 @@ public class BannerListViewFragment extends BaseFragment {
 
     public BannerListViewFragment() {}
 
-    public static BannerListViewFragment newInstance() {
-        return new BannerListViewFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);

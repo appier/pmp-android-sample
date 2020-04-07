@@ -27,10 +27,6 @@ public class BannerRecyclerViewFragment extends BaseFragment {
 
     public BannerRecyclerViewFragment() {}
 
-    public static BannerRecyclerViewFragment newInstance() {
-        return new BannerRecyclerViewFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_recycler_view, container, false);

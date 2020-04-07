@@ -27,10 +27,6 @@ public class NativeRecyclerViewFragment extends BaseFragment {
 
     public NativeRecyclerViewFragment() {}
 
-    public static NativeRecyclerViewFragment newInstance() {
-        return new NativeRecyclerViewFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_recycler_view, container, false);

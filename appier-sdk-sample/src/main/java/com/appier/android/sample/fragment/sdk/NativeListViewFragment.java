@@ -23,10 +23,6 @@ public class NativeListViewFragment extends BaseFragment {
 
     public NativeListViewFragment() {}
 
-    public static NativeListViewFragment newInstance() {
-        return new NativeListViewFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);
