@@ -40,6 +40,7 @@
         <activity android:name=".activity.mediation.MoPubBannerFloatingWindowActivity" />
 
         <activity android:name=".activity.mediation.MoPubNativeBasicActivity" />
+        <activity android:name=".activity.mediation.MoPubNativeListActivity" />
         <activity android:name=".activity.mediation.MoPubNativeFloatingWindowActivity" />
 
         <activity

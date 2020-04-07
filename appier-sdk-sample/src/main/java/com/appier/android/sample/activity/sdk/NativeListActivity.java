@@ -110,6 +110,8 @@ public class NativeListActivity extends BaseActivity {
             Context context = getActivity();
             String[] items;
             switch (mPosition) {
+                // TODO: refactor position selection to the activity
+                // TODO: split ListView and RecyclerView to different segment to make code more readable
                 case 0:
                     mRecyclerView.setVisibility(View.GONE);
                     mListView.setVisibility(View.VISIBLE);
