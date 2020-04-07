@@ -10,22 +10,22 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.appier.ads.AppierBannerAd;
+import com.appier.ads.AppierNativeAd;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.FloatViewManager;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierBannerHelper;
+import com.appier.android.sample.helper.AppierNativeHelper;
 
-public class BannerFloatingWindowFragment extends BaseFragment {
+public class NativeFloatingWindowFragment extends BaseFragment {
 
     private Button mLoadButton;
     private FrameLayout mOverlayFrame;
     private FloatViewManager mFloatViewManager;
     private LinearLayout mAdContainer;
 
-    private AppierBannerAd mAppierBannerAd;
+    private AppierNativeAd mAppierNativeAd;
 
-    public BannerFloatingWindowFragment() {}
+    public NativeFloatingWindowFragment() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,8 +39,9 @@ public class BannerFloatingWindowFragment extends BaseFragment {
                     mLoadButton.setVisibility(View.GONE);
                     mOverlayFrame.setVisibility(View.VISIBLE);
                 }
-                mAppierBannerAd = AppierBannerHelper.createAppierBanner(getActivity(), mAdContainer, getResources().getString(R.string.zone_300x250), 300, 250);
-                mAppierBannerAd.loadAd();
+
+                mAppierNativeAd = AppierNativeHelper.createAppierNative(getActivity(), mAdContainer, getResources().getString(R.string.zone_native));
+                mAppierNativeAd.loadAd();
             }
 
             @Override
@@ -53,8 +54,8 @@ public class BannerFloatingWindowFragment extends BaseFragment {
             @Override
             public void onClose(LinearLayout contentContainer) {
                 mAdContainer.removeAllViews();
-                if (mAppierBannerAd != null) {
-                    mAppierBannerAd.destroy();
+                if (mAppierNativeAd != null) {
+                    mAppierNativeAd.destroy();
                 }
                 View view = getView();
                 if (view != null) {

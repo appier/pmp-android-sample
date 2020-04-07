@@ -144,12 +144,6 @@ public class InterstitialActivity extends BaseActivity {
             }
 
             /*
-             * (Optional) Set GDPR and COPPA explicitly to follow the regulations
-             */
-            Appier.setGDPRApplies(true);
-            Appier.setCoppaApplies(true);
-
-            /*
              * (Required) Appier Interstitial Ad integration
              */
             mAppierInterstitialAd = new AppierInterstitialAd(context, new AppierInterstitialAd.EventListener() {
@@ -206,14 +200,6 @@ public class InterstitialActivity extends BaseActivity {
 
             mAppierInterstitialAd.setAdDimension(320, 480);
             mAppierInterstitialAd.setZoneId("6242");
-
-            /*
-             * (Optional) Set Appier Targeting
-             * Set targeting could bring more precise ads, which may increase revenue for App developers
-             */
-            mAppierInterstitialAd.setYob(2001);
-            mAppierInterstitialAd.setGender(AppierTargeting.Gender.MALE);
-            mAppierInterstitialAd.addKeyword("interest", "sports");
         }
     }
 }
