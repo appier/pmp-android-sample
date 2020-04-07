@@ -52,8 +52,5 @@ public class BannerBasicFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mAppierBannerAd1.destroy();
-        mAppierBannerAd2.destroy();
-        mAppierBannerAd3.destroy();
     }
 }
