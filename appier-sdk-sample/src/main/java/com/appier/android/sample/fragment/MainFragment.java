@@ -21,6 +21,7 @@ import com.appier.android.sample.activity.mediation.MoPubBannerFloatingWindowAct
 import com.appier.android.sample.activity.mediation.MoPubInterstitialActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeBasicActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeFloatingWindowActivity;
+import com.appier.android.sample.activity.mediation.MoPubNativeListActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
 import com.appier.android.sample.activity.sdk.BannerFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.BannerListActivity;
@@ -115,7 +116,7 @@ public class MainFragment extends Fragment {
                 layout.findViewById(R.id.secondary_nav_native),
                 new Pair[] {
                         new Pair<>("Native - basic format", MoPubNativeBasicActivity.class),
-                        new Pair<>("Native - in a listview", BaseActivity.class),
+                        new Pair<>("Native - in a listview", MoPubNativeListActivity.class),
                         new Pair<>("Native - in a floating window", MoPubNativeFloatingWindowActivity.class)
                 }
         );
