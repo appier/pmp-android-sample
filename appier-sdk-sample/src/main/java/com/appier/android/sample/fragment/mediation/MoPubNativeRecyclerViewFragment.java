@@ -1,4 +1,4 @@
-package com.appier.android.sample.fragment.sdk;
+package com.appier.android.sample.fragment.mediation;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,21 +9,20 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.appier.ads.AppierRecyclerAdapter;
 import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.appier.android.sample.common.MyRecyclerViewItemDecoration;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierNativeHelper;
+import com.appier.android.sample.helper.MoPubMediationNativeHelper;
 
 import java.util.Arrays;
 
-public class NativeRecyclerViewFragment extends BaseFragment {
+public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
     private RecyclerView mRecyclerView;
 
-    public NativeRecyclerViewFragment() {}
+    public MoPubNativeRecyclerViewFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,18 +38,17 @@ public class NativeRecyclerViewFragment extends BaseFragment {
     @Override
     protected void onViewVisible(View view) {
         Context context = getActivity();
-        String[] items = new String[]{"", "", ""};
+        String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(context, Arrays.asList(items));
 
-        MyRecyclerViewAdapter recyclerAdapter = new MyRecyclerViewAdapter(context, Arrays.asList(items));
-        AppierRecyclerAdapter mAppierRecyclerAdapter = new AppierRecyclerAdapter(recyclerAdapter);
-        mRecyclerView.setAdapter(mAppierRecyclerAdapter);
-
-        AppierNativeHelper.insertAppierNativeToRecyclerView(
-                context, mAppierRecyclerAdapter, 1,
-                getResources().getString(R.string.zone_native), R.layout.template_native_ad_compact_2
+        MoPubMediationNativeHelper.insertMoPubNativeRecyclerView(
+                context, myRecyclerViewAdapter, mRecyclerView,
+                getResources().getString(R.string.mopub_adunit_native),
+                R.layout.template_native_ad_compact_2
         );
+
     }
 
 }

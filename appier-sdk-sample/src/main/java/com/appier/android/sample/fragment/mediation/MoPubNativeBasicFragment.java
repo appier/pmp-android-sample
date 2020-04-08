@@ -37,7 +37,8 @@ public class MoPubNativeBasicFragment extends BaseFragment {
         ((LinearLayout) view.findViewById(R.id.ad_container)).removeAllViews();
         mMoPubNativeAd = MoPubMediationNativeHelper.createMoPubNative(
                 mContext, (LinearLayout) view.findViewById(R.id.ad_container),
-                getResources().getString(R.string.mopub_adunit_native)
+                getResources().getString(R.string.mopub_adunit_native),
+                R.layout.template_native_ad_full_1
         );
         mMoPubNativeAd.makeRequest();
     }

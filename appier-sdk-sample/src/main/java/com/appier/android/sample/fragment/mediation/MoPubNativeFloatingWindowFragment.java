@@ -41,9 +41,14 @@ public class MoPubNativeFloatingWindowFragment extends BaseFragment {
                     mLoadButton.setVisibility(View.GONE);
                     mOverlayFrame.setVisibility(View.VISIBLE);
                 }
+
+                /*
+                 * Load Ad in ad container layout
+                 */
                 mMoPubNativeAd = MoPubMediationNativeHelper.createMoPubNative(
                         getActivity(), mAdContainer,
-                        getResources().getString(R.string.mopub_adunit_native)
+                        getResources().getString(R.string.mopub_adunit_native),
+                        R.layout.template_native_ad_full_1
                 );
                 mMoPubNativeAd.makeRequest();
             }
