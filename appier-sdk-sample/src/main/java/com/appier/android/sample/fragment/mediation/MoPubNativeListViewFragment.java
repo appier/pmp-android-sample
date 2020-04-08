@@ -1,26 +1,24 @@
-package com.appier.android.sample.fragment.sdk;
+package com.appier.android.sample.fragment.mediation;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.appier.ads.AppierAdAdapter;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyListViewAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierNativeHelper;
+import com.appier.android.sample.helper.MoPubMediationNativeHelper;
 
 import java.util.Arrays;
 
-public class NativeListViewFragment extends BaseFragment {
+public class MoPubNativeListViewFragment extends BaseFragment {
 
     private ListView mListView;
 
-    public NativeListViewFragment() {}
+    public MoPubNativeListViewFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,15 +32,12 @@ public class NativeListViewFragment extends BaseFragment {
         Context context = getActivity();
         String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
 
-        ArrayAdapter<String> arrayAdapter = new MyListViewAdapter(context, Arrays.asList(items));
-        AppierAdAdapter mAppierAdAdapter = new AppierAdAdapter(arrayAdapter);
-        mListView.setAdapter(mAppierAdAdapter);
+        MyListViewAdapter myListViewAdapter = new MyListViewAdapter(context, Arrays.asList(items));
 
-        AppierNativeHelper.insertAppierNativeToListView(
-                context, mAppierAdAdapter, 2,
-                getResources().getString(R.string.zone_native),
-                R.layout.template_native_ad_compact_1
+        MoPubMediationNativeHelper.insertMoPubNativeListView(
+                context, myListViewAdapter, mListView, getResources().getString(R.string.mopub_adunit_native), R.layout.template_native_ad_compact_1
         );
+
     }
 
 }

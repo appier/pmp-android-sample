@@ -39,6 +39,10 @@ public class BannerFloatingWindowFragment extends BaseFragment {
                     mLoadButton.setVisibility(View.GONE);
                     mOverlayFrame.setVisibility(View.VISIBLE);
                 }
+
+                /*
+                 * Load Ad in ad container layout
+                 */
                 mAppierBannerAd = AppierBannerHelper.createAppierBanner(getActivity(), mAdContainer, getResources().getString(R.string.zone_300x250), 300, 250);
                 mAppierBannerAd.loadAd();
             }

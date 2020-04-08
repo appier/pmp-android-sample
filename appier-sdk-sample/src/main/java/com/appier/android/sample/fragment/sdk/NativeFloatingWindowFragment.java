@@ -40,6 +40,9 @@ public class NativeFloatingWindowFragment extends BaseFragment {
                     mOverlayFrame.setVisibility(View.VISIBLE);
                 }
 
+                /*
+                 * Load Ad in ad container layout
+                 */
                 mAppierNativeAd = AppierNativeHelper.createAppierNative(getActivity(), mAdContainer, getResources().getString(R.string.zone_native));
                 mAppierNativeAd.loadAd();
             }

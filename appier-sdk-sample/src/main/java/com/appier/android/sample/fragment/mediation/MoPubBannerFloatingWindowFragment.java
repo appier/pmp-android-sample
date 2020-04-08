@@ -41,6 +41,10 @@ public class MoPubBannerFloatingWindowFragment extends BaseFragment {
                     mLoadButton.setVisibility(View.GONE);
                     mOverlayFrame.setVisibility(View.VISIBLE);
                 }
+
+                /*
+                 * Load Ad in ad container layout
+                 */
                 mMoPubView = MoPubMediationBannerHelper.createMoPubView(
                         getActivity(), mAdContainer,
                         getResources().getString(R.string.mopub_adunit_banner_300x250), 300, 250
