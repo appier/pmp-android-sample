@@ -3,6 +3,7 @@
     <string name="zone_300x250">5933</string>
     <string name="zone_320x50">6241</string>
     <string name="zone_320x480">6242</string>
+    <string name="zone_interstitial">6242</string>
     <string name="zone_native">5904</string>
     <string name="mopub_adunit_banner_300x250">67231ec3ce2f4226a4f7b3ea6eb5ac5a</string>
     <string name="mopub_adunit_native">45ac6e2b9f264107b0089b2af8769afd</string>
