@@ -15,6 +15,7 @@ import com.appier.ads.AppierRecyclerAdapter;
 import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
+import com.appier.android.sample.common.MyRecyclerViewItemDecoration;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierBannerHelper;
 
@@ -33,20 +34,8 @@ public class BannerRecyclerViewFragment extends BaseFragment {
         mRecyclerView = view.findViewById(R.id.recycler);
 
         // add space between items
-        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                super.getItemOffsets(outRect, view, parent, state);
-                int space = Dimension.dipsToIntPixels(12, getContext());
-                outRect.left = space;
-                outRect.right = space;
-                outRect.bottom = space;
+        mRecyclerView.addItemDecoration(new MyRecyclerViewItemDecoration(Dimension.dipsToIntPixels(12, getContext())));
 
-                // Add top margin only for the first item to avoid double space between items
-                if (parent.getChildPosition(view) == 0)
-                    outRect.top = space;
-            }
-        });
         return view;
     }
 
