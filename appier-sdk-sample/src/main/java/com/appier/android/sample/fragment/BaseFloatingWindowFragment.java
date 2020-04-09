@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 import com.appier.android.sample.R;
-import com.appier.android.sample.common.DemoFlowController;
 import com.appier.android.sample.common.FloatViewManager;
 
 
@@ -21,14 +20,13 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
     private FrameLayout mOverlayFrame;
     private FloatViewManager mFloatViewManager;
     private LinearLayout mAdContainer;
-    protected DemoFlowController mDemoFlowController;
 
     public BaseFloatingWindowFragment() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        enableErrorHandling();
         mFloatViewManager = new FloatViewManager(getActivity(), new FloatViewManager.OnFloatViewEventListener() {
             @Override
             public void onOpen(LinearLayout contentContainer) {
@@ -63,24 +61,23 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
                 }
             }
         });
-        mDemoFlowController = new DemoFlowController(this, getContext()) {
+    }
+
+    @Override
+    protected View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_common_floating_window, container, false);
+
+        mLoadButton = view.findViewById(R.id.button_load);
+        mLoadButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public View createDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                View view = inflater.inflate(R.layout.fragment_common_floating_window, container, false);
-
-                mLoadButton = view.findViewById(R.id.button_load);
-                mLoadButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mFloatViewManager.openWithPermissionCheck();
-                    }
-                });
-
-                mOverlayFrame = view.findViewById(R.id.overlay_frame);
-                mOverlayFrame.setVisibility(View.GONE);
-                return view;
+            public void onClick(View v) {
+                mFloatViewManager.openWithPermissionCheck();
             }
-        };
+        });
+
+        mOverlayFrame = view.findViewById(R.id.overlay_frame);
+        mOverlayFrame.setVisibility(View.GONE);
+        return view;
     }
 
     @Override
