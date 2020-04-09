@@ -81,7 +81,19 @@ public abstract class DemoFlowController {
     }
 
     public boolean shouldRefresh(int nextState) {
-        return !(mCurrentState == STATE_LOADING && nextState == STATE_LOADED) && mCurrentState != nextState;
+        if (mCurrentState == STATE_LOADING && nextState == STATE_LOADED) {
+            // initial load
+            return false;
+        }
+        if (mCurrentState == nextState) {
+            if (mCurrentState == STATE_RETRYABLE) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 
     public void updateState(int nextState) {

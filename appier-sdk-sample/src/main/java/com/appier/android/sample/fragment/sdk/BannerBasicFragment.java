@@ -64,14 +64,9 @@ public class BannerBasicFragment extends BaseFragment {
 
             @Override
             public void notifyAdError(AppierError appierError) {
-                mTotalCount += 1;
-                if (mTotalCount == 3) {
-                    if (mBidCount > 0) {
-                        super.notifyAdBid();
-                    } else {
-                        super.notifyAdError(appierError);
-                    }
-                }
+                mTotalCount = 0;
+                mBidCount = 0;
+                super.notifyAdError(appierError);
             }
 
             @Override
