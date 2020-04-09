@@ -5,14 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.appier.ads.Appier;
-import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierBannerView;
-import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
 
-public class BannerViewFragment extends BaseFragment implements AppierBannerAd.EventListener {
+public class BannerViewFragment extends BaseFragment {
 
     private AppierBannerView mAppierBannerView1;
     private AppierBannerView mAppierBannerView2;
@@ -58,23 +55,4 @@ public class BannerViewFragment extends BaseFragment implements AppierBannerAd.E
         super.onDestroy();
     }
 
-    @Override
-    public void onAdLoaded(AppierBannerAd appierBannerAd) {
-        Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
-    }
-
-    @Override
-    public void onAdNoBid(AppierBannerAd appierBannerAd) {
-        Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
-    }
-
-    @Override
-    public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
-        Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
-    }
-
-    @Override
-    public void onViewClick(AppierBannerAd appierBannerAd) {
-        Appier.log("[Sample App]", "[Banner]", "onViewClick()");
-    }
 }
