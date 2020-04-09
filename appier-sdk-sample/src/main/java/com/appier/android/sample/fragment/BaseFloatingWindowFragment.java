@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 import com.appier.android.sample.R;
-import com.appier.android.sample.common.DemoFlow;
+import com.appier.android.sample.common.DemoFlowController;
 import com.appier.android.sample.common.FloatViewManager;
 
 
@@ -21,7 +21,7 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
     private FrameLayout mOverlayFrame;
     private FloatViewManager mFloatViewManager;
     private LinearLayout mAdContainer;
-    protected DemoFlow mDemoFlow;
+    protected DemoFlowController mDemoFlowController;
 
     public BaseFloatingWindowFragment() {}
 
@@ -63,7 +63,7 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
                 }
             }
         });
-        mDemoFlow = new DemoFlow(this, getContext()) {
+        mDemoFlowController = new DemoFlowController(this, getContext()) {
             @Override
             public View createDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
                 View view = inflater.inflate(R.layout.fragment_common_floating_window, container, false);
@@ -85,7 +85,7 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return mDemoFlow.createView(inflater, container, savedInstanceState);
+        return mDemoFlowController.createView(inflater, container, savedInstanceState);
     }
 
     @Override

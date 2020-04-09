@@ -8,12 +8,12 @@ import com.appier.ads.AppierAdAdapter;
 import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierRecyclerAdapter;
-import com.appier.android.sample.common.DemoFlow;
+import com.appier.android.sample.common.DemoFlowController;
 
 public class AppierBannerHelper {
 
     public static AppierBannerAd createAppierBanner(Context context,
-                                                    final DemoFlow demoFlow,
+                                                    final DemoFlowController demoFlowController,
                                                     final LinearLayout parentLayout,
                                                     String zoneId, int width, int height) {
 
@@ -21,20 +21,20 @@ public class AppierBannerHelper {
             @Override
             public void onAdLoaded(AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
-                demoFlow.notifyAdBid();
+                demoFlowController.notifyAdBid();
                 parentLayout.addView(appierBannerAd.getView());
             }
 
             @Override
             public void onAdNoBid(AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
-                demoFlow.notifyAdNoBid();
+                demoFlowController.notifyAdNoBid();
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
-                demoFlow.notifyAdError(appierError);
+                demoFlowController.notifyAdError(appierError);
             }
 
             @Override

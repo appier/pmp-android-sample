@@ -18,7 +18,7 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
          * Load Ad in ad container layout
          */
         mAppierBannerAd = AppierBannerHelper.createAppierBanner(
-                getActivity(), mDemoFlow, adContainer,
+                getActivity(), mDemoFlowController, adContainer,
                 getResources().getString(R.string.zone_300x250), 300, 250
         );
         mAppierBannerAd.loadAd();

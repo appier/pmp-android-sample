@@ -14,7 +14,7 @@ import com.appier.android.sample.R;
 
 import androidx.fragment.app.Fragment;
 
-public abstract class DemoFlow {
+public abstract class DemoFlowController {
     Context mContext;
     Fragment mFragment;
     String mRetryTitle = "";
@@ -25,7 +25,7 @@ public abstract class DemoFlow {
     public static final int STATE_RETRYABLE = 2;
     int mCurrentState = STATE_LOADING;
 
-    public DemoFlow(Fragment fragment, Context context) {
+    public DemoFlowController(Fragment fragment, Context context) {
         mContext = context;
         mFragment = fragment;
     }
@@ -77,7 +77,7 @@ public abstract class DemoFlow {
     }
 
     public boolean isDemoAvailable() {
-        return mCurrentState == DemoFlow.STATE_LOADING || mCurrentState == DemoFlow.STATE_LOADED;
+        return mCurrentState == DemoFlowController.STATE_LOADING || mCurrentState == DemoFlowController.STATE_LOADED;
     }
 
     public boolean shouldRefresh(int nextState) {
