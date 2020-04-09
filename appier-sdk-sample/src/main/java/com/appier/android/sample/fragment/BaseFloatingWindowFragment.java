@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 import com.appier.android.sample.R;
+import com.appier.android.sample.common.DemoFlow;
 import com.appier.android.sample.common.FloatViewManager;
 
 
@@ -20,6 +21,7 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
     private FrameLayout mOverlayFrame;
     private FloatViewManager mFloatViewManager;
     private LinearLayout mAdContainer;
+    protected DemoFlow mDemoFlow;
 
     public BaseFloatingWindowFragment() {}
 
@@ -61,23 +63,29 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
                 }
             }
         });
+        mDemoFlow = new DemoFlow(this, getContext()) {
+            @Override
+            public View createDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                View view = inflater.inflate(R.layout.fragment_common_floating_window, container, false);
+
+                mLoadButton = view.findViewById(R.id.button_load);
+                mLoadButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mFloatViewManager.openWithPermissionCheck();
+                    }
+                });
+
+                mOverlayFrame = view.findViewById(R.id.overlay_frame);
+                mOverlayFrame.setVisibility(View.GONE);
+                return view;
+            }
+        };
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_common_floating_window, container, false);
-
-        mLoadButton = view.findViewById(R.id.button_load);
-        mLoadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mFloatViewManager.openWithPermissionCheck();
-            }
-        });
-
-        mOverlayFrame = view.findViewById(R.id.overlay_frame);
-        mOverlayFrame.setVisibility(View.GONE);
-        return view;
+        return mDemoFlow.createView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -96,6 +104,4 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
     protected abstract void loadAdInContainer(LinearLayout adContainer);
 
     protected abstract void destroyAdView();
-
-
 }
