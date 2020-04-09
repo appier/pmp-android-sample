@@ -8,10 +8,12 @@ import com.appier.ads.AppierAdAdapter;
 import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierRecyclerAdapter;
+import com.appier.android.sample.common.DemoFlowController;
 
 public class AppierBannerHelper {
 
     public static AppierBannerAd createAppierBanner(Context context,
+                                                    final DemoFlowController demoFlowController,
                                                     final LinearLayout parentLayout,
                                                     String zoneId, int width, int height) {
 
@@ -19,17 +21,20 @@ public class AppierBannerHelper {
             @Override
             public void onAdLoaded(AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
+                demoFlowController.notifyAdBid();
                 parentLayout.addView(appierBannerAd.getView());
             }
 
             @Override
             public void onAdNoBid(AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
+                demoFlowController.notifyAdNoBid();
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
+                demoFlowController.notifyAdError(appierError);
             }
 
             @Override
@@ -44,8 +49,8 @@ public class AppierBannerHelper {
     }
 
     public static void insertAppierBannerToListView(Context context,
-                                             final AppierAdAdapter appierAdAdapter, final int insertPosition,
-                                             String zoneId, int width, int height) {
+                                                    final AppierAdAdapter appierAdAdapter, final int insertPosition,
+                                                    String zoneId, int width, int height) {
 
         AppierBannerAd appierBannerAd = new AppierBannerAd(context, new AppierBannerAd.EventListener() {
             @Override
