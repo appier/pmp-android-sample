@@ -21,7 +21,17 @@ public class MoPubNativeListViewFragment extends BaseFragment {
     public MoPubNativeListViewFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /*
+         * MoPubAdAdapter doesn't support lifecycle control,
+         * so enableErrorHandling() only invokes initial render and doesn't handle any error for this sample.
+         */
+        enableErrorHandling();
+    }
+
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);
         mListView = view.findViewById(R.id.list);
         return view;

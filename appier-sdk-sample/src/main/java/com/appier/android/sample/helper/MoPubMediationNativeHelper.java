@@ -11,7 +11,9 @@ import android.widget.ListView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
+import com.appier.android.sample.common.DemoFlowController;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.mopub.nativeads.AdapterHelper;
 import com.mopub.nativeads.AppierNativeAdRenderer;
@@ -25,7 +27,7 @@ import com.mopub.nativeads.ViewBinder;
 
 public class MoPubMediationNativeHelper {
 
-    public static MoPubNative createMoPubNative(final Context context, final LinearLayout parentLayout, String adunitId, int layoutId) {
+    public static MoPubNative createMoPubNative(final Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String adunitId, int layoutId) {
 
         /*
          * (Required) MoPub NativeAd mediation integration
@@ -59,11 +61,14 @@ public class MoPubMediationNativeHelper {
 
                 // Add the ad view to our view hierarchy
                 parentLayout.addView(adView);
+
+                demoFlowController.notifyAdBid();
             }
 
             @Override
             public void onNativeFail(NativeErrorCode errorCode) {
                 Appier.log("[Sample App]", "Native ad failed to load with error:", errorCode.toString());
+                demoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
             }
         };
 
