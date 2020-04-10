@@ -42,19 +42,17 @@ public class BannerBasicFragment extends BaseFragment {
 
     @Override
     protected void onViewVisible(View view) {
-        if (mDemoFlowController.isDemoAvailable()) {
-            ((LinearLayout) view.findViewById(R.id.banner_container_320_50)).removeAllViews();
-            ((LinearLayout) view.findViewById(R.id.banner_container_300_250)).removeAllViews();
-            ((LinearLayout) view.findViewById(R.id.banner_container_320_480)).removeAllViews();
+        ((LinearLayout) view.findViewById(R.id.banner_container_320_50)).removeAllViews();
+        ((LinearLayout) view.findViewById(R.id.banner_container_300_250)).removeAllViews();
+        ((LinearLayout) view.findViewById(R.id.banner_container_320_480)).removeAllViews();
 
-            mAppierBannerAd1 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_320_50), getResources().getString(R.string.zone_320x50), 320, 50);
-            mAppierBannerAd2 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_300_250), getResources().getString(R.string.zone_300x250), 300, 250);
-            mAppierBannerAd3 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_320_480), getResources().getString(R.string.zone_320x480), 320, 480);
+        mAppierBannerAd1 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_320_50), getResources().getString(R.string.zone_320x50), 320, 50);
+        mAppierBannerAd2 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_300_250), getResources().getString(R.string.zone_300x250), 300, 250);
+        mAppierBannerAd3 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_320_480), getResources().getString(R.string.zone_320x480), 320, 480);
 
-            mAppierBannerAd1.loadAd();
-            mAppierBannerAd2.loadAd();
-            mAppierBannerAd3.loadAd();
-        }
+        mAppierBannerAd1.loadAd();
+        mAppierBannerAd2.loadAd();
+        mAppierBannerAd3.loadAd();
     }
 
     @Override

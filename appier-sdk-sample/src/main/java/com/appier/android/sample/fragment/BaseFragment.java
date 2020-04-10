@@ -49,7 +49,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        onViewVisible(getView());
+        if (mDemoFlowController != null && mDemoFlowController.isDemoAvailable()) {
+            onViewVisible(getView());
+        }
     }
 
     protected void enableErrorHandling() {
