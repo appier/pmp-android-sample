@@ -12,10 +12,11 @@ import com.appier.ads.AppierNativeAd;
 import com.appier.ads.AppierNativeViewBinder;
 import com.appier.ads.AppierRecyclerAdapter;
 import com.appier.android.sample.R;
+import com.appier.android.sample.common.DemoFlowController;
 
 public class AppierNativeHelper {
 
-    public static AppierNativeAd createAppierNative(Context context, final LinearLayout parentLayout, String zoneId) {
+    public static AppierNativeAd createAppierNative(Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String zoneId) {
 
         /*
          * (Required) Appier Native Ad integration
@@ -36,16 +37,19 @@ public class AppierNativeHelper {
                 Appier.log("[Sample App] onAdLoaded()");
                 View adView = appierNativeAd.getAdView();
                 parentLayout.addView(adView);
+                demoFlowController.notifyAdBid();
             }
 
             @Override
             public void onAdNoBid(AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App] onAdNoBid()");
+                demoFlowController.notifyAdNoBid();
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App] onAdLoadFail()", appierError.toString());
+                demoFlowController.notifyAdError(appierError);
             }
 
             @Override
@@ -84,7 +88,9 @@ public class AppierNativeHelper {
     /*
      * A helper to create Native Ad and insert into specific position when the ad is loaded
      */
-    public static void insertAppierNativeToListView(Context context, final AppierAdAdapter appierAdAdapter,
+    public static void insertAppierNativeToListView(Context context,
+                                                    final DemoFlowController demoFlowController,
+                                                    final AppierAdAdapter appierAdAdapter,
                                                     final int insertPosition, String zoneId, int layoutId) {
 
         Appier.setTestMode(true);
@@ -106,8 +112,10 @@ public class AppierNativeHelper {
 
                 try {
                     appierAdAdapter.insertAd(insertPosition, appierNativeAd);
+                    demoFlowController.notifyAdBid();
                 } catch (Exception e) {
                     Appier.log("[Sample App] Fail to insert ad into list. Maybe the position is out of bound or is already used.");
+                    demoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
                 }
 
             }
@@ -115,11 +123,13 @@ public class AppierNativeHelper {
             @Override
             public void onAdNoBid(AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App]", "[Native]", "onAdNoBid()");
+                demoFlowController.notifyAdNoBid();
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App]", "[Native]", "onAdLoadFail()", appierError.toString());
+                demoFlowController.notifyAdError(appierError);
             }
 
             @Override
@@ -157,7 +167,9 @@ public class AppierNativeHelper {
     /*
      * A helper to create Native Ad and insert into specific position when the ad is loaded
      */
-    public static void insertAppierNativeToRecyclerView(Context context, final AppierRecyclerAdapter appierRecyclerAdapter,
+    public static void insertAppierNativeToRecyclerView(Context context,
+                                                        final DemoFlowController demoFlowController,
+                                                        final AppierRecyclerAdapter appierRecyclerAdapter,
                                                         final int insertPosition, String zoneId, int layoutId) {
 
         Appier.setTestMode(true);
@@ -179,8 +191,10 @@ public class AppierNativeHelper {
 
                 try {
                     appierRecyclerAdapter.insertAd(insertPosition, appierNativeAd);
+                    demoFlowController.notifyAdBid();
                 } catch (Exception e) {
                     Appier.log("[Sample App] Fail to insert ad into list. Maybe the position is out of bound or is already used.");
+                    demoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
                 }
 
             }
@@ -188,11 +202,13 @@ public class AppierNativeHelper {
             @Override
             public void onAdNoBid(AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App]", "[Native]", "onAdNoBid()");
+                demoFlowController.notifyAdNoBid();
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App]", "[Native]", "onAdLoadFail()", appierError.toString());
+                demoFlowController.notifyAdError(appierError);
             }
 
             @Override

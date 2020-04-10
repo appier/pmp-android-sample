@@ -99,8 +99,7 @@ public abstract class DemoFlowController {
     public void updateState(int nextState) {
         if (!isNetworkAvailable()) {
             nextState = STATE_RETRYABLE;
-            mRetryTitle = "No Internet";
-            mRetryDescription = "Please check your connection and try again.";
+            setRetryTextForNoInternet();
         }
         boolean shouldRefresh = shouldRefresh(nextState);
         mCurrentState = nextState;
@@ -109,21 +108,31 @@ public abstract class DemoFlowController {
         }
     }
 
+    public void setRetryText(String title, String description) {
+        mRetryTitle = title;
+        mRetryDescription = description;
+    }
+
+    public void clearRetryText() {
+        setRetryText("", "");
+    }
+
+    public void setRetryTextForNoInternet() {
+        setRetryText("No Internet", "Please check your connection and try again.");
+    }
+
     public void notifyAdBid() {
-        mRetryTitle = "";
-        mRetryDescription = "";
+        clearRetryText();
         updateState(STATE_LOADED);
     }
 
     public void notifyAdNoBid() {
-        mRetryTitle = "No Bid";
-        mRetryDescription = "No bidders bid this time. Please try again.";
+        setRetryText("No Bid", "No bidders bid this time. Please try again.");
         updateState(STATE_RETRYABLE);
     }
 
     public void notifyAdError(AppierError appierError) {
-        mRetryTitle = "Unable to Connect to the Server";
-        mRetryDescription = "Please try again. If this error keeps happening, please contact Appier.";
+        setRetryText("Unable to Connect to the Server", "Please try again. If this error keeps happening, please contact Appier.");
         updateState(STATE_RETRYABLE);
     }
 

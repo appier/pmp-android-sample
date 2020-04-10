@@ -23,7 +23,13 @@ public class NativeListViewFragment extends BaseFragment {
     public NativeListViewFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);
         mListView = view.findViewById(R.id.list);
         return view;
@@ -39,7 +45,7 @@ public class NativeListViewFragment extends BaseFragment {
         mListView.setAdapter(mAppierAdAdapter);
 
         AppierNativeHelper.insertAppierNativeToListView(
-                context, mAppierAdAdapter, 2,
+                context, mDemoFlowController, mAppierAdAdapter, 2,
                 getResources().getString(R.string.zone_native),
                 R.layout.template_native_ad_compact_1
         );

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseInterstitialFragment;
@@ -58,6 +59,7 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
         Appier.log("[Sample App]", "Interstitial loaded");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+        mDemoFlowController.notifyAdBid();
     }
 
     @Override
@@ -65,6 +67,7 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
         Appier.log("[Sample App]", "Interstitial load failed");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+        mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
     }
 
     @Override
