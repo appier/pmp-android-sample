@@ -24,7 +24,13 @@ public class BannerListViewFragment extends BaseFragment {
     public BannerListViewFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    protected View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);
         mListView = view.findViewById(R.id.list);
         return view;
@@ -40,7 +46,7 @@ public class BannerListViewFragment extends BaseFragment {
         mAppierAdAdapter = new AppierAdAdapter(arrayAdapter);
         mListView.setAdapter(mAppierAdAdapter);
 
-        AppierBannerHelper.insertAppierBannerToListView(context, mAppierAdAdapter, 2,
+        AppierBannerHelper.insertAppierBannerToListView(context, mDemoFlowController, mAppierAdAdapter, 2,
                 getResources().getString(R.string.zone_320x50), 320, 50
         );
     }

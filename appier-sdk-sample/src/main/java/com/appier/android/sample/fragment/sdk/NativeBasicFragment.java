@@ -28,14 +28,20 @@ public class NativeBasicFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sdk_native_basic, container, false);
     }
 
     @Override
     protected void onViewVisible(View view) {
         ((LinearLayout) view.findViewById(R.id.ad_container)).removeAllViews();
-        mAppierNativeAd = AppierNativeHelper.createAppierNative(mContext, (LinearLayout) view.findViewById(R.id.ad_container), getResources().getString(R.string.zone_native));
+        mAppierNativeAd = AppierNativeHelper.createAppierNative(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.ad_container), getResources().getString(R.string.zone_native));
         mAppierNativeAd.loadAd();
     }
 

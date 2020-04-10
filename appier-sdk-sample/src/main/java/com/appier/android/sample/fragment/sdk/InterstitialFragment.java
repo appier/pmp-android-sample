@@ -52,6 +52,7 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         Appier.log("[Sample App]", "Interstitial loaded");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+        mDemoFlowController.notifyAdBid();
     }
 
     @Override
@@ -59,6 +60,7 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         Appier.log("[Sample App]", "Interstitial ad returns no bid");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+        mDemoFlowController.notifyAdNoBid();
     }
 
     @Override
@@ -66,6 +68,7 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         Appier.log("[Sample App]", "Interstitial load failed");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+        mDemoFlowController.notifyAdError(appierError);
     }
 
     @Override
@@ -80,6 +83,7 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         Appier.log("[Sample App]", "Interstitial show failed with error: " + appierError);
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+        mDemoFlowController.notifyAdError(appierError);
     }
 
     @Override

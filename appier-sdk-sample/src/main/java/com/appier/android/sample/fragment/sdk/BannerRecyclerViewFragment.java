@@ -27,7 +27,13 @@ public class BannerRecyclerViewFragment extends BaseFragment {
     public BannerRecyclerViewFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    protected View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_recycler_view, container, false);
         mRecyclerView = view.findViewById(R.id.recycler);
 
@@ -48,7 +54,7 @@ public class BannerRecyclerViewFragment extends BaseFragment {
         mAppierRecyclerAdapter = new AppierRecyclerAdapter(recyclerAdapter);
         mRecyclerView.setAdapter(mAppierRecyclerAdapter);
 
-        AppierBannerHelper.insertAppierBannerToRecyclerView(context, mAppierRecyclerAdapter, 1,
+        AppierBannerHelper.insertAppierBannerToRecyclerView(context, mDemoFlowController, mAppierRecyclerAdapter, 1,
                 getResources().getString(R.string.zone_300x250), 300, 250
         );
     }

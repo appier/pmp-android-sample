@@ -9,6 +9,10 @@ import com.appier.ads.AppierBannerView;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
 
+/*
+ * AppierBannerView doesn't support lifecycle control,
+ * so we are not able to enableErrorHandling() for this sample.
+ */
 public class BannerViewFragment extends BaseFragment {
 
     private AppierBannerView mAppierBannerView1;
@@ -38,7 +42,6 @@ public class BannerViewFragment extends BaseFragment {
         mAppierBannerView3.setAdDimension(320, 480);
         mAppierBannerView3.setZoneId(getResources().getString(R.string.zone_320x480));
         mAppierBannerView3.loadAd();
-
     }
 
     @Override

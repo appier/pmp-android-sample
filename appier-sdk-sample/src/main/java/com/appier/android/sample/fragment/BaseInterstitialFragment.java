@@ -34,7 +34,13 @@ public abstract class BaseInterstitialFragment extends BaseFragment {
     protected void onViewVisible(View view) {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_common_interstitial, container, false);
         mContext = getActivity();
 
@@ -45,6 +51,7 @@ public abstract class BaseInterstitialFragment extends BaseFragment {
         mButtonLoad = view.findViewById(R.id.button_load);
         mTextIndicator = view.findViewById(R.id.text_step_indicator);
 
+        mCurrentState = STATE_UNLOADED;
         mButtonLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
