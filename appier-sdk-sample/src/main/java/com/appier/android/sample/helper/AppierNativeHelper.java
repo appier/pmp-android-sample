@@ -13,10 +13,15 @@ import com.appier.ads.AppierNativeViewBinder;
 import com.appier.ads.AppierRecyclerAdapter;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.DemoFlowController;
+import com.appier.android.sample.common.FloatViewManager;
 
 public class AppierNativeHelper {
 
     public static AppierNativeAd createAppierNative(Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String zoneId) {
+        return createAppierNative(context, demoFlowController, parentLayout, zoneId, null);
+    }
+
+    public static AppierNativeAd createAppierNative(Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String zoneId, final FloatViewManager floatViewManager) {
 
         /*
          * (Required) Appier Native Ad integration
@@ -44,12 +49,18 @@ public class AppierNativeHelper {
             public void onAdNoBid(AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App] onAdNoBid()");
                 demoFlowController.notifyAdNoBid();
+                if (floatViewManager != null) {
+                    floatViewManager.close();
+                }
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierNativeAd appierNativeAd) {
                 Appier.log("[Sample App] onAdLoadFail()", appierError.toString());
                 demoFlowController.notifyAdError(appierError);
+                if (floatViewManager != null) {
+                    floatViewManager.close();
+                }
             }
 
             @Override

@@ -23,7 +23,8 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
          */
         mMoPubView = MoPubMediationBannerHelper.createMoPubView(
                 getActivity(), mDemoFlowController, adContainer,
-                getResources().getString(R.string.mopub_adunit_banner_300x250), 300, 250
+                getResources().getString(R.string.mopub_adunit_banner_300x250), 300, 250,
+                mFloatViewManager
         );
         mMoPubView.loadAd();
     }

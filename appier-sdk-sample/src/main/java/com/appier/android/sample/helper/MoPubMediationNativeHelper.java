@@ -14,6 +14,7 @@ import com.appier.ads.Appier;
 import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.DemoFlowController;
+import com.appier.android.sample.common.FloatViewManager;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.mopub.nativeads.AdapterHelper;
 import com.mopub.nativeads.AppierNativeAdRenderer;
@@ -28,6 +29,10 @@ import com.mopub.nativeads.ViewBinder;
 public class MoPubMediationNativeHelper {
 
     public static MoPubNative createMoPubNative(final Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String adunitId, int layoutId) {
+        return createMoPubNative(context, demoFlowController, parentLayout, adunitId, layoutId, null);
+    }
+
+    public static MoPubNative createMoPubNative(final Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String adunitId, int layoutId, final FloatViewManager floatViewManager) {
 
         /*
          * (Required) MoPub NativeAd mediation integration
@@ -69,6 +74,9 @@ public class MoPubMediationNativeHelper {
             public void onNativeFail(NativeErrorCode errorCode) {
                 Appier.log("[Sample App]", "Native ad failed to load with error:", errorCode.toString());
                 demoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+                if (floatViewManager != null) {
+                    floatViewManager.close();
+                }
             }
         };
 

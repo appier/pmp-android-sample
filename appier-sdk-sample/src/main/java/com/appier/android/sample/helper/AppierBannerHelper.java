@@ -9,6 +9,7 @@ import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierRecyclerAdapter;
 import com.appier.android.sample.common.DemoFlowController;
+import com.appier.android.sample.common.FloatViewManager;
 
 public class AppierBannerHelper {
 
@@ -16,6 +17,14 @@ public class AppierBannerHelper {
                                                     final DemoFlowController demoFlowController,
                                                     final LinearLayout parentLayout,
                                                     String zoneId, int width, int height) {
+        return createAppierBanner(context, demoFlowController, parentLayout, zoneId, width, height, null);
+    }
+
+    public static AppierBannerAd createAppierBanner(Context context,
+                                                    final DemoFlowController demoFlowController,
+                                                    final LinearLayout parentLayout,
+                                                    String zoneId, int width, int height,
+                                                    final FloatViewManager floatViewManager) {
 
         AppierBannerAd appierBannerAd = new AppierBannerAd(context, new AppierBannerAd.EventListener() {
             @Override
@@ -29,12 +38,18 @@ public class AppierBannerHelper {
             public void onAdNoBid(AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
                 demoFlowController.notifyAdNoBid();
+                if (floatViewManager != null) {
+                    floatViewManager.close();
+                }
             }
 
             @Override
             public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
                 Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
                 demoFlowController.notifyAdError(appierError);
+                if (floatViewManager != null) {
+                    floatViewManager.close();
+                }
             }
 
             @Override
