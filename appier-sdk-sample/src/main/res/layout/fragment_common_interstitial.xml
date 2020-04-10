@@ -77,9 +77,9 @@
 
     <RelativeLayout
         android:id="@+id/button_group_layout"
-        android:layout_width="320dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,10 +88,12 @@
         <Button
             android:id="@+id/button_load"
             android:layout_width="280dp"
-            android:layout_height="42dp"
+            android:layout_height="36dp"
             android:background="@drawable/button_bg_round"
             android:shadowColor="#000000"
             android:text="Load"
+            android:textSize="14sp"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF" />
 
         <ProgressBar
