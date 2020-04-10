@@ -27,7 +27,7 @@ public class NativeFloatingWindowFragment extends BaseFloatingWindowFragment {
          * Load Ad in ad container layout
          */
         mAppierNativeAd = AppierNativeHelper.createAppierNative(
-                getActivity(), mDemoFlowController, adContainer, getResources().getString(R.string.zone_native)
+                getActivity(), mDemoFlowController, adContainer, getResources().getString(R.string.zone_native), mFloatViewManager
         );
         mAppierNativeAd.loadAd();
     }

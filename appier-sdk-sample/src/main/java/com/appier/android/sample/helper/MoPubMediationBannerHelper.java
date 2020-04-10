@@ -10,6 +10,7 @@ import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
 import com.appier.ads.common.Dimension;
 import com.appier.android.sample.common.DemoFlowController;
+import com.appier.android.sample.common.FloatViewManager;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
 
@@ -66,6 +67,10 @@ public class MoPubMediationBannerHelper {
      * Create a new MoPubView and add the AdView in the parent view
      */
     public static MoPubView createMoPubView(Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String adUnitId, int width, int height) {
+        return createMoPubView(context, demoFlowController, parentLayout, adUnitId, width, height, null);
+    }
+
+    public static MoPubView createMoPubView(Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String adUnitId, int width, int height, final FloatViewManager floatViewManager) {
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, width);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, height);
@@ -91,6 +96,9 @@ public class MoPubMediationBannerHelper {
             public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
                 Appier.log("[Sample App]", "onBannerFailed():", errorCode.toString());
                 demoFlowController.notifyAdNoBid();
+                if (floatViewManager != null) {
+                    floatViewManager.close();
+                }
             }
 
             @Override

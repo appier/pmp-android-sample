@@ -18,8 +18,9 @@ public abstract class BaseFloatingWindowFragment extends BaseFragment {
 
     private Button mLoadButton;
     private FrameLayout mOverlayFrame;
-    private FloatViewManager mFloatViewManager;
     private LinearLayout mAdContainer;
+
+    protected FloatViewManager mFloatViewManager;
 
     public BaseFloatingWindowFragment() {}
 
