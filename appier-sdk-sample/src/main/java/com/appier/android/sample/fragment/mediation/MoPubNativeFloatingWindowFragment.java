@@ -19,7 +19,7 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
          * Load Ad in ad container layout
          */
         mMoPubNativeAd = MoPubMediationNativeHelper.createMoPubNative(
-                getActivity(), adContainer,
+                getActivity(), mDemoFlowController, adContainer,
                 getResources().getString(R.string.mopub_adunit_native),
                 R.layout.template_native_ad_full_1
         );

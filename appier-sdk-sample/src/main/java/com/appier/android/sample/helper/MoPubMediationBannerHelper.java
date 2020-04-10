@@ -6,8 +6,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
 import com.appier.ads.common.Dimension;
+import com.appier.android.sample.common.DemoFlowController;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
 
@@ -19,7 +21,7 @@ public class MoPubMediationBannerHelper {
     /*
      * Load MoPub Ad in an existing MoPubView in the layout
      */
-    public static void loadMoPubView(MoPubView moPubView, String adUnitId, int width, int height) {
+    public static void loadMoPubView(MoPubView moPubView, final DemoFlowController demoFlowController, String adUnitId, int width, int height) {
 
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, width);
@@ -30,11 +32,13 @@ public class MoPubMediationBannerHelper {
             @Override
             public void onBannerLoaded(MoPubView banner) {
                 Appier.log("[Sample App]", "onBannerLoaded()");
+                demoFlowController.notifyAdBid();
             }
 
             @Override
             public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
                 Appier.log("[Sample App]", "onBannerFailed():", errorCode.toString());
+                demoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
             }
 
             @Override
@@ -61,7 +65,7 @@ public class MoPubMediationBannerHelper {
     /*
      * Create a new MoPubView and add the AdView in the parent view
      */
-    public static MoPubView createMoPubView(Context context, final LinearLayout parentLayout, String adUnitId, int width, int height) {
+    public static MoPubView createMoPubView(Context context, final DemoFlowController demoFlowController, final LinearLayout parentLayout, String adUnitId, int width, int height) {
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, width);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, height);
@@ -79,12 +83,14 @@ public class MoPubMediationBannerHelper {
                         ((ViewGroup) mAdView.getParent()).removeAllViews();
                     }
                     parentLayout.addView(mAdView);
+                    demoFlowController.notifyAdBid();
                 }
             }
 
             @Override
             public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
                 Appier.log("[Sample App]", "onBannerFailed():", errorCode.toString());
+                demoFlowController.notifyAdNoBid();
             }
 
             @Override

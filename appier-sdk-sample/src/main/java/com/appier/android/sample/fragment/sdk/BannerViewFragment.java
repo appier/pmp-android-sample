@@ -9,10 +9,6 @@ import com.appier.ads.AppierBannerView;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
 
-/*
- * AppierBannerView doesn't support lifecycle control,
- * so we are not able to enableErrorHandling() for this sample.
- */
 public class BannerViewFragment extends BaseFragment {
 
     private AppierBannerView mAppierBannerView1;
@@ -20,6 +16,16 @@ public class BannerViewFragment extends BaseFragment {
     private AppierBannerView mAppierBannerView3;
 
     public BannerViewFragment() {}
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /*
+         * AppierBannerView doesn't support lifecycle control,
+         * so enableErrorHandling() only invokes initial render and doesn't handle any error for this sample.
+         */
+        enableErrorHandling(0);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

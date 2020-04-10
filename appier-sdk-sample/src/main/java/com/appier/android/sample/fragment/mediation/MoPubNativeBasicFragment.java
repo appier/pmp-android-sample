@@ -17,18 +17,24 @@ public class MoPubNativeBasicFragment extends BaseFragment {
     private Context mContext;
     private MoPubNative mMoPubNativeAd;
 
-    public MoPubNativeBasicFragment() {}
-
     public static MoPubNativeBasicFragment newInstance(Context context) {
         return new MoPubNativeBasicFragment(context);
     }
+
+    public MoPubNativeBasicFragment() {}
 
     private MoPubNativeBasicFragment(Context context) {
         mContext = context;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sdk_native_basic, container, false);
     }
 
@@ -36,7 +42,7 @@ public class MoPubNativeBasicFragment extends BaseFragment {
     protected void onViewVisible(View view) {
         ((LinearLayout) view.findViewById(R.id.ad_container)).removeAllViews();
         mMoPubNativeAd = MoPubMediationNativeHelper.createMoPubNative(
-                mContext, (LinearLayout) view.findViewById(R.id.ad_container),
+                mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.ad_container),
                 getResources().getString(R.string.mopub_adunit_native),
                 R.layout.template_native_ad_full_1
         );
