@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.appier.android.sample.common.SectionsPagerAdapter;
+import com.quantumgraph.sdk.QG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,5 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Lock screen orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // AIQUA SDK
+        QG.initializeSdk(getApplication(), getResources().getString(R.string.aiqua_app_id));
     }
 }
