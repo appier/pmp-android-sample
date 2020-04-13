@@ -1,6 +1,8 @@
 package com.appier.android.sample.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -29,6 +31,7 @@ public class BaseActivity extends FragmentActivity {
         return value.data;
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,9 @@ public class BaseActivity extends FragmentActivity {
                 onBackPressed();
             }
         });
+
+        // Lock screen orientation
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     protected void addTabbedViewPager(SectionsPagerAdapter sectionsPagerAdapter) {

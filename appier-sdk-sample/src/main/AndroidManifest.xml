@@ -20,8 +20,7 @@
 
         <activity android:name=".activity.BaseActivity" />
 
-        <!-- Lock screen orientation to portrait for interstitial demo -->
-        <activity android:name=".activity.sdk.InterstitialActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.sdk.InterstitialActivity" />
 
         <activity android:name=".activity.sdk.BannerBasicActivity" />
         <activity android:name=".activity.sdk.BannerListActivity" />
@@ -33,8 +32,7 @@
         <!-- configChanges is required to prevent app from crashing on Android 5 devices -->
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
-        <!-- Lock screen orientation to portrait for interstitial demo -->
-        <activity android:name=".activity.mediation.MoPubInterstitialActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.mediation.MoPubInterstitialActivity" />
 
         <activity android:name=".activity.mediation.MoPubBannerBasicActivity" />
         <activity android:name=".activity.mediation.MoPubBannerFloatingWindowActivity" />
