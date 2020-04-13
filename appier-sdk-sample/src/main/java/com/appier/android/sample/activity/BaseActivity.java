@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -56,7 +56,9 @@ public class BaseActivity extends FragmentActivity {
 
     protected void addTabbedViewPager(SectionsPagerAdapter sectionsPagerAdapter, boolean scrollableTabTitle) {
         AppBarLayout appBar = findViewById(R.id.appBar);
-        TabLayout tabs = new TabLayout(this);
+        TabLayout tabs = (TabLayout) LayoutInflater
+            .from(this)
+            .inflate(R.layout.template_tab, null,false);
         appBar.addView(tabs);
 
         ViewPager viewPager = findViewById(R.id.view_pager);
