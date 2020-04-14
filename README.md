@@ -19,3 +19,9 @@ ln -s ../pmp-mopub-android-mediation/appier-mediation appier-mopub-mediation
 ```
 
 And don't forget to update gradle implementation.
+
+## Release Guide
+
+### Decrypt Credentials
+
+Before creating an APK file, you need to decrypt `appier-sdk-sample/google-services.encrypted.json` to replace `appier-sdk-sample/google-services.json`. Otherwise, AIQUA SDK will not work.
