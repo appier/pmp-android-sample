@@ -9,13 +9,16 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.appier.ads.Appier;
+import com.appier.ads.AppierBannerAd;
+import com.appier.ads.AppierError;
 import com.appier.ads.AppierRecyclerAdapter;
 import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.appier.android.sample.common.MyRecyclerViewItemDecoration;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierBannerHelper;
+import com.appier.android.sample.helper.AppierAdHelper;
 
 import java.util.Arrays;
 
@@ -54,9 +57,60 @@ public class BannerRecyclerViewFragment extends BaseFragment {
         mAppierRecyclerAdapter = new AppierRecyclerAdapter(recyclerAdapter);
         mRecyclerView.setAdapter(mAppierRecyclerAdapter);
 
-        AppierBannerHelper.insertAppierBannerToRecyclerView(context, mDemoFlowController, mAppierRecyclerAdapter, 1,
-                getResources().getString(R.string.zone_300x250), 300, 250
-        );
+        /*
+         * Apply Appier global settings
+         */
+        AppierAdHelper.setAppierGlobal();
+
+        /*
+         * Load Ad and insert into RecyclerView
+         */
+        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(1));
+        appierBannerAd.setAdDimension(300, 250);
+        appierBannerAd.setZoneId(getResources().getString(R.string.zone_300x250));
+        appierBannerAd.loadAd();
+
+    }
+
+    private class EventListener implements AppierBannerAd.EventListener {
+
+        private int insertPosition;
+
+        private EventListener(int position) {
+            insertPosition = position;
+        }
+
+        @Override
+        public void onAdLoaded(AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
+
+            try {
+                mAppierRecyclerAdapter.insertAd(insertPosition, appierBannerAd);
+                mDemoFlowController.notifyAdBid();
+
+            } catch (Exception e) {
+                Appier.log("[Sample App] Fail to insert ad into list. Maybe the position is out of bound or is already used.");
+                mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+            }
+
+        }
+
+        @Override
+        public void onAdNoBid(AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
+            mDemoFlowController.notifyAdNoBid();
+        }
+
+        @Override
+        public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
+            mDemoFlowController.notifyAdError(appierError);
+        }
+
+        @Override
+        public void onViewClick(AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onViewClick()");
+        }
     }
 
 }

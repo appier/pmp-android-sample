@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.appier.ads.AppierBannerView;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
+import com.appier.android.sample.helper.AppierAdHelper;
 
 public class BannerViewFragment extends BaseFragment {
 
@@ -34,6 +35,15 @@ public class BannerViewFragment extends BaseFragment {
 
     @Override
     protected void onViewVisible(View view) {
+
+        /*
+         * Apply Appier global settings
+         */
+        AppierAdHelper.setAppierGlobal();
+
+        /*
+         * Create AppierBannerViews and load the Ads
+         */
         mAppierBannerView1 = view.findViewById(R.id.appier_banner_view_320_50);
         mAppierBannerView1.setAdDimension(320, 50);
         mAppierBannerView1.setZoneId(getResources().getString(R.string.zone_320x50));
