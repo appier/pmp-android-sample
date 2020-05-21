@@ -85,17 +85,17 @@ public class BannerBasicFragment extends BaseFragment {
 
     private class EventListener implements AppierBannerAd.EventListener {
 
-        private LinearLayout mAdContainer;
+        private LinearLayout adContainer;
 
-        private EventListener(LinearLayout adContainer) {
-            mAdContainer = adContainer;
+        private EventListener(LinearLayout container) {
+            adContainer = container;
         }
 
         @Override
         public void onAdLoaded(AppierBannerAd appierBannerAd) {
             Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
             mDemoFlowController.notifyAdBid();
-            mAdContainer.addView(appierBannerAd.getView());
+            adContainer.addView(appierBannerAd.getView());
         }
 
         @Override
