@@ -55,9 +55,9 @@ public class BannerListViewFragment extends BaseFragment {
         AppierAdHelper.setAppierGlobal();
 
         /*
-         * Load Ad and insert into ListView
+         * Create new AppierBannerAd and insert into ListView
          */
-        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(2));
+        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(mAppierAdAdapter, 2));
         appierBannerAd.setAdDimension(320, 50);
         appierBannerAd.setZoneId(getResources().getString(R.string.zone_320x50));
         appierBannerAd.loadAd();
@@ -66,9 +66,11 @@ public class BannerListViewFragment extends BaseFragment {
 
     private class EventListener implements AppierBannerAd.EventListener {
 
+        private AppierAdAdapter appierAdAdapter;
         private int insertPosition;
 
-        private EventListener(int position) {
+        private EventListener(AppierAdAdapter adapter, int position) {
+            appierAdAdapter = adapter;
             insertPosition = position;
         }
 
@@ -77,7 +79,7 @@ public class BannerListViewFragment extends BaseFragment {
             Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
 
             try {
-                mAppierAdAdapter.insertAd(insertPosition, appierBannerAd);
+                appierAdAdapter.insertAd(insertPosition, appierBannerAd);
                 mDemoFlowController.notifyAdBid();
 
             } catch (Exception e) {

@@ -63,9 +63,9 @@ public class BannerRecyclerViewFragment extends BaseFragment {
         AppierAdHelper.setAppierGlobal();
 
         /*
-         * Load Ad and insert into RecyclerView
+         * Create new AppierBannerAd and insert into RecyclerView
          */
-        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(1));
+        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(mAppierRecyclerAdapter, 1));
         appierBannerAd.setAdDimension(300, 250);
         appierBannerAd.setZoneId(getResources().getString(R.string.zone_300x250));
         appierBannerAd.loadAd();
@@ -74,9 +74,11 @@ public class BannerRecyclerViewFragment extends BaseFragment {
 
     private class EventListener implements AppierBannerAd.EventListener {
 
+        private AppierRecyclerAdapter appierRecyclerAdapter;
         private int insertPosition;
 
-        private EventListener(int position) {
+        private EventListener(AppierRecyclerAdapter adapter, int position) {
+            appierRecyclerAdapter = adapter;
             insertPosition = position;
         }
 
@@ -85,7 +87,7 @@ public class BannerRecyclerViewFragment extends BaseFragment {
             Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
 
             try {
-                mAppierRecyclerAdapter.insertAd(insertPosition, appierBannerAd);
+                appierRecyclerAdapter.insertAd(insertPosition, appierBannerAd);
                 mDemoFlowController.notifyAdBid();
 
             } catch (Exception e) {
