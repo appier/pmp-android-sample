@@ -58,6 +58,7 @@ public class BannerBasicFragment extends BaseFragment {
         AppierBannerAd appierBannerAd1 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer1));
         appierBannerAd1.setAdDimension(320, 50);
         appierBannerAd1.setZoneId(getResources().getString(R.string.zone_320x50));
+        AppierAdHelper.setTargeting(appierBannerAd1);  // Set targeting should be done before loadAd()
         appierBannerAd1.loadAd();
 
         // Load AppierBannerAd 2: 320x50
@@ -66,6 +67,7 @@ public class BannerBasicFragment extends BaseFragment {
         AppierBannerAd appierBannerAd2 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer2));
         appierBannerAd2.setAdDimension(300, 250);
         appierBannerAd2.setZoneId(getResources().getString(R.string.zone_300x250));
+        AppierAdHelper.setTargeting(appierBannerAd2);  // Set targeting should be done before loadAd()
         appierBannerAd2.loadAd();
 
         // Load AppierBannerAd 3: 320x480
@@ -74,8 +76,8 @@ public class BannerBasicFragment extends BaseFragment {
         AppierBannerAd appierBannerAd3 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer3));
         appierBannerAd3.setAdDimension(320, 480);
         appierBannerAd3.setZoneId(getResources().getString(R.string.zone_320x480));
+        AppierAdHelper.setTargeting(appierBannerAd3);  // Set targeting should be done before loadAd()
         appierBannerAd3.loadAd();
-
     }
 
     @Override

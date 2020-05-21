@@ -73,6 +73,10 @@ public class NativeListViewFragment extends BaseFragment {
         AppierNativeAd appierNativeAd = new AppierNativeAd(getActivity(), new EventListener(appierAdAdapter, insertPosition));
         appierNativeAd.setViewBinder(appierNativeViewBinder);
         appierNativeAd.setZoneId(getResources().getString(R.string.zone_native));
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(appierNativeAd);
+
         appierNativeAd.loadAd();
 
     }

@@ -67,6 +67,10 @@ public class NativeBasicFragment extends BaseFragment {
         mAppierNativeAd = new AppierNativeAd(mContext, new EventListener(adContainer));
         mAppierNativeAd.setViewBinder(appierNativeViewBinder);
         mAppierNativeAd.setZoneId(getResources().getString(R.string.zone_native));
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(mAppierNativeAd);
+
         mAppierNativeAd.loadAd();
 
     }

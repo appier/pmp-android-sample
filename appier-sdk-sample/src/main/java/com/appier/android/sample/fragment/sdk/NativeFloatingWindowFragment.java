@@ -48,6 +48,10 @@ public class NativeFloatingWindowFragment extends BaseFloatingWindowFragment {
         mAppierNativeAd = new AppierNativeAd(getActivity(), new EventListener(adContainer));
         mAppierNativeAd.setViewBinder(appierNativeViewBinder);
         mAppierNativeAd.setZoneId(getResources().getString(R.string.zone_native));
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(mAppierNativeAd);
+
         mAppierNativeAd.loadAd();
     }
 

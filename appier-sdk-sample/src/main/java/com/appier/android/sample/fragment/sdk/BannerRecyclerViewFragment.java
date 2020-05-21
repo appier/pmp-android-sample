@@ -68,6 +68,10 @@ public class BannerRecyclerViewFragment extends BaseFragment {
         AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(mAppierRecyclerAdapter, 1));
         appierBannerAd.setAdDimension(300, 250);
         appierBannerAd.setZoneId(getResources().getString(R.string.zone_300x250));
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(appierBannerAd);
+
         appierBannerAd.loadAd();
 
     }
