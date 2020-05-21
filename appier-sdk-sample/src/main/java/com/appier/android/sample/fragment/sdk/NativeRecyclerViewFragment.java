@@ -69,7 +69,7 @@ public class NativeRecyclerViewFragment extends BaseFragment {
         AppierAdHelper.setAppierGlobal();
 
         /*
-         * Create AppierNativeAd and display in the container using ViewBinder
+         * Create AppierNativeAd and insert into RecyclerView using ViewBinder
          */
         AppierNativeViewBinder appierNativeViewBinder = new AppierNativeViewBinder.Builder(R.layout.template_native_ad_compact_2)
                 .mainImageId(R.id.native_main_image)
