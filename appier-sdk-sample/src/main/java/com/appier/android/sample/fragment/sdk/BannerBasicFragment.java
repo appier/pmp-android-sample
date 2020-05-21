@@ -7,19 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.appier.ads.Appier;
 import com.appier.ads.AppierBannerAd;
+import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierBannerHelper;
+import com.appier.android.sample.helper.AppierAdHelper;
 
 public class BannerBasicFragment extends BaseFragment {
 
     private Context mContext;
-    private AppierBannerAd mAppierBannerAd1;
-    private AppierBannerAd mAppierBannerAd2;
-    private AppierBannerAd mAppierBannerAd3;
 
-    public BannerBasicFragment() {}
+    public BannerBasicFragment() {
+    }
 
     public static BannerBasicFragment newInstance(Context context) {
         return new BannerBasicFragment(context);
@@ -42,21 +42,79 @@ public class BannerBasicFragment extends BaseFragment {
 
     @Override
     protected void onViewVisible(View view) {
-        ((LinearLayout) view.findViewById(R.id.banner_container_320_50)).removeAllViews();
-        ((LinearLayout) view.findViewById(R.id.banner_container_300_250)).removeAllViews();
-        ((LinearLayout) view.findViewById(R.id.banner_container_320_480)).removeAllViews();
 
-        mAppierBannerAd1 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_320_50), getResources().getString(R.string.zone_320x50), 320, 50);
-        mAppierBannerAd2 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_300_250), getResources().getString(R.string.zone_300x250), 300, 250);
-        mAppierBannerAd3 = AppierBannerHelper.createAppierBanner(mContext, mDemoFlowController, (LinearLayout) view.findViewById(R.id.banner_container_320_480), getResources().getString(R.string.zone_320x480), 320, 480);
+        /*
+         * Apply Appier global settings
+         */
+        AppierAdHelper.setAppierGlobal();
 
-        mAppierBannerAd1.loadAd();
-        mAppierBannerAd2.loadAd();
-        mAppierBannerAd3.loadAd();
+        /*
+         * Create Appier Banner Ads and load them into containers manually
+         */
+
+        // Load AppierBannerAd 1: 320x50
+        LinearLayout appierBannerAdContainer1 = view.findViewById(R.id.banner_container_320_50);
+        appierBannerAdContainer1.removeAllViews();
+        AppierBannerAd appierBannerAd1 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer1));
+        appierBannerAd1.setAdDimension(320, 50);
+        appierBannerAd1.setZoneId(getResources().getString(R.string.zone_320x50));
+        appierBannerAd1.loadAd();
+
+        // Load AppierBannerAd 2: 320x50
+        LinearLayout appierBannerAdContainer2 = view.findViewById(R.id.banner_container_300_250);
+        appierBannerAdContainer2.removeAllViews();
+        AppierBannerAd appierBannerAd2 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer2));
+        appierBannerAd2.setAdDimension(300, 250);
+        appierBannerAd2.setZoneId(getResources().getString(R.string.zone_300x250));
+        appierBannerAd2.loadAd();
+
+        // Load AppierBannerAd 3: 320x480
+        LinearLayout appierBannerAdContainer3 = view.findViewById(R.id.banner_container_320_480);
+        appierBannerAdContainer3.removeAllViews();
+        AppierBannerAd appierBannerAd3 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer3));
+        appierBannerAd3.setAdDimension(320, 480);
+        appierBannerAd3.setZoneId(getResources().getString(R.string.zone_320x480));
+        appierBannerAd3.loadAd();
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
+
+    private class EventListener implements AppierBannerAd.EventListener {
+
+        private LinearLayout adContainer;
+
+        private EventListener(LinearLayout container) {
+            adContainer = container;
+        }
+
+        @Override
+        public void onAdLoaded(AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
+            mDemoFlowController.notifyAdBid();
+            adContainer.addView(appierBannerAd.getView());
+        }
+
+        @Override
+        public void onAdNoBid(AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onAdNoBid()");
+            mDemoFlowController.notifyAdNoBid();
+        }
+
+        @Override
+        public void onAdLoadFail(AppierError appierError, AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onAdLoadFail()", appierError.toString());
+            mDemoFlowController.notifyAdError(appierError);
+        }
+
+        @Override
+        public void onViewClick(AppierBannerAd appierBannerAd) {
+            Appier.log("[Sample App]", "[Banner]", "onViewClick()");
+        }
+
+    }
+
 }
