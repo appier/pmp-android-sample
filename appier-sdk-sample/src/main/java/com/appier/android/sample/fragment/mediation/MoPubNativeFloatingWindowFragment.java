@@ -44,7 +44,7 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
          *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
          *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
          */
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_full_1)
+        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_full_2)
                 .mainImageId(R.id.native_main_image)
                 .iconImageId(R.id.native_icon_image)
                 .titleId(R.id.native_title)
