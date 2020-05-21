@@ -1,5 +1,6 @@
 package com.appier.android.sample.fragment.mediation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,12 +15,17 @@ import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.appier.android.sample.common.MyRecyclerViewItemDecoration;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.MoPubMediationNativeHelper;
+import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.nativeads.AppierNativeAdRenderer;
+import com.mopub.nativeads.MoPubRecyclerAdapter;
+import com.mopub.nativeads.MoPubStaticNativeAdRenderer;
+import com.mopub.nativeads.ViewBinder;
 
 import java.util.Arrays;
 
 public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
+    private Context mContext;
     private RecyclerView mRecyclerView;
 
     public MoPubNativeRecyclerViewFragment() {}
@@ -47,18 +53,56 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
     @Override
     protected void onViewVisible(View view) {
-        Context context = getActivity();
+        mContext = getActivity();
         String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(context, Arrays.asList(items));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(mContext, Arrays.asList(items));
 
-        MoPubMediationNativeHelper.insertMoPubNativeRecyclerView(
-                context, myRecyclerViewAdapter, mRecyclerView,
-                getResources().getString(R.string.mopub_adunit_native),
-                R.layout.template_native_ad_compact_2
+        /*
+         * Apply Appier global settings
+         */
+        AppierAdHelper.setAppierGlobal();
+
+        insertMoPubNativeRecyclerView(
+                myRecyclerViewAdapter, mRecyclerView, getResources().getString(R.string.mopub_adunit_native)
         );
 
+    }
+
+    /*
+     * Create Native Ad and insert into specific position when the ad is loaded
+     */
+    private void insertMoPubNativeRecyclerView(MyRecyclerViewAdapter adapter, RecyclerView recyclerView, String adunitId) {
+
+        /*
+         * Initialize MoPub ViewBinder and MoPubNative Ads
+         *
+         * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
+         *   with "Custom event class" set to "com.mopub.mobileads.AppierBanner".
+         *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
+         *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         */
+
+        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_compact_2)
+                .mainImageId(R.id.native_main_image)
+                .iconImageId(R.id.native_icon_image)
+                .titleId(R.id.native_title)
+                .textId(R.id.native_text)
+                .callToActionId(R.id.native_cta)
+                .privacyInformationIconImageId(R.id.native_privacy_information_icon_image)
+                .build();
+
+        AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
+        MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
+
+        MoPubRecyclerAdapter moPubAdAdapter = new MoPubRecyclerAdapter((Activity) mContext, adapter);
+        moPubAdAdapter.registerAdRenderer(appierNativeAdRenderer);
+        moPubAdAdapter.registerAdRenderer(moPubStaticNativeAdRenderer);
+
+        recyclerView.setAdapter(moPubAdAdapter);
+
+        moPubAdAdapter.loadAds(adunitId);
     }
 
 }
