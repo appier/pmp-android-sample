@@ -42,6 +42,9 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
         }
     }
 
+    /*
+     * AppierBannerAd EventListener to handle event callbacks
+     */
     private class EventListener implements AppierBannerAd.EventListener {
 
         private LinearLayout adContainer;
@@ -54,6 +57,8 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
         public void onAdLoaded(AppierBannerAd appierBannerAd) {
             Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
             mDemoFlowController.notifyAdBid();
+
+            // Add banner view to container when AdLoaded
             adContainer.addView(appierBannerAd.getView());
         }
 

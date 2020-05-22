@@ -68,6 +68,9 @@ public class BannerListViewFragment extends BaseFragment {
 
     }
 
+    /*
+     * AppierBannerAd EventListener to handle event callbacks
+     */
     private class EventListener implements AppierBannerAd.EventListener {
 
         private AppierAdAdapter appierAdAdapter;
@@ -83,7 +86,9 @@ public class BannerListViewFragment extends BaseFragment {
             Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
 
             try {
+                // Insert AppierBannerAd
                 appierAdAdapter.insertAd(insertPosition, appierBannerAd);
+
                 mDemoFlowController.notifyAdBid();
 
             } catch (Exception e) {
