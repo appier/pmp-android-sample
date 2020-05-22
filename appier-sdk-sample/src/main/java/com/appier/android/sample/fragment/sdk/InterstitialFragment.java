@@ -103,6 +103,9 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         Appier.log("[Sample App]", "Interstitial dismissed");
         this.setCurrentState(this.STATE_UNLOADED);
         this.updateLayoutByState(this.getCurrentState());
+
+        // Destroy Interstitial properly to prevent from memory leak
+        this.mAppierInterstitialAd.destroy();
     }
 
 }

@@ -106,5 +106,8 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
         Appier.log("[Sample App]", "Interstitial dismissed");
         this.setCurrentState(this.STATE_UNLOADED);
         this.updateLayoutByState(this.getCurrentState());
+
+        // Destroy Interstitial properly to prevent from memory leak
+        this.mMoPubInterstitial.destroy();
     }
 }
