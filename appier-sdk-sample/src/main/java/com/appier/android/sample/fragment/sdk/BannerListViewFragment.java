@@ -60,6 +60,10 @@ public class BannerListViewFragment extends BaseFragment {
         AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(mAppierAdAdapter, 2));
         appierBannerAd.setAdDimension(320, 50);
         appierBannerAd.setZoneId(getResources().getString(R.string.zone_320x50));
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(appierBannerAd);
+
         appierBannerAd.loadAd();
 
     }

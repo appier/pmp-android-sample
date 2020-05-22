@@ -35,7 +35,13 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
 
         /*
          * Initialize MoPubView and load banner
+         *
+         * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
+         *   with "Custom event class" set to "com.mopub.mobileads.AppierBanner".
+         *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
+         *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
          */
+
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, 300);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, 250);

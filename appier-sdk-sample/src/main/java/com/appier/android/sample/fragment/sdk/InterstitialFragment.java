@@ -8,6 +8,7 @@ import com.appier.ads.AppierError;
 import com.appier.ads.AppierInterstitialAd;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseInterstitialFragment;
+import com.appier.android.sample.helper.AppierAdHelper;
 
 public class InterstitialFragment extends BaseInterstitialFragment implements AppierInterstitialAd.EventListener {
 
@@ -28,10 +29,19 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         }
 
         /*
+         * Apply Appier global settings
+         */
+        AppierAdHelper.setAppierGlobal();
+
+        /*
          * (Required) Appier Interstitial Ad integration
          */
         mAppierInterstitialAd = new AppierInterstitialAd(context, this);
         mAppierInterstitialAd.setAdDimension(320, 480);
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(mAppierInterstitialAd);
+
         mAppierInterstitialAd.setZoneId(getResources().getString(R.string.zone_interstitial));
     }
 

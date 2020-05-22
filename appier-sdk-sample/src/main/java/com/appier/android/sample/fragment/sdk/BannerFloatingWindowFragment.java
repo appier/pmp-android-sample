@@ -29,6 +29,10 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
         mAppierBannerAd = new AppierBannerAd(getActivity(), new EventListener(adContainer));
         mAppierBannerAd.setAdDimension(300, 250);
         mAppierBannerAd.setZoneId(getResources().getString(R.string.zone_300x250));
+
+        // Set targeting should be done before loadAd()
+        AppierAdHelper.setTargeting(mAppierBannerAd);
+
         mAppierBannerAd.loadAd();
     }
 

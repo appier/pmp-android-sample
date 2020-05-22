@@ -9,6 +9,7 @@ import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseInterstitialFragment;
+import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 
@@ -29,9 +30,22 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
      */
     protected void createInterstitial(Context context) {
 
+        /*
+         * Apply Appier global settings
+         */
+        AppierAdHelper.setAppierGlobal();
+
         final int AD_WIDTH = 320;
         final int AD_HEIGHT = 480;
 
+        /*
+         * Initialize MoPubInterstitial
+         *
+         * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
+         *   with "Custom event class" set to "com.mopub.mobileads.AppierBanner".
+         *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
+         *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         */
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);

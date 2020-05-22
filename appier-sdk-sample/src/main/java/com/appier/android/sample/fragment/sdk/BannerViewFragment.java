@@ -47,16 +47,19 @@ public class BannerViewFragment extends BaseFragment {
         mAppierBannerView1 = view.findViewById(R.id.appier_banner_view_320_50);
         mAppierBannerView1.setAdDimension(320, 50);
         mAppierBannerView1.setZoneId(getResources().getString(R.string.zone_320x50));
+        AppierAdHelper.setTargeting(mAppierBannerView1);  // Set targeting should be done before loadAd()
         mAppierBannerView1.loadAd();
 
         mAppierBannerView2 = view.findViewById(R.id.appier_banner_view_300_250);
         mAppierBannerView2.setAdDimension(300, 250);
         mAppierBannerView2.setZoneId(getResources().getString(R.string.zone_300x250));
+        AppierAdHelper.setTargeting(mAppierBannerView2);  // Set targeting should be done before loadAd()
         mAppierBannerView2.loadAd();
 
         mAppierBannerView3 = view.findViewById(R.id.appier_banner_view_320_480);
         mAppierBannerView3.setAdDimension(320, 480);
         mAppierBannerView3.setZoneId(getResources().getString(R.string.zone_320x480));
+        AppierAdHelper.setTargeting(mAppierBannerView3);  // Set targeting should be done before loadAd()
         mAppierBannerView3.loadAd();
     }
 
