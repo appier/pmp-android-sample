@@ -34,7 +34,7 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         AppierAdHelper.setAppierGlobal();
 
         /*
-         * (Required) Appier Interstitial Ad integration
+         * Create AppierInterstitialAd, waiting for load and show
          */
         mAppierInterstitialAd = new AppierInterstitialAd(context, this);
         mAppierInterstitialAd.setAdDimension(320, 480);
@@ -46,15 +46,17 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
     }
 
     protected void loadInterstitial() {
+        // Request for AD content
         mAppierInterstitialAd.loadAd();
     }
 
     protected void showInterstitial() {
+        // Show the full screen interstitial activity
         mAppierInterstitialAd.showAd();
     }
 
     /*
-     * Override AppierInterstitialAd.EventListener functions for events callback
+     * Override AppierInterstitialAd.EventListener functions for event callbacks
      */
 
     @Override

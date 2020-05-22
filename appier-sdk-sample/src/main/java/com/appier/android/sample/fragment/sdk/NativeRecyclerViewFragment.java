@@ -91,6 +91,9 @@ public class NativeRecyclerViewFragment extends BaseFragment {
 
     }
 
+    /*
+     * AppierNativeAd EventListener to handle event callbacks
+     */
     private class EventListener implements AppierNativeAd.EventListener {
 
         private AppierRecyclerAdapter appierRecyclerAdapter;
@@ -107,8 +110,10 @@ public class NativeRecyclerViewFragment extends BaseFragment {
             View adView = appierNativeAd.getAdView();
 
             try {
-                appierRecyclerAdapter.insertAd(insertPosition, appierNativeAd);
                 mDemoFlowController.notifyAdBid();
+
+                // Insert AppierNativeAd
+                appierRecyclerAdapter.insertAd(insertPosition, appierNativeAd);
 
             } catch (Exception e) {
                 Appier.log("[Sample App] Fail to insert ad into list. Maybe the position is out of bound or is already used.");

@@ -61,6 +61,9 @@ public class NativeFloatingWindowFragment extends BaseFloatingWindowFragment {
         }
     }
 
+    /*
+     * AppierNativeAd EventListener to handle event callbacks
+     */
     private class EventListener implements AppierNativeAd.EventListener {
 
         private LinearLayout adContainer;
@@ -72,9 +75,11 @@ public class NativeFloatingWindowFragment extends BaseFloatingWindowFragment {
         @Override
         public void onAdLoaded(AppierNativeAd appierNativeAd) {
             Appier.log("[Sample App] onAdLoaded()");
+            mDemoFlowController.notifyAdBid();
+
+            // Display AppierNativeAd view to container when AdLoaded
             View adView = appierNativeAd.getAdView();
             adContainer.addView(adView);
-            mDemoFlowController.notifyAdBid();
         }
 
         @Override

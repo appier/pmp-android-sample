@@ -39,13 +39,16 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
         final int AD_HEIGHT = 480;
 
         /*
-         * Initialize MoPubInterstitial
+         * Initialize MoPub Interstitial
          *
          * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
-         *   with "Custom event class" set to "com.mopub.mobileads.AppierBanner".
-         *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
-         *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         * with the following settings:
+         *
+         *   "Custom event class": "com.mopub.mobileads.AppierInterstitial".
+         *   "Custom event data":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *
          */
+
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
@@ -57,15 +60,17 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
     }
 
     protected void loadInterstitial() {
+        // Load interstitial
         mMoPubInterstitial.load();
     }
 
     protected void showInterstitial() {
+        // Pop up full-screen activity to show interstitial
         mMoPubInterstitial.show();
     }
 
     /*
-     * Override MoPubInterstitial.InterstitialAdListener functions for events callback
+     * Override MoPubInterstitial.InterstitialAdListener functions to handle event callbacks
      */
 
     @Override

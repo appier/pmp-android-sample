@@ -71,9 +71,11 @@ public class MoPubNativeListViewFragment extends BaseFragment {
          * Initialize MoPub ViewBinder and MoPubNative Ads
          *
          * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
-         *   with "Custom event class" set to "com.mopub.mobileads.AppierBanner".
-         *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
-         *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         * with the following settings:
+         *
+         *   "Custom event class": "com.mopub.nativeads.AppierNative".
+         *   "Custom event data":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *
          */
 
         ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_compact_1)
@@ -89,6 +91,8 @@ public class MoPubNativeListViewFragment extends BaseFragment {
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
         MoPubAdAdapter moPubAdAdapter = new MoPubAdAdapter((Activity) mContext, adapter);
+
+        // When using multiple line items with different networks, we need to register all AdRenderers
         moPubAdAdapter.registerAdRenderer(appierNativeAdRenderer);
         moPubAdAdapter.registerAdRenderer(moPubStaticNativeAdRenderer);
 

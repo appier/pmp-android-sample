@@ -80,6 +80,9 @@ public class NativeBasicFragment extends BaseFragment {
         super.onDestroy();
     }
 
+    /*
+     * AppierNativeAd EventListener to handle event callbacks
+     */
     private class EventListener implements AppierNativeAd.EventListener {
 
         private LinearLayout adContainer;
@@ -91,9 +94,11 @@ public class NativeBasicFragment extends BaseFragment {
         @Override
         public void onAdLoaded(AppierNativeAd appierNativeAd) {
             Appier.log("[Sample App] onAdLoaded()");
+            mDemoFlowController.notifyAdBid();
+
+            // Display AppierNativeAd view to container when AdLoaded
             View adView = appierNativeAd.getAdView();
             adContainer.addView(adView);
-            mDemoFlowController.notifyAdBid();
         }
 
         @Override

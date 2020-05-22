@@ -76,6 +76,9 @@ public class BannerRecyclerViewFragment extends BaseFragment {
 
     }
 
+    /*
+     * AppierBannerAd EventListener to handle event callbacks
+     */
     private class EventListener implements AppierBannerAd.EventListener {
 
         private AppierRecyclerAdapter appierRecyclerAdapter;
@@ -91,7 +94,9 @@ public class BannerRecyclerViewFragment extends BaseFragment {
             Appier.log("[Sample App]", "[Banner]", "onAdLoaded()");
 
             try {
+                // Insert AppierBannerAd
                 appierRecyclerAdapter.insertAd(insertPosition, appierBannerAd);
+
                 mDemoFlowController.notifyAdBid();
 
             } catch (Exception e) {

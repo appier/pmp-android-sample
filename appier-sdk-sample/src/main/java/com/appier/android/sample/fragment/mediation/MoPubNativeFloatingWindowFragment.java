@@ -40,10 +40,13 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
          * Initialize MoPub ViewBinder and MoPubNative Ads
          *
          * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
-         *   with "Custom event class" set to "com.mopub.mobileads.AppierBanner".
-         *   The Appier ZoneId is configured in the "Custom event data" of the line item, with format:
-         *     { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         * with the following settings:
+         *
+         *   "Custom event class": "com.mopub.nativeads.AppierNative".
+         *   "Custom event data":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *
          */
+
         ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_full_2)
                 .mainImageId(R.id.native_main_image)
                 .iconImageId(R.id.native_icon_image)
@@ -75,6 +78,10 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         }
     }
 
+    /*
+     * Override MoPubNative.MoPubNativeNetworkListener functions to handle event callbacks from MoPub
+     */
+
     @Override
     public void onNativeLoad(final NativeAd nativeAd) {
         Appier.log("[Sample App]", "Native ad has loaded.");
@@ -84,7 +91,7 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         // Retrieve the pre-built ad view that AdapterHelper prepared for us.
         View adView = adapterHelper.getAdView(null, null, nativeAd, new ViewBinder.Builder(0).build());
 
-        // Set the native event listeners (onImpression, and onClick).
+        // Set the event listeners for NativeAd (onImpression, and onClick).
         nativeAd.setMoPubNativeEventListener(new NativeAd.MoPubNativeEventListener() {
             @Override
             public void onImpression(View view) {
