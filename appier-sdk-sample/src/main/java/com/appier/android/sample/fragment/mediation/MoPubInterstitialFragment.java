@@ -10,6 +10,7 @@ import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseInterstitialFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 
@@ -53,8 +54,9 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
-        mMoPubInterstitial = new MoPubInterstitial((Activity) context, getString(R.string.mopub_adunit_interstitial));
+        mMoPubInterstitial = new MoPubInterstitial((Activity) context, getString(R.string.mopub_adunit_predict_interstitial));
         mMoPubInterstitial.setLocalExtras(localExtras);
+        AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_interstitial), mMoPubInterstitial);
         mMoPubInterstitial.setInterstitialAdListener(this);
         Appier.log("[Sample App]", "====== make request ======");
     }

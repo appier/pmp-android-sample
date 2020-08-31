@@ -2,16 +2,17 @@ package com.appier.android.sample.fragment.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierPredictor;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
@@ -23,6 +24,7 @@ import com.appier.android.sample.activity.sdk.NativeFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.NativeListActivity;
 import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
+import com.appier.android.sample.helper.AppierAdHelper;
 
 
 public class SdkNavigationFragment extends BaseFragment {
@@ -44,6 +46,17 @@ public class SdkNavigationFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
+        Button mButtonPredict = layout.findViewById(R.id.button_predict);
+        mButtonPredict.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppierAdHelper.setAppierGlobal();
+                AppierPredictor predictor = new AppierPredictor(getContext());
+                predictor.predictAd(getString(R.string.mopub_zone_predict_banner_300x250));
+                predictor.predictAd(getString(R.string.mopub_zone_predict_interstitial));
+                predictor.predictAd(getString(R.string.mopub_zone_predict_native));
+            }
+        });
 
         initializeSDKView(layout);
 
