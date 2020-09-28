@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.appier.ads.Appier;
 import com.appier.ads.AppierAdAdapter;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
@@ -53,13 +54,14 @@ public class BannerListViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_320x50);
 
         /*
          * Create new AppierBannerAd and insert into ListView
          */
-        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new EventListener(mAppierAdAdapter, 2));
+        AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(mAppierAdAdapter, 2));
         appierBannerAd.setAdDimension(320, 50);
-        appierBannerAd.setZoneId(getResources().getString(R.string.zone_320x50));
+        appierBannerAd.setZoneId(APPIER_AD_UNIT_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(appierBannerAd);

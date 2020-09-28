@@ -7,10 +7,11 @@ android {
 
     defaultConfig {
         applicationId "com.appier.android.sample"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode 5
-        versionName "1.0.2"
+        versionName "1.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,36 +60,36 @@ dependencies {
     implementation 'com.google.android.material:material:+'
 
     // Appier SDK
-    implementation 'com.appier.android:ads-sdk:1.0.1'
-    implementation('com.appier.android:mopub-mediation:1.0.0') {
+    implementation 'com.appier.android:ads-sdk:1.1.0'
+    implementation('com.appier.android:mopub-mediation:1.1.0') {
         transitive = true
         exclude module: 'libAvid-mopub' // To exclude AVID
         exclude module: 'moat-mobile-app-kit' // To exclude Moat
     }
 
     // MoPub SDK base
-    implementation('com.mopub:mopub-sdk-base:4.20.0@aar') {
+    implementation('com.mopub:mopub-sdk-base:5.11.1@aar') {
         transitive = true
         exclude module: 'libAvid-mopub' // To exclude AVID
         exclude module: 'moat-mobile-app-kit' // To exclude Moat
     }
 
     // MoPub SDK for native static (images)
-    implementation('com.mopub:mopub-sdk-native-static:4.20.0@aar') {
+    implementation('com.mopub:mopub-sdk-native-static:5.11.1@aar') {
         transitive = true
         exclude module: 'libAvid-mopub' // To exclude AVID
         exclude module: 'moat-mobile-app-kit' // To exclude Moat
     }
 
     // MoPub SDK for banner
-    implementation('com.mopub:mopub-sdk-banner:4.20.0@aar') {
+    implementation('com.mopub:mopub-sdk-banner:5.11.1@aar') {
         transitive = true
         exclude module: 'libAvid-mopub' // To exclude AVID
         exclude module: 'moat-mobile-app-kit' // To exclude Moat
     }
 
     // MoPub SDK for interstitial
-    implementation('com.mopub:mopub-sdk-interstitial:4.20.0@aar') {
+    implementation('com.mopub:mopub-sdk-interstitial:5.11.1@aar') {
         transitive = true
         exclude module: 'libAvid-mopub' // To exclude AVID
         exclude module: 'moat-mobile-app-kit' // To exclude Moat

@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.appier.ads.Appier;
 import com.appier.ads.AppierAdAdapter;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierNativeAd;
 import com.appier.ads.AppierNativeViewBinder;
@@ -57,6 +58,7 @@ public class NativeListViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_native);
 
         /*
          * Create AppierNativeAd and insert into ListView using ViewBinder
@@ -70,9 +72,9 @@ public class NativeListViewFragment extends BaseFragment {
                 .privacyInformationIconImageId(R.id.native_privacy_information_icon_image)
                 .build();
 
-        AppierNativeAd appierNativeAd = new AppierNativeAd(getActivity(), new EventListener(appierAdAdapter, insertPosition));
+        AppierNativeAd appierNativeAd = new AppierNativeAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(appierAdAdapter, insertPosition));
         appierNativeAd.setViewBinder(appierNativeViewBinder);
-        appierNativeAd.setZoneId(getResources().getString(R.string.zone_native));
+        appierNativeAd.setZoneId(APPIER_AD_UNIT_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(appierNativeAd);

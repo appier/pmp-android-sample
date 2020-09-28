@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierNativeAd;
 import com.appier.ads.AppierNativeViewBinder;
@@ -32,6 +33,7 @@ public class NativeFloatingWindowFragment extends BaseFloatingWindowFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_native);
 
         /*
          * Create AppierNativeAd and display in the container using ViewBinder
@@ -45,9 +47,9 @@ public class NativeFloatingWindowFragment extends BaseFloatingWindowFragment {
                 .privacyInformationIconImageId(R.id.native_privacy_information_icon_image)
                 .build();
 
-        mAppierNativeAd = new AppierNativeAd(getActivity(), new EventListener(adContainer));
+        mAppierNativeAd = new AppierNativeAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(adContainer));
         mAppierNativeAd.setViewBinder(appierNativeViewBinder);
-        mAppierNativeAd.setZoneId(getResources().getString(R.string.zone_native));
+        mAppierNativeAd.setZoneId(APPIER_AD_UNIT_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierNativeAd);

@@ -47,16 +47,7 @@ public class SdkNavigationFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
         Button mButtonPredict = layout.findViewById(R.id.button_predict);
-        mButtonPredict.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppierAdHelper.setAppierGlobal();
-                AppierPredictor predictor = new AppierPredictor(getContext());
-                predictor.predictAd(getString(R.string.mopub_zone_predict_banner_300x250));
-                predictor.predictAd(getString(R.string.mopub_zone_predict_interstitial));
-                predictor.predictAd(getString(R.string.mopub_zone_predict_native));
-            }
-        });
+        mButtonPredict.setVisibility(View.GONE);
 
         initializeSDKView(layout);
 

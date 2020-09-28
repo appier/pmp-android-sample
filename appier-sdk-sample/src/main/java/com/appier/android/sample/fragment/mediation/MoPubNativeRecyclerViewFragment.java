@@ -108,7 +108,11 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
         recyclerView.setAdapter(moPubAdAdapter);
 
-        moPubAdAdapter.loadAds(adUnitId, AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_native)).build());
+        RequestParameters parameters = new RequestParameters.Builder()
+                .keywords(AppierPredictHandler.getKeywordTargeting(adUnitId))
+                .build();
+
+        moPubAdAdapter.loadAds(adUnitId, parameters);
     }
 
 }

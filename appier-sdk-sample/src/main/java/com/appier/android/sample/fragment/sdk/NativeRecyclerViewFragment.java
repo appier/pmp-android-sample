@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierNativeAd;
 import com.appier.ads.AppierNativeViewBinder;
@@ -67,6 +68,7 @@ public class NativeRecyclerViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_native);
 
         /*
          * Create AppierNativeAd and insert into RecyclerView using ViewBinder
@@ -80,9 +82,10 @@ public class NativeRecyclerViewFragment extends BaseFragment {
                 .privacyInformationIconImageId(R.id.native_privacy_information_icon_image)
                 .build();
 
-        AppierNativeAd appierNativeAd = new AppierNativeAd(getActivity(), new EventListener(appierRecyclerAdapter, insertPosition));
+        AppierNativeAd appierNativeAd = new AppierNativeAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(appierRecyclerAdapter, insertPosition));
+
         appierNativeAd.setViewBinder(appierNativeViewBinder);
-        appierNativeAd.setZoneId(getResources().getString(R.string.zone_native));
+        appierNativeAd.setZoneId(APPIER_AD_UNIT_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(appierNativeAd);

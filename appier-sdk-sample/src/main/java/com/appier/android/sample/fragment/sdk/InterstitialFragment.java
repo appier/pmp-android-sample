@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierInterstitialAd;
 import com.appier.android.sample.R;
@@ -32,17 +33,18 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_interstitial);
 
         /*
          * Create AppierInterstitialAd, waiting for load and show
          */
-        mAppierInterstitialAd = new AppierInterstitialAd(context, this);
+        mAppierInterstitialAd = new AppierInterstitialAd(context, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), this);
         mAppierInterstitialAd.setAdDimension(320, 480);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierInterstitialAd);
 
-        mAppierInterstitialAd.setZoneId(getResources().getString(R.string.zone_interstitial));
+        mAppierInterstitialAd.setZoneId(APPIER_AD_UNIT_ID);
     }
 
     protected void loadInterstitial() {

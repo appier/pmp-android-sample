@@ -3,6 +3,7 @@ package com.appier.android.sample;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,9 @@ import com.appier.android.sample.common.SectionsPagerAdapter;
 import com.appier.android.sample.fragment.navigation.MoPubMediationNavigationFragment;
 import com.appier.android.sample.fragment.navigation.SdkNavigationFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.mopub.common.MoPub;
+import com.mopub.common.SdkConfiguration;
+import com.mopub.common.SdkInitializationListener;
 import com.quantumgraph.sdk.QG;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,5 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
         // AIQUA SDK
         QG.initializeSdk(getApplication(), getResources().getString(R.string.aiqua_app_id));
+
+        // MoPub SDK
+        SdkConfiguration sdkConfiguration = new SdkConfiguration
+                .Builder(getString(R.string.mopub_adunit_predict_interstitial))
+                .build();
+        MoPub.initializeSdk(getApplicationContext(), sdkConfiguration, new SdkInitializationListener() {
+            @Override
+            public void onInitializationFinished() {
+                Log.d("MoPub", "SDK initialized");
+            }
+        });
     }
 }

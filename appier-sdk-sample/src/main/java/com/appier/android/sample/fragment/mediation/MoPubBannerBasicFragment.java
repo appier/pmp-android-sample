@@ -11,6 +11,7 @@ import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
@@ -51,6 +52,10 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
          */
         AppierAdHelper.setAppierGlobal();
 
+        final String MOPUB_AD_UNIT_ID = getString(R.string.mopub_adunit_predict_banner_300x250);
+        final int AD_WIDTH = 300;
+        final int AD_HEIGHT = 250;
+
         /*
          * Initialize MoPubView and load banner
          *
@@ -63,15 +68,16 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
          */
 
         Map<String, Object> localExtras = new HashMap<>();
-        localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, 300);
-        localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, 250);
+        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
+        localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
+        localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
         mMoPubView = getView().findViewById(R.id.banner_container_300_250);
 
         mMoPubView.setLocalExtras(localExtras);
         mMoPubView.setBannerAdListener(this);
-        AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_banner_300x250), mMoPubView);
-        mMoPubView.setAdUnitId(getString(R.string.mopub_adunit_predict_banner_300x250));
+        mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
+        mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
 
         mMoPubView.loadAd();
     }
