@@ -23,6 +23,7 @@ import com.appier.android.sample.activity.mediation.MoPubNativeListActivity;
 import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.common.MoPub;
 import com.mopub.mobileads.AppierAdapterConfiguration;
 import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
@@ -89,8 +90,9 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
         TextView textVersion = layout.findViewById(R.id.text_version);
         AppierAdapterConfiguration appierAdapterConfiguration = new AppierAdapterConfiguration();
         textVersion.setText(
+            "Appier SDK version : " + appierAdapterConfiguration.getNetworkSdkVersion() + "\n" +
             "Mediation SDK version : " + appierAdapterConfiguration.getAdapterVersion() + "\n" +
-            "Appier SDK version : " + appierAdapterConfiguration.getNetworkSdkVersion()
+            "MoPub SDK version : " + MoPub.SDK_VERSION
         );
     }
 
