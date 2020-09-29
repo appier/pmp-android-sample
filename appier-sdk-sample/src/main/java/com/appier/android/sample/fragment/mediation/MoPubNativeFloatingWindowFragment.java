@@ -67,24 +67,33 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
-        Map<String, Object> localExtras = new HashMap<>();
-        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
-
-        MoPubNative mMoPubNativeAd = new MoPubNative(
+        mMoPubNativeAd = new MoPubNative(
                 mContext, MOPUB_AD_UNIT_ID, this
         );
 
-        // Required for Appier MoPub Mediation
-        mMoPubNativeAd.registerAdRenderer(appierNativeAdRenderer);
-
-        // Optional, if the AdUnit contains MoPub Native line item
-        mMoPubNativeAd.registerAdRenderer(moPubStaticNativeAdRenderer);
-
+        /*
+         *  Optional: Required when integrating with Appier predict
+         *
+         *  To achieve the best performance, please set "Keyword targeting" for each line item in MoPub
+         *  console with the following values:
+         *  Keyword targeting:
+         *      appier_zone_<THE ZONE ID PROVIDED BY APPIER>:1
+         *      appier_predict_ver:1
+         */
+        Map<String, Object> localExtras = new HashMap<>();
+        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         mMoPubNativeAd.setLocalExtras(localExtras);
 
         RequestParameters parameters = new RequestParameters.Builder()
                 .keywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID))
                 .build();
+
+        // Required for Appier MoPub Mediation, alone with other mediation line items
+        mMoPubNativeAd.registerAdRenderer(appierNativeAdRenderer);
+        mMoPubNativeAd.registerAdRenderer(moPubStaticNativeAdRenderer);
+
+        // Load Ads with RequestParameters for Appier Predict.
+        // use `mMoPubNativeAd.makeRequest();` if you are doing the basic integration (without Appier predict).
         mMoPubNativeAd.makeRequest(parameters);
     }
 
