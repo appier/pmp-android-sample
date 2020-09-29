@@ -10,7 +10,6 @@ import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseInterstitialFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
-import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
@@ -53,14 +52,27 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
          */
 
         Map<String, Object> localExtras = new HashMap<>();
-        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
         mMoPubInterstitial = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
-        mMoPubInterstitial.setLocalExtras(localExtras);
+
+        /*
+         *  Optional: Required when integrating with Appier predict
+         *
+         *  To achieve the best performance, please set "Keyword targeting" for each line item in MoPub
+         *  console with the following values:
+         *  Keyword targeting:
+         *      appier_zone_<THE ZONE ID PROVIDED BY APPIER>:1
+         *      appier_predict_ver:1
+         */
+        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         mMoPubInterstitial.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
+
+        // Prepare to load!
+        mMoPubInterstitial.setLocalExtras(localExtras);
         mMoPubInterstitial.setInterstitialAdListener(this);
+
         Appier.log("[Sample App]", "====== make request ======");
     }
 

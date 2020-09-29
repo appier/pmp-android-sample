@@ -9,7 +9,6 @@ import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFloatingWindowFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
-import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
@@ -51,23 +50,32 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
          */
 
         Map<String, Object> localExtras = new HashMap<>();
-        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
         mMoPubView = new MoPubView(getActivity());
 
-        mMoPubView.setLocalExtras(localExtras);
-        mMoPubView.setBannerAdListener(this);
-
+        /*
+         *  Optional: Required when integrating with Appier predict
+         *
+         *  To achieve the best performance, please set "Keyword targeting" for each line item in MoPub
+         *  console with the following values:
+         *  Keyword targeting:
+         *      appier_zone_<THE ZONE ID PROVIDED BY APPIER>:1
+         *      appier_predict_ver:1
+         */
+        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
-        mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
 
         // set layout parameter to remove the white margin
         mMoPubView.setLayoutParams(new LinearLayout.LayoutParams(
                 Dimension.dipsToIntPixels(300, context), Dimension.dipsToIntPixels(250, context))
         );
 
+        // Load Ad!
+        mMoPubView.setLocalExtras(localExtras);
+        mMoPubView.setBannerAdListener(this);
+        mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
         mMoPubView.loadAd();
     }
 

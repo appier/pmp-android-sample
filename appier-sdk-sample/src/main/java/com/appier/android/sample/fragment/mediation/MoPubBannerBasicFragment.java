@@ -11,7 +11,6 @@ import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
-import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
@@ -68,17 +67,28 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
          */
 
         Map<String, Object> localExtras = new HashMap<>();
-        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
         mMoPubView = getView().findViewById(R.id.banner_container_300_250);
 
+
+        /*
+         *  Optional: Required when integrating with Appier predict
+         *
+         *  To achieve the best performance, please set "Keyword targeting" for each line item in MoPub
+         *  console with the following values:
+         *  Keyword targeting:
+         *      appier_zone_<THE ZONE ID PROVIDED BY APPIER>:1
+         *      appier_predict_ver:1
+         */
+        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
+        mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
+
+        // Load Ad!
         mMoPubView.setLocalExtras(localExtras);
         mMoPubView.setBannerAdListener(this);
-        mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
         mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
-
         mMoPubView.loadAd();
     }
 
