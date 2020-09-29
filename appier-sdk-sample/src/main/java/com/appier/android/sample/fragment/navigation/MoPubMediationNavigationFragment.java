@@ -92,7 +92,7 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
         textVersion.setText(
             "Appier SDK version : " + appierAdapterConfiguration.getNetworkSdkVersion() + "\n" +
             "Mediation SDK version : " + appierAdapterConfiguration.getAdapterVersion() + "\n" +
-            "MoPub SDK version:" + MoPub.SDK_VERSION
+            "MoPub SDK version : " + MoPub.SDK_VERSION
         );
     }
 
