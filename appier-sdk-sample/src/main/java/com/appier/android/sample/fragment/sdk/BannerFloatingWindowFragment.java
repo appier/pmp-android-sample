@@ -3,6 +3,7 @@ package com.appier.android.sample.fragment.sdk;
 import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
@@ -22,13 +23,15 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_300x250);
 
         /*
          * Load Ad in ad container layout
          */
-        mAppierBannerAd = new AppierBannerAd(getActivity(), new EventListener(adContainer));
+
+        mAppierBannerAd = new AppierBannerAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(adContainer));
         mAppierBannerAd.setAdDimension(300, 250);
-        mAppierBannerAd.setZoneId(getResources().getString(R.string.zone_300x250));
+        mAppierBannerAd.setZoneId(APPIER_AD_UNIT_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierBannerAd);

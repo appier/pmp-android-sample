@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierBannerAd;
 import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
@@ -47,6 +48,9 @@ public class BannerBasicFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_320_50_ID = getString(R.string.zone_320x50);
+        final String APPIER_AD_UNIT_300_250_ID = getString(R.string.zone_300x250);
+        final String APPIER_AD_UNIT_320_480_ID = getString(R.string.zone_320x480);
 
         /*
          * Create Appier Banner Ads and load them into containers manually
@@ -55,27 +59,27 @@ public class BannerBasicFragment extends BaseFragment {
         // Load AppierBannerAd 1: 320x50
         LinearLayout appierBannerAdContainer1 = view.findViewById(R.id.banner_container_320_50);
         appierBannerAdContainer1.removeAllViews();
-        AppierBannerAd appierBannerAd1 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer1));
+        AppierBannerAd appierBannerAd1 = new AppierBannerAd(mContext, new AppierAdUnitIdentifier(APPIER_AD_UNIT_320_50_ID), new EventListener(appierBannerAdContainer1));
         appierBannerAd1.setAdDimension(320, 50);
-        appierBannerAd1.setZoneId(getResources().getString(R.string.zone_320x50));
+        appierBannerAd1.setZoneId(APPIER_AD_UNIT_320_50_ID);
         AppierAdHelper.setTargeting(appierBannerAd1);  // Set targeting should be done before loadAd()
         appierBannerAd1.loadAd();
 
         // Load AppierBannerAd 2: 320x50
         LinearLayout appierBannerAdContainer2 = view.findViewById(R.id.banner_container_300_250);
         appierBannerAdContainer2.removeAllViews();
-        AppierBannerAd appierBannerAd2 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer2));
+        AppierBannerAd appierBannerAd2 = new AppierBannerAd(mContext, new AppierAdUnitIdentifier(APPIER_AD_UNIT_300_250_ID), new EventListener(appierBannerAdContainer2));
         appierBannerAd2.setAdDimension(300, 250);
-        appierBannerAd2.setZoneId(getResources().getString(R.string.zone_300x250));
+        appierBannerAd2.setZoneId(APPIER_AD_UNIT_300_250_ID);
         AppierAdHelper.setTargeting(appierBannerAd2);  // Set targeting should be done before loadAd()
         appierBannerAd2.loadAd();
 
         // Load AppierBannerAd 3: 320x480
         LinearLayout appierBannerAdContainer3 = view.findViewById(R.id.banner_container_320_480);
         appierBannerAdContainer3.removeAllViews();
-        AppierBannerAd appierBannerAd3 = new AppierBannerAd(mContext, new EventListener(appierBannerAdContainer3));
+        AppierBannerAd appierBannerAd3 = new AppierBannerAd(mContext, new AppierAdUnitIdentifier(APPIER_AD_UNIT_320_480_ID), new EventListener(appierBannerAdContainer3));
         appierBannerAd3.setAdDimension(320, 480);
-        appierBannerAd3.setZoneId(getResources().getString(R.string.zone_320x480));
+        appierBannerAd3.setZoneId(APPIER_AD_UNIT_320_480_ID);
         AppierAdHelper.setTargeting(appierBannerAd3);  // Set targeting should be done before loadAd()
         appierBannerAd3.loadAd();
     }

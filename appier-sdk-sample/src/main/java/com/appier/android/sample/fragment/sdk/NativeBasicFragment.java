@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierError;
 import com.appier.ads.AppierNativeAd;
 import com.appier.ads.AppierNativeViewBinder;
@@ -49,6 +50,8 @@ public class NativeBasicFragment extends BaseFragment {
          */
         AppierAdHelper.setAppierGlobal();
 
+        final String APPIER_AD_UNIT_ID = getString(R.string.zone_native);
+
         LinearLayout adContainer = view.findViewById(R.id.ad_container);
         adContainer.removeAllViews();
 
@@ -64,9 +67,10 @@ public class NativeBasicFragment extends BaseFragment {
                 .privacyInformationIconImageId(R.id.native_privacy_information_icon_image)
                 .build();
 
-        mAppierNativeAd = new AppierNativeAd(mContext, new EventListener(adContainer));
+        mAppierNativeAd = new AppierNativeAd(mContext, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(adContainer));
         mAppierNativeAd.setViewBinder(appierNativeViewBinder);
-        mAppierNativeAd.setZoneId(getResources().getString(R.string.mopub_zone_predict_native));
+
+        mAppierNativeAd.setZoneId(APPIER_AD_UNIT_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierNativeAd);

@@ -40,25 +40,31 @@ public class BannerViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+        final String APPIER_AD_UNIT_320_50_ID = getString(R.string.zone_320x50);
+        final String APPIER_AD_UNIT_300_250_ID = getString(R.string.zone_300x250);
+        final String APPIER_AD_UNIT_320_480_ID = getString(R.string.zone_320x480);
 
         /*
          * Create AppierBannerViews and load the Ads
          */
         mAppierBannerView1 = view.findViewById(R.id.appier_banner_view_320_50);
+        mAppierBannerView1.setAdUnitId(APPIER_AD_UNIT_320_50_ID);
         mAppierBannerView1.setAdDimension(320, 50);
-        mAppierBannerView1.setZoneId(getResources().getString(R.string.zone_320x50));
+        mAppierBannerView1.setZoneId(APPIER_AD_UNIT_320_50_ID);
         AppierAdHelper.setTargeting(mAppierBannerView1);  // Set targeting should be done before loadAd()
         mAppierBannerView1.loadAd();
 
         mAppierBannerView2 = view.findViewById(R.id.appier_banner_view_300_250);
+        mAppierBannerView2.setAdUnitId(APPIER_AD_UNIT_300_250_ID);
         mAppierBannerView2.setAdDimension(300, 250);
-        mAppierBannerView2.setZoneId(getResources().getString(R.string.zone_300x250));
+        mAppierBannerView2.setZoneId(APPIER_AD_UNIT_300_250_ID);
         AppierAdHelper.setTargeting(mAppierBannerView2);  // Set targeting should be done before loadAd()
         mAppierBannerView2.loadAd();
 
         mAppierBannerView3 = view.findViewById(R.id.appier_banner_view_320_480);
+        mAppierBannerView3.setAdUnitId(APPIER_AD_UNIT_320_480_ID);
         mAppierBannerView3.setAdDimension(320, 480);
-        mAppierBannerView3.setZoneId(getResources().getString(R.string.zone_320x480));
+        mAppierBannerView3.setZoneId(APPIER_AD_UNIT_320_480_ID);
         AppierAdHelper.setTargeting(mAppierBannerView3);  // Set targeting should be done before loadAd()
         mAppierBannerView3.loadAd();
     }

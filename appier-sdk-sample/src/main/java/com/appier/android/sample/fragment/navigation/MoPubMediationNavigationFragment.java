@@ -24,6 +24,7 @@ import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.AppierAdapterConfiguration;
+import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
 
 
@@ -52,9 +53,9 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
             public void onClick(View v) {
                 AppierAdHelper.setAppierGlobal();
                 AppierPredictor predictor = new AppierPredictor(getContext(), new AppierPredictHandler(getContext()));
-                predictor.predictAd(getString(R.string.mopub_zone_predict_banner_300x250));
-                predictor.predictAd(getString(R.string.mopub_zone_predict_interstitial));
-                predictor.predictAd(getString(R.string.mopub_zone_predict_native));
+                predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.mopub_adunit_predict_native)));
+                predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.mopub_adunit_predict_banner_300x250)));
+                predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.mopub_adunit_predict_interstitial)));
             }
         });
 

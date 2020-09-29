@@ -3,7 +3,6 @@ package com.appier.android.sample.helper;
 import com.appier.ads.Appier;
 import com.appier.ads.AppierBannerView;
 import com.appier.ads.AppierBaseAd;
-import com.appier.ads.AppierPredictCache;
 import com.appier.ads.common.AppierTargeting;
 import com.appier.ads.common.ConsentStatus;
 
@@ -38,11 +37,6 @@ public class AppierAdHelper {
         appierAd.setYob(2001);
         appierAd.setGender(AppierTargeting.Gender.FEMALE);
         appierAd.addKeyword("interest", "sports");
-        if (AppierPredictCache.getInstance().getPredictResult(appierAd.getZoneId())) {
-            appierAd.addKeyword("predict", "1");
-        } else {
-            appierAd.addKeyword("predict", "0");
-        }
     }
 
     public static void setTargeting(AppierBannerView bannerView) {

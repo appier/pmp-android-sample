@@ -9,9 +9,11 @@ import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
 import com.appier.ads.AppierError;
+import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierAdUnitIdentifier;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.nativeads.AdapterHelper;
 import com.mopub.nativeads.AppierNativeAdRenderer;
@@ -21,6 +23,9 @@ import com.mopub.nativeads.NativeAd;
 import com.mopub.nativeads.NativeErrorCode;
 import com.mopub.nativeads.RequestParameters;
 import com.mopub.nativeads.ViewBinder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNative.MoPubNativeNetworkListener {
 
@@ -59,6 +64,8 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
          */
         AppierAdHelper.setAppierGlobal();
 
+        final String MOPUB_AD_UNIT_ID = getString(R.string.mopub_adunit_predict_native);
+
         /*
          * Initialize MoPub ViewBinder and MoPubNative Ads
          *
@@ -82,16 +89,24 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
         AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
+        Map<String, Object> localExtras = new HashMap<>();
+        localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
+
         MoPubNative mMoPubNativeAd = new MoPubNative(
-                mContext, getString(R.string.mopub_adunit_predict_native), this
+                mContext, MOPUB_AD_UNIT_ID, this
         );
+
+        mMoPubNativeAd.setLocalExtras(localExtras);
 
         // Required for Appier MoPub Mediation
         mMoPubNativeAd.registerAdRenderer(appierNativeAdRenderer);
         // Optional, if the AdUnit contains MoPub Native line item
         mMoPubNativeAd.registerAdRenderer(moPubStaticNativeAdRenderer);
-        mMoPubNativeAd.makeRequest();
-        mMoPubNativeAd.makeRequest(AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_native)).build());
+
+        RequestParameters parameters = new RequestParameters.Builder()
+                .keywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID))
+                .build();
+        mMoPubNativeAd.makeRequest(parameters);
     }
 
     @Override
