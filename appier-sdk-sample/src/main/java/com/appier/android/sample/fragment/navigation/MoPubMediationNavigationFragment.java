@@ -47,12 +47,25 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
+
+        // Appier Predict button
         Button mButtonPredict = layout.findViewById(R.id.button_predict);
         mButtonPredict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                 * (Optional) Do Appier Predict
+                 *
+                 * It is recommended to call predictAd() at the previous activity before rendering Ads to achieve
+                 * best performance.
+                 */
+
+                // Remember to call helper functions to apply GDPR and COPPA consent before Appier predict
                 AppierAdHelper.setAppierGlobal();
+
+                // Create AppierPredictor instance and apply predict to all required AdUnits
                 AppierPredictor predictor = new AppierPredictor(getContext(), new AppierPredictHandler(getContext()));
+
                 predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.mopub_adunit_predict_native)));
                 predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.mopub_adunit_predict_banner_300x250)));
                 predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.mopub_adunit_predict_interstitial)));

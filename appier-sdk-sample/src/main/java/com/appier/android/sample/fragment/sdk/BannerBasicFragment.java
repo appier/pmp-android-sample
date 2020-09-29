@@ -48,6 +48,7 @@ public class BannerBasicFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+
         final String APPIER_AD_UNIT_320_50_ID = getString(R.string.zone_320x50);
         final String APPIER_AD_UNIT_300_250_ID = getString(R.string.zone_300x250);
         final String APPIER_AD_UNIT_320_480_ID = getString(R.string.zone_320x480);
