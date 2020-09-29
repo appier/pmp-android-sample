@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appier.ads.Appier;
@@ -46,8 +47,8 @@ public class SdkNavigationFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
-        Button mButtonPredict = layout.findViewById(R.id.button_predict);
-        mButtonPredict.setVisibility(View.GONE);
+        RelativeLayout buttonLayout = layout.findViewById(R.id.button_group_layout);
+        buttonLayout.setVisibility(View.GONE);
 
         initializeSDKView(layout);
 
