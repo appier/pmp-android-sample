@@ -16,9 +16,11 @@ import com.appier.android.sample.common.MyRecyclerViewAdapter;
 import com.appier.android.sample.common.MyRecyclerViewItemDecoration;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.nativeads.AppierNativeAdRenderer;
 import com.mopub.nativeads.MoPubRecyclerAdapter;
 import com.mopub.nativeads.MoPubStaticNativeAdRenderer;
+import com.mopub.nativeads.RequestParameters;
 import com.mopub.nativeads.ViewBinder;
 
 import java.util.Arrays;
@@ -65,7 +67,7 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
         AppierAdHelper.setAppierGlobal();
 
         insertMoPubNativeRecyclerView(
-                myRecyclerViewAdapter, mRecyclerView, getResources().getString(R.string.mopub_adunit_native)
+                myRecyclerViewAdapter, mRecyclerView, getString(R.string.mopub_adunit_predict_native)
         );
 
     }
@@ -73,7 +75,7 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
     /*
      * Create Native Ad and insert into specific position when the ad is loaded
      */
-    private void insertMoPubNativeRecyclerView(MyRecyclerViewAdapter adapter, RecyclerView recyclerView, String adunitId) {
+    private void insertMoPubNativeRecyclerView(MyRecyclerViewAdapter adapter, RecyclerView recyclerView, String adUnitId) {
 
         /*
          * Initialize MoPub ViewBinder and MoPubNative Ads
@@ -106,7 +108,7 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
         recyclerView.setAdapter(moPubAdAdapter);
 
-        moPubAdAdapter.loadAds(adunitId);
+        moPubAdAdapter.loadAds(adUnitId, AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_native)).build());
     }
 
 }

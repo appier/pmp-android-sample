@@ -9,10 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
-
-import androidx.fragment.app.Fragment;
 
 public abstract class DemoFlowController {
     Context mContext;

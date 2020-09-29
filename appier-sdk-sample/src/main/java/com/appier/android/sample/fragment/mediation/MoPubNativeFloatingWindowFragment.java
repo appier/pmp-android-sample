@@ -9,12 +9,14 @@ import com.appier.ads.AppierError;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFloatingWindowFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.nativeads.AdapterHelper;
 import com.mopub.nativeads.AppierNativeAdRenderer;
 import com.mopub.nativeads.MoPubNative;
 import com.mopub.nativeads.MoPubStaticNativeAdRenderer;
 import com.mopub.nativeads.NativeAd;
 import com.mopub.nativeads.NativeErrorCode;
+import com.mopub.nativeads.RequestParameters;
 import com.mopub.nativeads.ViewBinder;
 
 
@@ -60,7 +62,7 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
         MoPubNative mMoPubNativeAd = new MoPubNative(
-                mContext, getResources().getString(R.string.mopub_adunit_native),this
+                mContext, getString(R.string.mopub_adunit_predict_native),this
         );
 
         // Required for Appier MoPub Mediation
@@ -69,7 +71,7 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         // Optional, if the AdUnit contains MoPub Native line item
         mMoPubNativeAd.registerAdRenderer(moPubStaticNativeAdRenderer);
 
-        mMoPubNativeAd.makeRequest();
+        mMoPubNativeAd.makeRequest(AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_native)).build());
     }
 
     protected void destroyAdView() {

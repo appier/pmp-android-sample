@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.appier.ads.AppierPredictor;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.mediation.MoPubBannerBasicActivity;
@@ -18,9 +20,11 @@ import com.appier.android.sample.activity.mediation.MoPubInterstitialActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeBasicActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeFloatingWindowActivity;
 import com.appier.android.sample.activity.mediation.MoPubNativeListActivity;
-import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.common.NavigationAdapter;
+import com.appier.android.sample.fragment.BaseFragment;
+import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.AppierAdapterConfiguration;
+import com.mopub.mobileads.AppierPredictHandler;
 
 
 public class MoPubMediationNavigationFragment extends BaseFragment {
@@ -42,6 +46,17 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
+        Button mButtonPredict = layout.findViewById(R.id.button_predict);
+        mButtonPredict.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppierAdHelper.setAppierGlobal();
+                AppierPredictor predictor = new AppierPredictor(getContext(), new AppierPredictHandler(getContext()));
+                predictor.predictAd(getString(R.string.mopub_zone_predict_banner_300x250));
+                predictor.predictAd(getString(R.string.mopub_zone_predict_interstitial));
+                predictor.predictAd(getString(R.string.mopub_zone_predict_native));
+            }
+        });
 
         initializeMoPubMediationView(layout);
 

@@ -15,9 +15,11 @@ import com.appier.android.sample.R;
 import com.appier.android.sample.common.MyListViewAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.nativeads.AppierNativeAdRenderer;
 import com.mopub.nativeads.MoPubAdAdapter;
 import com.mopub.nativeads.MoPubStaticNativeAdRenderer;
+import com.mopub.nativeads.RequestParameters;
 import com.mopub.nativeads.ViewBinder;
 
 import java.util.Arrays;
@@ -58,14 +60,14 @@ public class MoPubNativeListViewFragment extends BaseFragment {
          */
         AppierAdHelper.setAppierGlobal();
 
-        insertMoPubNativeListView(myListViewAdapter, mListView, getResources().getString(R.string.mopub_adunit_native));
+        insertMoPubNativeListView(myListViewAdapter, mListView, getString(R.string.mopub_adunit_predict_native));
 
     }
 
     /*
      * Create Native Ad and insert into specific position when the ad is loaded
      */
-    private void insertMoPubNativeListView(ArrayAdapter<String> adapter, ListView listView, String adunitId) {
+    private void insertMoPubNativeListView(ArrayAdapter<String> adapter, ListView listView, String adUnitId) {
 
         /*
          * Initialize MoPub ViewBinder and MoPubNative Ads
@@ -105,7 +107,7 @@ public class MoPubNativeListViewFragment extends BaseFragment {
             }
         });
 
-        moPubAdAdapter.loadAds(adunitId);
+        moPubAdAdapter.loadAds(adUnitId, AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_native)).build());
     }
 
 }

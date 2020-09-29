@@ -9,6 +9,7 @@ import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseFloatingWindowFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
+import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
 
@@ -52,7 +53,9 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
 
         mMoPubView.setLocalExtras(localExtras);
         mMoPubView.setBannerAdListener(this);
-        mMoPubView.setAdUnitId(getResources().getString(R.string.mopub_adunit_banner_300x250));
+
+        AppierPredictHandler.setKeywordTargeting(getString(R.string.mopub_zone_predict_banner_300x250), mMoPubView);
+        mMoPubView.setAdUnitId(getString(R.string.mopub_adunit_predict_banner_300x250));
 
         // set layout parameter to remove the white margin
         mMoPubView.setLayoutParams(new LinearLayout.LayoutParams(
