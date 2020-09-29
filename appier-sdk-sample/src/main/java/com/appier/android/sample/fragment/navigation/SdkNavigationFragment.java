@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appier.ads.Appier;
-import com.appier.ads.AppierPredictor;
 import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.sdk.BannerBasicActivity;
@@ -25,7 +23,6 @@ import com.appier.android.sample.activity.sdk.NativeFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.NativeListActivity;
 import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
-import com.appier.android.sample.helper.AppierAdHelper;
 
 
 public class SdkNavigationFragment extends BaseFragment {
