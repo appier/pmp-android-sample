@@ -23,7 +23,8 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
-        final String APPIER_AD_UNIT_ID = getString(R.string.zone_300x250);
+        final String APPIER_AD_UNIT_ID = getString(R.string.ad_unit_300x250);
+        final String APPIER_ZONE_ID = getString(R.string.zone_300x250);
 
         /*
          * Load Ad in ad container layout
@@ -31,7 +32,7 @@ public class BannerFloatingWindowFragment extends BaseFloatingWindowFragment {
 
         mAppierBannerAd = new AppierBannerAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(adContainer));
         mAppierBannerAd.setAdDimension(300, 250);
-        mAppierBannerAd.setZoneId(APPIER_AD_UNIT_ID);
+        mAppierBannerAd.setZoneId(APPIER_ZONE_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierBannerAd);

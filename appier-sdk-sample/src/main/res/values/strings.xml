@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Appier Publisher Service</string>
     <string name="aiqua_app_id">6e31153a2f3ea7348717</string>
+    <string name="ad_unit_300x250">249047da45f2479f9e9265b30006083a</string>
+    <string name="ad_unit_320x50">e7dd194871e34a8cbc4627609fe43c80</string>
+    <string name="ad_unit_320x480">bd26c1e84dec432ab5d931506f741a2b</string>
+    <string name="ad_unit_interstitial">d39230a0433743c28a38a176f1797f48</string>
+    <string name="ad_unit_native">6d810d9b09ed44efa4ad87ea3ca81780</string>
     <string name="zone_300x250">5933</string>
     <string name="zone_320x50">6241</string>
     <string name="zone_320x480">6242</string>

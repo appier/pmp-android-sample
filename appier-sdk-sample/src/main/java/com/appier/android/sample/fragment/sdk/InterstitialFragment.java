@@ -33,7 +33,8 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
-        final String APPIER_AD_UNIT_ID = getString(R.string.zone_interstitial);
+        final String APPIER_AD_UNIT_ID = getString(R.string.ad_unit_320x480);
+        final String APPIER_ZONE_ID = getString(R.string.zone_interstitial);
 
         /*
          * Create AppierInterstitialAd, waiting for load and show
@@ -44,7 +45,7 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierInterstitialAd);
 
-        mAppierInterstitialAd.setZoneId(APPIER_AD_UNIT_ID);
+        mAppierInterstitialAd.setZoneId(APPIER_ZONE_ID);
     }
 
     protected void loadInterstitial() {
