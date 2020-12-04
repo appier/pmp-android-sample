@@ -58,7 +58,8 @@ public class NativeListViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
-        final String APPIER_AD_UNIT_ID = getString(R.string.zone_native);
+        final String APPIER_AD_UNIT_ID = getString(R.string.ad_unit_native);
+        final String APPIER_ZONE_ID = getString(R.string.zone_native);
 
         /*
          * Create AppierNativeAd and insert into ListView using ViewBinder
@@ -74,7 +75,7 @@ public class NativeListViewFragment extends BaseFragment {
 
         AppierNativeAd appierNativeAd = new AppierNativeAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(appierAdAdapter, insertPosition));
         appierNativeAd.setViewBinder(appierNativeViewBinder);
-        appierNativeAd.setZoneId(APPIER_AD_UNIT_ID);
+        appierNativeAd.setZoneId(APPIER_ZONE_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(appierNativeAd);

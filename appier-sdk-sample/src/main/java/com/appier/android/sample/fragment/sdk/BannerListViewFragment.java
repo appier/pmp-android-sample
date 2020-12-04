@@ -54,14 +54,15 @@ public class BannerListViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
-        final String APPIER_AD_UNIT_ID = getString(R.string.zone_320x50);
+        final String APPIER_AD_UNIT_ID = getString(R.string.ad_unit_320x50);
+        final String APPIER_ZONE_ID = getString(R.string.zone_320x50);
 
         /*
          * Create new AppierBannerAd and insert into ListView
          */
         AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(mAppierAdAdapter, 2));
         appierBannerAd.setAdDimension(320, 50);
-        appierBannerAd.setZoneId(APPIER_AD_UNIT_ID);
+        appierBannerAd.setZoneId(APPIER_ZONE_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(appierBannerAd);

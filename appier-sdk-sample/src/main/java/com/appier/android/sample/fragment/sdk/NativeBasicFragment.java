@@ -50,7 +50,8 @@ public class NativeBasicFragment extends BaseFragment {
          */
         AppierAdHelper.setAppierGlobal();
 
-        final String APPIER_AD_UNIT_ID = getString(R.string.zone_native);
+        final String APPIER_AD_UNIT_ID = getString(R.string.ad_unit_native);
+        final String APPIER_ZONE_ID = getString(R.string.zone_native);
 
         LinearLayout adContainer = view.findViewById(R.id.ad_container);
         adContainer.removeAllViews();
@@ -70,7 +71,7 @@ public class NativeBasicFragment extends BaseFragment {
         mAppierNativeAd = new AppierNativeAd(mContext, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(adContainer));
         mAppierNativeAd.setViewBinder(appierNativeViewBinder);
 
-        mAppierNativeAd.setZoneId(APPIER_AD_UNIT_ID);
+        mAppierNativeAd.setZoneId(APPIER_ZONE_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(mAppierNativeAd);

@@ -62,14 +62,15 @@ public class BannerRecyclerViewFragment extends BaseFragment {
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
-        final String APPIER_AD_UNIT_ID = getString(R.string.zone_300x250);
+        final String APPIER_AD_UNIT_ID = getString(R.string.ad_unit_300x250);
+        final String APPIER_ZONE_ID = getString(R.string.zone_300x250);
 
         /*
          * Create new AppierBannerAd and insert into RecyclerView
          */
         AppierBannerAd appierBannerAd = new AppierBannerAd(getActivity(), new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), new EventListener(mAppierRecyclerAdapter, 1));
         appierBannerAd.setAdDimension(300, 250);
-        appierBannerAd.setZoneId(APPIER_AD_UNIT_ID);
+        appierBannerAd.setZoneId(APPIER_ZONE_ID);
 
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(appierBannerAd);
