@@ -50,7 +50,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
     // AIQUA SDK
-    implementation 'com.quantumgraph.sdk:QG:5.9.5'
+    implementation ('com.quantumgraph.sdk:QG:5.9.5') {
+        exclude group: 'com.google.android.gms'
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -61,6 +63,7 @@ dependencies {
 
     // Appier SDK
     implementation 'com.appier.android:ads-sdk:1.1.1'
+    implementation 'com.appier.android:admob-mediation:1.0.0'
     implementation('com.appier.android:mopub-mediation:1.1.1') {
         transitive = true
         exclude module: 'libAvid-mopub' // To exclude AVID
@@ -94,6 +97,8 @@ dependencies {
         exclude module: 'libAvid-mopub' // To exclude AVID
         exclude module: 'moat-mobile-app-kit' // To exclude Moat
     }
+
+    implementation 'com.google.android.gms:play-services-ads:19.6.0'
 
     /*
      * The following dependencies are development only.

@@ -47,6 +47,9 @@
         <activity android:name=".activity.mediation.mopub.MoPubNativeListActivity" />
         <activity android:name=".activity.mediation.mopub.MoPubNativeFloatingWindowActivity" />
 
+        <activity android:name=".activity.mediation.admob.AdMobBannerBasicActivity" />
+        <activity android:name=".activity.mediation.admob.AdMobBannerFloatingWindowActivity" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -76,6 +79,10 @@
         
         <!-- For the backward compatibility of Android P -->
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9553415307894531~1610766857"/>
 
     </application>
 
