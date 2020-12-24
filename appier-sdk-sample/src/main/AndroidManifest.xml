@@ -52,6 +52,9 @@
         <activity android:name=".activity.mediation.admob.AdMobBannerBasicActivity" />
         <activity android:name=".activity.mediation.admob.AdMobBannerFloatingWindowActivity" />
 
+        <activity android:name=".activity.mediation.admob.AdMobNativeBasicActivity" />
+        <activity android:name=".activity.mediation.admob.AdMobNativeFloatingWindowActivity" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
