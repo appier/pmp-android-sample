@@ -110,6 +110,9 @@ dependencies {
     // Import Appier SDK from source
     // implementation project(':appier-sdk')
 
+    // Import Appier AdMob mediation SDK from source
+//    implementation project(':appier-admob-mediation')
+
     // Import Appier MoPub mediation SDK from source
     //implementation project(':appier-mopub-mediation')
 }

@@ -16,6 +16,7 @@ import com.appier.android.sample.R;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.activity.mediation.admob.AdMobBannerBasicActivity;
 import com.appier.android.sample.activity.mediation.admob.AdMobBannerFloatingWindowActivity;
+import com.appier.android.sample.activity.mediation.admob.AdMobInterstitialActivity;
 import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
@@ -62,6 +63,7 @@ public class AdMobMediationNavigationFragment extends BaseFragment {
                 AppierPredictor predictor = new AppierPredictor(getContext(), new AppierPredictHandler(getContext()));
 
                 predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.admob_adunit_banner_300x250)));
+                predictor.predictAd(new AppierAdUnitIdentifier(getString(R.string.admob_adunit_interstitial)));
             }
         });
 
@@ -70,6 +72,12 @@ public class AdMobMediationNavigationFragment extends BaseFragment {
     }
 
     private void initializeAdMobMediationView(View layout) {
+        initializeNavigationList(
+                layout.findViewById(R.id.secondary_nav_interstitial),
+                new Pair[] {
+                        new Pair<>("Interstitial", AdMobInterstitialActivity.class)
+                }
+        );
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_banner),
                 new Pair[] {

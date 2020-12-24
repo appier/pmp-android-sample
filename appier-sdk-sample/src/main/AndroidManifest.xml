@@ -47,6 +47,8 @@
         <activity android:name=".activity.mediation.mopub.MoPubNativeListActivity" />
         <activity android:name=".activity.mediation.mopub.MoPubNativeFloatingWindowActivity" />
 
+        <activity android:name=".activity.mediation.admob.AdMobInterstitialActivity" />
+
         <activity android:name=".activity.mediation.admob.AdMobBannerBasicActivity" />
         <activity android:name=".activity.mediation.admob.AdMobBannerFloatingWindowActivity" />
 
