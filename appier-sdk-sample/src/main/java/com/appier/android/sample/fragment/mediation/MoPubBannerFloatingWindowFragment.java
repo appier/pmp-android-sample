@@ -79,6 +79,7 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
         mMoPubView.loadAd();
     }
 
+    @Override
     protected void destroyAdView() {
         if (mMoPubView != null) {
             mMoPubView.destroy();

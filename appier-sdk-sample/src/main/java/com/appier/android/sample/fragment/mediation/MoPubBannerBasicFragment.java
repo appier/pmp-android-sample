@@ -72,7 +72,6 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
 
         mMoPubView = getView().findViewById(R.id.banner_container_300_250);
 
-
         /*
          *  Optional: Required when integrating with Appier predict
          *
@@ -82,6 +81,7 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
          *      appier_zone_<THE ZONE ID PROVIDED BY APPIER>:1
          *      appier_predict_ver:1
          */
+
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
 

@@ -49,7 +49,7 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
 
         View layout = inflater.inflate(R.layout.fragment_primary_navigation, container, false);
 
-        // Appier Predict button
+        // Appier Predict Button
         Button mButtonPredict = layout.findViewById(R.id.button_predict);
         mButtonPredict.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +104,7 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
         AppierAdapterConfiguration appierAdapterConfiguration = new AppierAdapterConfiguration();
         textVersion.setText(
             "Appier SDK version : " + appierAdapterConfiguration.getNetworkSdkVersion() + "\n" +
-            "Mediation SDK version : " + appierAdapterConfiguration.getAdapterVersion() + "\n" +
+            "MoPub Mediation SDK version : " + appierAdapterConfiguration.getAdapterVersion() + "\n" +
             "MoPub SDK version : " + MoPub.SDK_VERSION
         );
     }
