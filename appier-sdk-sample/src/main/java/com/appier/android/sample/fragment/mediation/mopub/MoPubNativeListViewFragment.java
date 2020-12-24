@@ -1,4 +1,4 @@
-package com.appier.android.sample.fragment.mediation;
+package com.appier.android.sample.fragment.mediation.mopub;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,37 +6,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.appier.ads.common.Dimension;
+import com.appier.ads.Appier;
 import com.appier.android.sample.R;
-import com.appier.android.sample.common.MyRecyclerViewAdapter;
-import com.appier.android.sample.common.MyRecyclerViewItemDecoration;
+import com.appier.android.sample.common.MyListViewAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.nativeads.AppierNativeAdRenderer;
-import com.mopub.nativeads.MoPubRecyclerAdapter;
+import com.mopub.nativeads.MoPubAdAdapter;
 import com.mopub.nativeads.MoPubStaticNativeAdRenderer;
 import com.mopub.nativeads.RequestParameters;
 import com.mopub.nativeads.ViewBinder;
 
 import java.util.Arrays;
 
-public class MoPubNativeRecyclerViewFragment extends BaseFragment {
+public class MoPubNativeListViewFragment extends BaseFragment {
 
     private Context mContext;
-    private RecyclerView mRecyclerView;
+    private ListView mListView;
 
-    public MoPubNativeRecyclerViewFragment() {}
+    public MoPubNativeListViewFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /*
-         * MoPubRecyclerAdapter doesn't support lifecycle control,
+         * MoPubAdAdapter doesn't support lifecycle control,
          * so enableErrorHandling() only invokes initial render and doesn't handle any error for this sample.
          */
         enableErrorHandling();
@@ -44,12 +43,8 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
     @Override
     public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_common_recycler_view, container, false);
-        mRecyclerView = view.findViewById(R.id.recycler);
-
-        // add space between items
-        mRecyclerView.addItemDecoration(new MyRecyclerViewItemDecoration(Dimension.dipsToIntPixels(12, getContext())));
-
+        View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);
+        mListView = view.findViewById(R.id.list);
         return view;
     }
 
@@ -58,24 +53,21 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
         mContext = getActivity();
         String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(mContext, Arrays.asList(items));
+        MyListViewAdapter myListViewAdapter = new MyListViewAdapter(mContext, Arrays.asList(items));
 
         /*
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
 
-        insertMoPubNativeRecyclerView(
-                myRecyclerViewAdapter, mRecyclerView, getString(R.string.mopub_adunit_predict_native)
-        );
+        insertMoPubNativeListView(myListViewAdapter, mListView, getString(R.string.mopub_adunit_predict_native));
 
     }
 
     /*
      * Create Native Ad and insert into specific position when the ad is loaded
      */
-    private void insertMoPubNativeRecyclerView(MyRecyclerViewAdapter adapter, RecyclerView recyclerView, String adUnitId) {
+    private void insertMoPubNativeListView(ArrayAdapter<String> adapter, ListView listView, String adUnitId) {
 
         /*
          * Initialize MoPub ViewBinder and MoPubNative Ads
@@ -88,7 +80,7 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
          *
          */
 
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_compact_2)
+        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_compact_1)
                 .mainImageId(R.id.native_main_image)
                 .iconImageId(R.id.native_icon_image)
                 .titleId(R.id.native_title)
@@ -100,13 +92,20 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
         AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
-        MoPubRecyclerAdapter moPubAdAdapter = new MoPubRecyclerAdapter((Activity) mContext, adapter);
+        MoPubAdAdapter moPubAdAdapter = new MoPubAdAdapter((Activity) mContext, adapter);
 
         // When using multiple line items with different networks, we need to register all AdRenderers
         moPubAdAdapter.registerAdRenderer(appierNativeAdRenderer);
         moPubAdAdapter.registerAdRenderer(moPubStaticNativeAdRenderer);
 
-        recyclerView.setAdapter(moPubAdAdapter);
+        listView.setAdapter(moPubAdAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Appier.log("[Sample App]", "List item clicked");
+            }
+        });
 
         RequestParameters parameters = new RequestParameters.Builder()
                 .keywords(AppierPredictHandler.getKeywordTargeting(adUnitId))

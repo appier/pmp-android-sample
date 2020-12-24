@@ -38,14 +38,14 @@
         <!-- configChanges is required to prevent app from crashing on Android 5 devices -->
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
-        <activity android:name=".activity.mediation.MoPubInterstitialActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubInterstitialActivity" />
 
-        <activity android:name=".activity.mediation.MoPubBannerBasicActivity" />
-        <activity android:name=".activity.mediation.MoPubBannerFloatingWindowActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubBannerBasicActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubBannerFloatingWindowActivity" />
 
-        <activity android:name=".activity.mediation.MoPubNativeBasicActivity" />
-        <activity android:name=".activity.mediation.MoPubNativeListActivity" />
-        <activity android:name=".activity.mediation.MoPubNativeFloatingWindowActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubNativeBasicActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubNativeListActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubNativeFloatingWindowActivity" />
 
         <activity
             android:name=".MainActivity"

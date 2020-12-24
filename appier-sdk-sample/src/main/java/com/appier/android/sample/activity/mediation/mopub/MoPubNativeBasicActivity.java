@@ -1,4 +1,4 @@
-package com.appier.android.sample.activity.mediation;
+package com.appier.android.sample.activity.mediation.mopub;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.common.MyService;
 import com.appier.android.sample.common.MyServiceController;
 import com.appier.android.sample.common.SectionsPagerAdapter;
-import com.appier.android.sample.fragment.mediation.MoPubNativeBasicFragment;
+import com.appier.android.sample.fragment.mediation.mopub.MoPubNativeBasicFragment;
 
 
 public class MoPubNativeBasicActivity extends BaseActivity {

@@ -1,20 +1,19 @@
-package com.appier.android.sample.activity.mediation;
+package com.appier.android.sample.activity.mediation.mopub;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.appier.android.sample.activity.BaseActivity;
-import com.appier.android.sample.fragment.mediation.MoPubBannerFloatingWindowFragment;
+import com.appier.android.sample.fragment.mediation.mopub.MoPubNativeFloatingWindowFragment;
 
 
-public class MoPubBannerFloatingWindowActivity extends BaseActivity {
+public class MoPubNativeFloatingWindowActivity extends BaseActivity {
 
-    MoPubBannerFloatingWindowFragment mDemoFragment;
+    MoPubNativeFloatingWindowFragment mDemoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDemoFragment = new MoPubBannerFloatingWindowFragment();
+        mDemoFragment = new MoPubNativeFloatingWindowFragment();
         addFragment(mDemoFragment);
     }
 
@@ -29,5 +28,4 @@ public class MoPubBannerFloatingWindowActivity extends BaseActivity {
         super.onPause();
         mDemoFragment.getFloatViewManager().close();
     }
-
 }
