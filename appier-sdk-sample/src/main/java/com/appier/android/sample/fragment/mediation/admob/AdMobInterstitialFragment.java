@@ -14,7 +14,6 @@ import com.appier.mediation.admob.ads.AppierInterstitial;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.LoadAdError;
 
 public class AdMobInterstitialFragment extends BaseInterstitialFragment {
 
@@ -93,8 +92,8 @@ public class AdMobInterstitialFragment extends BaseInterstitialFragment {
         }
 
         @Override
-        public void onAdFailedToLoad(LoadAdError loadAdError) {
-            Appier.log("[Sample App]", "onAdFailedToLoad():", loadAdError.getCode(), loadAdError.getMessage());
+        public void onAdFailedToLoad(int i) {
+            Appier.log("[Sample App]", "onAdFailedToLoad():");
             setCurrentState(getNextLoadingState(getCurrentState()));
             updateLayoutByState(getCurrentState());
             mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);

@@ -15,7 +15,6 @@ import com.appier.mediation.admob.ads.AppierBanner;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.LoadAdError;
 
 public class AdMobBannerBasicFragment extends BaseFragment {
 
@@ -90,9 +89,9 @@ public class AdMobBannerBasicFragment extends BaseFragment {
         }
 
         @Override
-        public void onAdFailedToLoad(LoadAdError loadAdError) {
-            Appier.log("[Sample App]", "onBannerFailed():", loadAdError.getCode(), loadAdError.getMessage());
-            if (loadAdError.getCode() == AdRequest.ERROR_CODE_NO_FILL) {
+        public void onAdFailedToLoad(int i) {
+            Appier.log("[Sample App]", "onAdFailedToLoad():");
+            if (i == AdRequest.ERROR_CODE_NO_FILL) {
                 mDemoFlowController.notifyAdNoBid();
             } else {
                 mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);

@@ -18,7 +18,6 @@ import com.appier.mediation.admob.ads.AppierNative;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 
@@ -131,8 +130,8 @@ public class AdMobNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         }
 
         @Override
-        public void onAdFailedToLoad(LoadAdError loadAdError) {
-            Appier.log("[Sample App]", "onAdFailedToLoad():", loadAdError.getCode(), loadAdError.getMessage());
+        public void onAdFailedToLoad(int i) {
+            Appier.log("[Sample App]", "onAdFailedToLoad():");
             mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
         }
 

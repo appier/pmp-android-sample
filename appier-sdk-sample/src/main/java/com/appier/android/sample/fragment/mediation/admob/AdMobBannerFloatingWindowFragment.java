@@ -15,7 +15,6 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.LoadAdError;
 
 public class AdMobBannerFloatingWindowFragment extends BaseFloatingWindowFragment {
 
@@ -97,8 +96,8 @@ public class AdMobBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
         }
 
         @Override
-        public void onAdFailedToLoad(LoadAdError loadAdError) {
-            Appier.log("[Sample App]", "onAdFailedToLoad():", loadAdError.getCode(), loadAdError.getMessage());
+        public void onAdFailedToLoad(int i) {
+            Appier.log("[Sample App]", "onAdFailedToLoad():");
             mDemoFlowController.notifyAdNoBid();
             if (mFloatViewManager != null) {
                 mFloatViewManager.close();
