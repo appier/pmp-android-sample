@@ -56,11 +56,11 @@ public class AdMobBannerBasicFragment extends BaseFragment {
         /*
          * Initialize AdView and load banner
          *
-         * To enable Appier AdMob Mediation, the AdUnit requires at least one "Custom event",
+         * To enable Appier AdMob Mediation, the AdUnit requires at least one "Custom Event",
          * with the following settings:
          *
-         *   "Custom event class": "com.appier.mediation.admob.ads.AppierBanner".
-         *   "Custom event parameter":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *   "Class Name": "com.appier.mediation.admob.ads.AppierBanner".
+         *   "Parameter":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
          *
          */
 

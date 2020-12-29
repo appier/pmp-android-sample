@@ -45,11 +45,11 @@ public class AdMobNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         /*
          * Initialize AdMob native
          *
-         * To enable Appier AdMob Mediation, the AdUnit requires at least one "Custom event",
+         * To enable Appier AdMob Mediation, the AdUnit requires at least one "Custom Event",
          * with the following settings:
          *
-         *   "Custom event class": "com.appier.mediation.admob.ads.AppierNative".
-         *   "Custom event parameter":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *   "Class Name": "com.appier.mediation.admob.ads.AppierNative".
+         *   "Parameter":  { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
          *
          */
 
