@@ -1,14 +1,17 @@
-package com.appier.android.sample.fragment.mediation;
+package com.appier.android.sample.fragment.mediation.mopub;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
 import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
-import com.appier.android.sample.fragment.BaseFloatingWindowFragment;
+import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.nativeads.AdapterHelper;
@@ -23,19 +26,38 @@ import com.mopub.nativeads.ViewBinder;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragment implements MoPubNative.MoPubNativeNetworkListener {
+public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNative.MoPubNativeNetworkListener {
 
     private Context mContext;
     private LinearLayout mAdContainer;
     private MoPubNative mMoPubNativeAd;
 
-    public MoPubNativeFloatingWindowFragment() {}
+    public static MoPubNativeBasicFragment newInstance(Context context) {
+        return new MoPubNativeBasicFragment(context);
+    }
 
-    protected void loadAdInContainer(LinearLayout adContainer) {
+    public MoPubNativeBasicFragment() {}
 
-        mContext = getActivity();
-        mAdContainer = adContainer;
+    private MoPubNativeBasicFragment(Context context) {
+        mContext = context;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
+
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_sdk_native_basic, container, false);
+    }
+
+    @Override
+    protected void onViewVisible(View view) {
+
+        mAdContainer = view.findViewById(R.id.ad_container);
+        mAdContainer.removeAllViews();
 
         /*
          * Apply Appier global settings
@@ -55,7 +77,7 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
          *
          */
 
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_full_2)
+        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.template_native_ad_full_1)
                 .mainImageId(R.id.native_main_image)
                 .iconImageId(R.id.native_icon_image)
                 .titleId(R.id.native_title)
@@ -97,16 +119,14 @@ public class MoPubNativeFloatingWindowFragment extends BaseFloatingWindowFragmen
         mMoPubNativeAd.makeRequest(parameters);
     }
 
-    protected void destroyAdView() {
-        if (mMoPubNativeAd != null) {
-            mMoPubNativeAd.destroy();
-        }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     /*
      * Override MoPubNative.MoPubNativeNetworkListener functions to handle event callbacks from MoPub
      */
-
     @Override
     public void onNativeLoad(final NativeAd nativeAd) {
         Appier.log("[Sample App]", "Native ad has loaded.");

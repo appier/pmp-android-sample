@@ -9,9 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.appier.ads.Appier;
 import com.appier.android.sample.common.SectionsPagerAdapter;
+import com.appier.android.sample.fragment.navigation.AdMobMediationNavigationFragment;
 import com.appier.android.sample.fragment.navigation.MoPubMediationNavigationFragment;
 import com.appier.android.sample.fragment.navigation.SdkNavigationFragment;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.tabs.TabLayout;
 import com.mopub.common.MoPub;
 import com.mopub.common.SdkConfiguration;
@@ -26,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String[] titles = new String[]{"Appier SDK", "MoPub Mediation"};
+        final String[] titles = new String[]{"Appier SDK", "MoPub Mediation", "AdMob Mediation"};
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), titles) {
             @Override
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         return SdkNavigationFragment.newInstance(titles[position]);
                     case 1:
                         return MoPubMediationNavigationFragment.newInstance(titles[position]);
+                    case 2:
+                        return AdMobMediationNavigationFragment.newInstance(titles[position]);
                     default:
                         throw new IndexOutOfBoundsException();
                 }
@@ -54,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
         // AIQUA SDK
         QG.initializeSdk(getApplication(), getResources().getString(R.string.aiqua_app_id));
+
+        // AdMob
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Appier.log("AdMob", "SDK initialized");
+            }
+        });
 
         // MoPub SDK
         SdkConfiguration sdkConfiguration = new SdkConfiguration

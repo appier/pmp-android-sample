@@ -1,4 +1,4 @@
-package com.appier.android.sample.fragment.mediation;
+package com.appier.android.sample.fragment.mediation.mopub;
 
 import android.app.Activity;
 import android.content.Context;

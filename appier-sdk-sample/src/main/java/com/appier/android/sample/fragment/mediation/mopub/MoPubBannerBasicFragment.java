@@ -1,13 +1,15 @@
-package com.appier.android.sample.fragment.mediation;
+package com.appier.android.sample.fragment.mediation.mopub;
 
-import android.content.Context;
-import android.widget.LinearLayout;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
-import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
-import com.appier.android.sample.fragment.BaseFloatingWindowFragment;
+import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
@@ -17,18 +19,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragment implements MoPubView.BannerAdListener {
+public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.BannerAdListener {
 
-    private LinearLayout mAdContainer;
     private MoPubView mMoPubView;
 
-    public MoPubBannerFloatingWindowFragment() {}
+    public MoPubBannerBasicFragment() {}
 
-    protected void loadAdInContainer(LinearLayout adContainer) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        enableErrorHandling();
+    }
 
-        Context context = getActivity();
-        mAdContainer = adContainer;
+    @Override
+    public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_mediation_mopub_banner_basic, container, false);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mMoPubView != null) {
+            mMoPubView.destroy();
+        }
+    }
+
+    @Override
+    protected void onViewVisible(View view) {
         /*
          * Apply Appier global settings
          */
@@ -53,7 +70,7 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
-        mMoPubView = new MoPubView(getActivity());
+        mMoPubView = getView().findViewById(R.id.banner_container_300_250);
 
         /*
          *  Optional: Required when integrating with Appier predict
@@ -64,25 +81,15 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
          *      appier_zone_<THE ZONE ID PROVIDED BY APPIER>:1
          *      appier_predict_ver:1
          */
+
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
         mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
-
-        // set layout parameter to remove the white margin
-        mMoPubView.setLayoutParams(new LinearLayout.LayoutParams(
-                Dimension.dipsToIntPixels(300, context), Dimension.dipsToIntPixels(250, context))
-        );
 
         // Load Ad!
         mMoPubView.setLocalExtras(localExtras);
         mMoPubView.setBannerAdListener(this);
         mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
         mMoPubView.loadAd();
-    }
-
-    protected void destroyAdView() {
-        if (mMoPubView != null) {
-            mMoPubView.destroy();
-        }
     }
 
     /*
@@ -92,23 +99,13 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
     @Override
     public void onBannerLoaded(MoPubView banner) {
         Appier.log("[Sample App]", "onBannerLoaded()");
-        if (mAdContainer != null) {
-            mDemoFlowController.notifyAdBid();
-
-            // Display banner in parent container
-            mAdContainer.removeAllViews();
-            mAdContainer.addView(banner);
-
-        }
+        mDemoFlowController.notifyAdBid();
     }
 
     @Override
     public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
         Appier.log("[Sample App]", "onBannerFailed():", errorCode.toString());
-        mDemoFlowController.notifyAdNoBid();
-        if (mFloatViewManager != null) {
-            mFloatViewManager.close();
-        }
+        mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
     }
 
     @Override

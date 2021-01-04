@@ -1,4 +1,4 @@
-package com.appier.android.sample.activity.mediation;
+package com.appier.android.sample.activity.mediation.mopub;
 
 import android.os.Bundle;
 
@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.appier.android.sample.activity.BaseActivity;
 import com.appier.android.sample.common.SectionsPagerAdapter;
-import com.appier.android.sample.fragment.mediation.MoPubNativeListViewFragment;
-import com.appier.android.sample.fragment.mediation.MoPubNativeRecyclerViewFragment;
+import com.appier.android.sample.fragment.mediation.mopub.MoPubNativeListViewFragment;
+import com.appier.android.sample.fragment.mediation.mopub.MoPubNativeRecyclerViewFragment;
 
 
 public class MoPubNativeListActivity extends BaseActivity {

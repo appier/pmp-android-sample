@@ -18,6 +18,12 @@ rm -rf appier-mopub-mediation
 ln -s ../pmp-mopub-android-mediation/appier-mediation appier-mopub-mediation
 ```
 
+To use local developing AdMob mediation source, please create symbolic link to local `pmp-admob-android-mediation` repo's `appier-admob-mediation` directory.
+```bash
+rm -rf appier-admob-mediation
+ln -s ../pmp-admob-android-mediation/appier-admob-mediation appier-admob-mediation
+```
+
 And don't forget to update gradle implementation.
 
 ## Release Guide

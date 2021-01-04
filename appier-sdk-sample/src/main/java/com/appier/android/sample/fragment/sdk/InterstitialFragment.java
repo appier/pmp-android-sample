@@ -87,6 +87,11 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
     }
 
     @Override
+    public void onViewClick(AppierInterstitialAd appierInterstitialAd) {
+        Appier.log("[Sample App]", "Interstitial is clicked");
+    }
+
+    @Override
     public void onShown(AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial shown");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
