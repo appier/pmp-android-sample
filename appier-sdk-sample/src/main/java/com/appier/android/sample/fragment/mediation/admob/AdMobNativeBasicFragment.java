@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -108,15 +109,16 @@ public class AdMobNativeBasicFragment extends BaseFragment {
     private void populateUnifiedNativeAdView(UnifiedNativeAd nativeAd, UnifiedNativeAdView adView) {
         adView.setVisibility(View.VISIBLE);
 
-        // Check whether the native ad is provided by Appier
-        if (nativeAd.getAdvertiser().equals(AppierAdapterConfiguration.getAdvertiserName())) {
-            adView.setAdvertiserView(adView.findViewById(R.id.native_privacy_information_icon_image));
-            adView.setHeadlineView(adView.findViewById(R.id.native_title));
-            adView.setBodyView(adView.findViewById(R.id.native_text));
-            adView.setCallToActionView(adView.findViewById(R.id.native_cta));
-            adView.setImageView(adView.findViewById(R.id.native_main_image));
-            adView.setIconView(adView.findViewById(R.id.native_icon_image));
+        adView.setAdvertiserView(adView.findViewById(R.id.native_privacy_information_icon_image));
+        adView.setHeadlineView(adView.findViewById(R.id.native_title));
+        adView.setBodyView(adView.findViewById(R.id.native_text));
+        adView.setCallToActionView(adView.findViewById(R.id.native_cta));
+        adView.setImageView(adView.findViewById(R.id.native_main_image));
+        adView.setIconView(adView.findViewById(R.id.native_icon_image));
+        adView.setNativeAd(nativeAd);
 
+        // Check whether the native ad is provided by Appier
+        if (nativeAd.getAdvertiser() != null && nativeAd.getAdvertiser().equals(AppierAdapterConfiguration.getAdvertiserName())) {
             /*
              * We provide two way (text and image) to show appier advertiser info.
              * You can choose one to bind the AdvertiserView.
@@ -130,13 +132,33 @@ public class AdMobNativeBasicFragment extends BaseFragment {
 
             ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
             ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
-            ((TextView) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+            ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
             ((ImageView) adView.getImageView()).setImageDrawable(
                     // The image at index 1 would be the main image
                     nativeAd.getImages().get(1).getDrawable()
             );
             ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
-            adView.setNativeAd(nativeAd);
+        } else {
+            ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
+            if (nativeAd.getBody() != null)
+                ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
+            else
+                adView.getBodyView().setVisibility(View.GONE);
+
+            if (nativeAd.getCallToAction() != null)
+                ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+            else
+                adView.getCallToActionView().setVisibility(View.GONE);
+
+            if (nativeAd.getImages() != null && nativeAd.getImages().get(0) != null)
+                ((ImageView) adView.getImageView()).setImageDrawable(nativeAd.getImages().get(0).getDrawable());
+            else
+                adView.getImageView().setVisibility(View.GONE);
+
+            if (nativeAd.getIcon() != null)
+                ((ImageView) adView.getIconView()).setImageDrawable(nativeAd.getIcon().getDrawable());
+            else
+                adView.getIconView().setVisibility(View.GONE);
         }
     }
 
