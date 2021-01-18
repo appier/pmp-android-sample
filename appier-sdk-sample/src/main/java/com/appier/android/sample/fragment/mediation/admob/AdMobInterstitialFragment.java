@@ -96,7 +96,11 @@ public class AdMobInterstitialFragment extends BaseInterstitialFragment {
             Appier.log("[Sample App]", "onAdFailedToLoad():");
             setCurrentState(getNextLoadingState(getCurrentState()));
             updateLayoutByState(getCurrentState());
-            mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+            if (i == AdRequest.ERROR_CODE_NO_FILL) {
+                mDemoFlowController.notifyAdNoBid();
+            } else {
+                mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+            }
         }
 
         @Override

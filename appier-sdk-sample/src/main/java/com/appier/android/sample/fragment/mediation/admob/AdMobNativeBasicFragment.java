@@ -154,7 +154,11 @@ public class AdMobNativeBasicFragment extends BaseFragment {
         @Override
         public void onAdFailedToLoad(int i) {
             Appier.log("[Sample App]", "onAdFailedToLoad():");
-            mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+            if (i == AdRequest.ERROR_CODE_NO_FILL) {
+                mDemoFlowController.notifyAdNoBid();
+            } else {
+                mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+            }
         }
 
         @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.appier.ads.Appier;
+import com.appier.ads.AppierError;
 import com.appier.ads.common.AppierDataKeys;
 import com.appier.ads.common.Dimension;
 import com.appier.android.sample.R;
@@ -98,7 +99,12 @@ public class AdMobBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
         @Override
         public void onAdFailedToLoad(int i) {
             Appier.log("[Sample App]", "onAdFailedToLoad():");
-            mDemoFlowController.notifyAdNoBid();
+            if (i == AdRequest.ERROR_CODE_NO_FILL) {
+                mDemoFlowController.notifyAdNoBid();
+            } else {
+                mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
+            }
+
             if (mFloatViewManager != null) {
                 mFloatViewManager.close();
             }
