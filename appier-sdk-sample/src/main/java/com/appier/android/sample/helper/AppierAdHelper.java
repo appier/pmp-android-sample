@@ -26,6 +26,10 @@ public class AppierAdHelper {
          */
         Appier.setCoppaApplies(true);
 
+        /*
+         * (Optional) Set browser agent explicitly
+         */
+        Appier.setBrowserAgent(Appier.BrowserAgent.IN_APP);
     }
 
     public static void setTargeting(AppierBaseAd appierAd) {
