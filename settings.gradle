@@ -1,2 +1,2 @@
 rootProject.name='pmp-android-sample'
-include ':appier-sdk-sample'
+include ':appier-sdk-sample', ':appier-sdk', ':appier-admob-mediation', ':appier-mopub-mediation'

@@ -26,6 +26,8 @@
 
         <activity android:name=".activity.BaseActivity" />
 
+        <activity android:name=".activity.sdk.VideoActivity" />
+
         <activity android:name=".activity.sdk.InterstitialActivity" />
 
         <activity android:name=".activity.sdk.BannerBasicActivity" />
