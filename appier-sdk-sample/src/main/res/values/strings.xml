@@ -22,4 +22,6 @@
     <string name="mopub_adunit_predict_banner_300x250">c9c43dcdec654d7a86ef0b1316145b66</string>
     <string name="mopub_adunit_predict_native">8c4041f9aea344569df59ffa92e7a907</string>
     <string name="mopub_adunit_predict_interstitial">6dd11daafe5d4bf3be24ea92b7086df3</string>
+    <string name="mopub_adunit_predict_video">f2b95ff1a1c546f89d4ceb1b33c3ef51</string>
+    <string name="mopub_adunit_predict_rewarded_video">da8934d6676844bdb17b1e4b052dbd2c</string>
 </resources>
