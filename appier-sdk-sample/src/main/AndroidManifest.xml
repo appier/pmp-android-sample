@@ -40,6 +40,8 @@
         <!-- configChanges is required to prevent app from crashing on Android 5 devices -->
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
+        <activity android:name=".activity.mediation.mopub.MoPubVideoActivity" />
+
         <activity android:name=".activity.mediation.mopub.MoPubInterstitialActivity" />
 
         <activity android:name=".activity.mediation.mopub.MoPubBannerBasicActivity" />

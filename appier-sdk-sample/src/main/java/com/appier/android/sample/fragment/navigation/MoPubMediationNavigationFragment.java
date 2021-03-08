@@ -20,6 +20,7 @@ import com.appier.android.sample.activity.mediation.mopub.MoPubInterstitialActiv
 import com.appier.android.sample.activity.mediation.mopub.MoPubNativeBasicActivity;
 import com.appier.android.sample.activity.mediation.mopub.MoPubNativeFloatingWindowActivity;
 import com.appier.android.sample.activity.mediation.mopub.MoPubNativeListActivity;
+import com.appier.android.sample.activity.mediation.mopub.MoPubVideoActivity;
 import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
@@ -79,6 +80,12 @@ public class MoPubMediationNavigationFragment extends BaseFragment {
     }
 
     private void initializeMoPubMediationView(View layout) {
+        initializeNavigationList(
+                layout.findViewById(R.id.secondary_nav_video),
+                new Pair[] {
+                        new Pair<>("Video", MoPubVideoActivity.class)
+                }
+        );
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_interstitial),
                 new Pair[] {
