@@ -21,6 +21,7 @@ import com.appier.android.sample.activity.sdk.InterstitialActivity;
 import com.appier.android.sample.activity.sdk.NativeBasicActivity;
 import com.appier.android.sample.activity.sdk.NativeFloatingWindowActivity;
 import com.appier.android.sample.activity.sdk.NativeListActivity;
+import com.appier.android.sample.activity.sdk.VideoActivity;
 import com.appier.android.sample.common.NavigationAdapter;
 import com.appier.android.sample.fragment.BaseFragment;
 
@@ -53,6 +54,12 @@ public class SdkNavigationFragment extends BaseFragment {
     }
 
     private void initializeSDKView(View layout) {
+        initializeNavigationList(
+                layout.findViewById(R.id.secondary_nav_video),
+                new Pair[] {
+                        new Pair<>("Video", VideoActivity.class)
+                }
+        );
         initializeNavigationList(
             layout.findViewById(R.id.secondary_nav_interstitial),
             new Pair[] {

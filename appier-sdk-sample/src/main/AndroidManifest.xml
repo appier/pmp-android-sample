@@ -26,6 +26,8 @@
 
         <activity android:name=".activity.BaseActivity" />
 
+        <activity android:name=".activity.sdk.VideoActivity" />
+
         <activity android:name=".activity.sdk.InterstitialActivity" />
 
         <activity android:name=".activity.sdk.BannerBasicActivity" />
@@ -37,6 +39,8 @@
         <activity android:name=".activity.sdk.NativeListActivity" />
         <!-- configChanges is required to prevent app from crashing on Android 5 devices -->
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity android:name=".activity.mediation.mopub.MoPubVideoActivity" />
 
         <activity android:name=".activity.mediation.mopub.MoPubInterstitialActivity" />
 

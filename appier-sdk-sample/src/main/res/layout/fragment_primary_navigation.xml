@@ -35,6 +35,44 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:text="video"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:adjustViewBounds="true"
+                android:paddingBottom="4dp"
+                android:src="@drawable/illustration_interstitial" />
+
+        </LinearLayout>
+
+        <com.appier.android.sample.common.NavigationListView
+            android:id="@+id/secondary_nav_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        </com.appier.android.sample.common.NavigationListView>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#d8d8d8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="16dp"
