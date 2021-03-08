@@ -36,13 +36,9 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
          */
         AppierAdHelper.setAppierGlobal();
         final String MOPUB_AD_UNIT_ID = getString(R.string.mopub_adunit_predict_video);
-        final int AD_WIDTH = 320;
-        final int AD_HEIGHT = 480;
 
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
-        localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
-        localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
         moPubInterstitial = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
         moPubInterstitial.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
@@ -64,7 +60,7 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
 
     @Override
     public void onInterstitialLoaded(MoPubInterstitial interstitial) {
-        Appier.log("[Sample App]", "Interstitial loaded");
+        Appier.log("[Sample App]", "Video loaded");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
         mDemoFlowController.notifyAdBid();
@@ -72,7 +68,7 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
 
     @Override
     public void onInterstitialFailed(MoPubInterstitial interstitial, MoPubErrorCode errorCode) {
-        Appier.log("[Sample App]", "Interstitial load failed");
+        Appier.log("[Sample App]", "Video load failed");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
         mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
@@ -80,19 +76,19 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
 
     @Override
     public void onInterstitialShown(MoPubInterstitial interstitial) {
-        Appier.log("[Sample App]", "Interstitial shown");
+        Appier.log("[Sample App]", "Video shown");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
     }
 
     @Override
     public void onInterstitialClicked(MoPubInterstitial interstitial) {
-        Appier.log("[Sample App]", "Interstitial clicked");
+        Appier.log("[Sample App]", "Video clicked");
     }
 
     @Override
     public void onInterstitialDismissed(MoPubInterstitial interstitial) {
-        Appier.log("[Sample App]", "Interstitial dismissed");
+        Appier.log("[Sample App]", "Video dismissed");
         this.setCurrentState(this.STATE_UNLOADED);
         this.updateLayoutByState(this.getCurrentState());
 
