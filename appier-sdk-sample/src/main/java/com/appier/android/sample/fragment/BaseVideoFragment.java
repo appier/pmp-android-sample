@@ -58,8 +58,7 @@ public abstract class BaseVideoFragment extends BaseFragment {
                 if (currentState == STATE_UNLOADED) {
                     Appier.log("[Sample App]", "====== load Appier Video ======");
 
-                    createVideo(context);
-                    loadVideo();
+                    loadVideo(context);
 
                     currentState = getNextLoadingState(currentState);
                     updateLayoutByState(currentState);
@@ -121,9 +120,7 @@ public abstract class BaseVideoFragment extends BaseFragment {
         }
     }
 
-    protected abstract void createVideo(Context context);
-
-    protected abstract void loadVideo();
+    protected abstract void loadVideo(Context context);
 
     protected abstract void showVideo();
 }

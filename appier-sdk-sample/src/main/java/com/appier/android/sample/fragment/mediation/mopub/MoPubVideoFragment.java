@@ -13,8 +13,6 @@ import com.appier.android.sample.helper.AppierAdHelper;
 import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
-import com.mopub.mobileads.MoPubRewardedVideoManager;
-import com.mopub.mobileads.MoPubRewardedVideos;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,12 +27,13 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
     protected void onViewVisible(View view) {}
 
     @Override
-    protected void createVideo(Context context) {
+    protected void loadVideo(Context context) {
 
         /*
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
+
         final String MOPUB_AD_UNIT_ID = getString(R.string.mopub_adunit_predict_video);
 
         Map<String, Object> localExtras = new HashMap<>();
@@ -46,10 +45,6 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
         moPubInterstitial.setLocalExtras(localExtras);
         moPubInterstitial.setInterstitialAdListener(this);
         Appier.log("[Sample App]", "====== make request ======");
-    }
-
-    @Override
-    protected void loadVideo() {
         moPubInterstitial.load();
     }
 

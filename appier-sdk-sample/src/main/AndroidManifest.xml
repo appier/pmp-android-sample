@@ -41,6 +41,7 @@
         <activity android:name=".activity.sdk.NativeFloatingWindowActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity android:name=".activity.mediation.mopub.MoPubVideoActivity" />
+        <activity android:name=".activity.mediation.mopub.MoPubRewardedVideoActivity" />
 
         <activity android:name=".activity.mediation.mopub.MoPubInterstitialActivity" />
 
