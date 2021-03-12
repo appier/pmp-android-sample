@@ -55,7 +55,7 @@
                 android:layout_height="60dp"
                 android:adjustViewBounds="true"
                 android:paddingBottom="4dp"
-                android:src="@drawable/illustration_interstitial" />
+                android:src="@drawable/illustration_video" />
 
         </LinearLayout>
 

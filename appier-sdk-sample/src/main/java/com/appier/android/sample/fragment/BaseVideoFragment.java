@@ -96,7 +96,7 @@ public abstract class BaseVideoFragment extends BaseFragment {
             textIndicator.setText("Step 2: Click show to see the ad.");
             textIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
             buttonLoad.setText("SHOW");
-            imageStepsArt.setImageResource(R.drawable.illustration_interstitial_step2_art);
+            imageStepsArt.setImageResource(R.drawable.illustration_video_step2_art);
             imageSteps.setImageResource(R.drawable.illustration_interstitial_step2);
         }
     }
