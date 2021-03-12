@@ -24,7 +24,7 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
      * The functions to handle Appier Interstitial lifecycle
      */
     @Override
-    protected void createVideo(Context context) {
+    protected void loadVideo(Context context) {
         if (vastVideoAd != null) {
             vastVideoAd.destroy();
         }
@@ -45,10 +45,6 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
         AppierAdHelper.setTargeting(vastVideoAd);
 
         vastVideoAd.setZoneId(APPIER_ZONE_ID);
-    }
-
-    @Override
-    protected void loadVideo() {
         vastVideoAd.loadAd();
     }
 
@@ -95,6 +91,11 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
         Appier.log("[Sample App]", "Video shown");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
+    }
+
+    @Override
+    public void onAdVideoComplete(VastVideoAd vastVideoAd) {
+        Appier.log("[Sample App]", "Video complete");
     }
 
     @Override
