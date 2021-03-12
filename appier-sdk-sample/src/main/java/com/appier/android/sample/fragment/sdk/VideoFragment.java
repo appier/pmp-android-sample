@@ -87,6 +87,11 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
     }
 
     @Override
+    public void onViewClickFail(AppierError appierError, VastVideoAd vastVideoAd) {
+        Appier.log("[Sample App]", "Video click fail");
+    }
+
+    @Override
     public void onShown(VastVideoAd vastVideoAd) {
         Appier.log("[Sample App]", "Video shown");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
