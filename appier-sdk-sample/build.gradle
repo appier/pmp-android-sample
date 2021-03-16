@@ -69,13 +69,13 @@ dependencies {
     implementation 'com.google.android.material:material:+'
 
     // Appier SDK
-//    implementation 'com.appier.android:ads-sdk:1.1.5'
+    implementation 'com.appier.android:ads-sdk:2.0.0-alpha'
 //    implementation 'com.appier.android:admob-mediation:1.0.0'
-//    implementation('com.appier.android:mopub-mediation:1.1.3') {
-//        transitive = true
-//        exclude module: 'libAvid-mopub' // To exclude AVID
-//        exclude module: 'moat-mobile-app-kit' // To exclude Moat
-//    }
+    implementation('com.appier.android:mopub-mediation:2.0.0-alpha') {
+        transitive = true
+        exclude module: 'libAvid-mopub' // To exclude AVID
+        exclude module: 'moat-mobile-app-kit' // To exclude Moat
+    }
 
     // MoPub SDK base
     implementation('com.mopub:mopub-sdk-base:5.14.0@aar') {
@@ -116,11 +116,11 @@ dependencies {
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.1'
 
     // Import Appier SDK from source
-    implementation project(':appier-sdk')
+//    implementation project(':appier-sdk')
 
     // Import Appier AdMob mediation SDK from source
     implementation project(':appier-admob-mediation')
 
     // Import Appier MoPub mediation SDK from source
-    implementation project(':appier-mopub-mediation')
+//    implementation project(':appier-mopub-mediation')
 }
