@@ -6,14 +6,14 @@ import android.view.View;
 import com.appier.ads.Appier;
 import com.appier.ads.AppierAdUnitIdentifier;
 import com.appier.ads.AppierError;
-import com.appier.ads.VastVideoAd;
+import com.appier.ads.VideoAd;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseVideoFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
 
-public class VideoFragment extends BaseVideoFragment implements VastVideoAd.EventListener {
+public class VideoFragment extends BaseVideoFragment implements VideoAd.EventListener {
 
-    private VastVideoAd vastVideoAd;
+    private VideoAd videoAd;
 
     public VideoFragment() {}
 
@@ -25,8 +25,8 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
      */
     @Override
     protected void loadVideo(Context context) {
-        if (vastVideoAd != null) {
-            vastVideoAd.destroy();
+        if (videoAd != null) {
+            videoAd.destroy();
         }
 
         /*
@@ -37,28 +37,28 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
         final String APPIER_ZONE_ID = getString(R.string.zone_video);
 
         /*
-         * Create VastVideoAd, waiting for load and show
+         * Create VideoAd, waiting for load and show
          */
-        vastVideoAd = new VastVideoAd(context, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), this);
+        videoAd = new VideoAd(context, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), this);
 
         // Set targeting should be done before loadAd()
-        AppierAdHelper.setTargeting(vastVideoAd);
+        AppierAdHelper.setTargeting(videoAd);
 
-        vastVideoAd.setZoneId(APPIER_ZONE_ID);
-        vastVideoAd.loadAd();
+        videoAd.setZoneId(APPIER_ZONE_ID);
+        videoAd.loadAd();
     }
 
     @Override
     protected void showVideo() {
-        vastVideoAd.showAd();
+        videoAd.showAd();
     }
 
     /*
-     * Override VastVideoAd.EventListener functions for event callbacks
+     * Override VideoAd.EventListener functions for event callbacks
      */
 
     @Override
-    public void onAdLoaded(VastVideoAd vastVideoAd) {
+    public void onAdLoaded(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video loaded");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
@@ -66,7 +66,7 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
     }
 
     @Override
-    public void onAdNoBid(VastVideoAd vastVideoAd) {
+    public void onAdNoBid(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video ad returns no bid");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
@@ -74,7 +74,7 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
     }
 
     @Override
-    public void onAdLoadFail(AppierError appierError, VastVideoAd vastVideoAd) {
+    public void onAdLoadFail(AppierError appierError, VideoAd videoAd) {
         Appier.log("[Sample App]", "Video load failed");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
@@ -82,29 +82,29 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
     }
 
     @Override
-    public void onViewClick(VastVideoAd vastVideoAd) {
+    public void onViewClick(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video is clicked");
     }
 
     @Override
-    public void onViewClickFail(AppierError appierError, VastVideoAd vastVideoAd) {
+    public void onViewClickFail(AppierError appierError, VideoAd videoAd) {
         Appier.log("[Sample App]", "Video click fail");
     }
 
     @Override
-    public void onShown(VastVideoAd vastVideoAd) {
+    public void onShown(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video shown");
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
     }
 
     @Override
-    public void onAdVideoComplete(VastVideoAd vastVideoAd) {
+    public void onAdVideoComplete(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video complete");
     }
 
     @Override
-    public void onShowFail(AppierError appierError, VastVideoAd vastVideoAd) {
+    public void onShowFail(AppierError appierError, VideoAd videoAd) {
         Appier.log("[Sample App]", "Video show failed with error: " + appierError);
         this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
         this.updateLayoutByState(this.getCurrentState());
@@ -112,12 +112,12 @@ public class VideoFragment extends BaseVideoFragment implements VastVideoAd.Even
     }
 
     @Override
-    public void onDismiss(VastVideoAd vastVideoAd) {
+    public void onDismiss(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video dismissed");
         this.setCurrentState(this.STATE_UNLOADED);
         this.updateLayoutByState(this.getCurrentState());
 
         // Destroy Video properly to prevent from memory leak
-        vastVideoAd.destroy();
+        videoAd.destroy();
     }
 }
