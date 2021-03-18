@@ -1,6 +1,7 @@
 package com.appier.android.sample.fragment.sdk;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.View;
 
 import com.appier.ads.Appier;
@@ -45,6 +46,8 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
         AppierAdHelper.setTargeting(videoAd);
 
         videoAd.setZoneId(APPIER_ZONE_ID);
+        // Set Appier video ad orientation
+        videoAd.setOrientation(Configuration.ORIENTATION_PORTRAIT);
         videoAd.loadAd();
     }
 

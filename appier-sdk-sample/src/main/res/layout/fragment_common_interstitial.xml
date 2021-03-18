@@ -91,10 +91,10 @@
             android:layout_height="36dp"
             android:background="@drawable/button_bg_round"
             android:shadowColor="#000000"
-            android:text="Load"
-            android:textSize="14sp"
+            android:text="LOAD"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
 
         <ProgressBar
             android:id="@+id/progress_loading"
