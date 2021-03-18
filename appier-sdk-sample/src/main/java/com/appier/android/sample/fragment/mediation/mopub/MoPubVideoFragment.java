@@ -2,6 +2,7 @@ package com.appier.android.sample.fragment.mediation.mopub;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.View;
 
 import com.appier.ads.Appier;
@@ -38,6 +39,8 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
 
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
+        // Set Appier video ad orientation through localExtras
+        localExtras.put(AppierDataKeys.AD_ORIENTATION_LOCAL, Configuration.ORIENTATION_LANDSCAPE);
 
         moPubInterstitial = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
         moPubInterstitial.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));

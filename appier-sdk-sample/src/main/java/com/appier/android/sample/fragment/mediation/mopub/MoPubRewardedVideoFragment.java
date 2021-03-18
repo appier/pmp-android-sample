@@ -1,6 +1,7 @@
 package com.appier.android.sample.fragment.mediation.mopub;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -44,8 +45,11 @@ public class MoPubRewardedVideoFragment extends BaseVideoFragment implements MoP
          */
         AppierAdHelper.setAppierGlobal();
 
-        Map<String, String> localExtras = new HashMap<>();
+        Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
+        // Set Appier video ad orientation through localExtras
+        localExtras.put(AppierDataKeys.AD_ORIENTATION_LOCAL, Configuration.ORIENTATION_LANDSCAPE);
+
         MediationSettings mediationSettings = new AppierMediationSettings().withLocalExtras(localExtras);
 
         MoPubRewardedVideoManager.RequestParameters parameters = new MoPubRewardedVideoManager.RequestParameters(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
