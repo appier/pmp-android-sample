@@ -75,6 +75,12 @@ public class AdMobMediationNavigationFragment extends BaseFragment {
     }
 
     private void initializeAdMobMediationView(View layout) {
+
+        // Currently, Appier does not support video ad for AdMob, so we hide the video section.
+        layout.findViewById(R.id.secondary_linear_video).setVisibility(View.GONE);
+        layout.findViewById(R.id.secondary_nav_video).setVisibility(View.GONE);
+        layout.findViewById(R.id.secondary_table_row_video).setVisibility(View.GONE);
+
         initializeNavigationList(
                 layout.findViewById(R.id.secondary_nav_interstitial),
                 new Pair[] {
