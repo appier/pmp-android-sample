@@ -19,14 +19,14 @@ public abstract class BaseInterstitialFragment extends BaseFragment {
     protected final int STATE_LOADING = 1;
     protected final int STATE_LOADED = 2;
 
-    private Context mContext;
+    private Context context;
 
-    private int mCurrentState = STATE_UNLOADED;
+    private int currentState = STATE_UNLOADED;
 
-    private ProgressBar mProgressLoading, mProgressStepsArt;
-    private Button mButtonLoad;
-    private ImageView mImageStepsArt, mImageSteps;
-    private TextView mTextIndicator;
+    private ProgressBar progressLoading, progressStepsArt;
+    private Button buttonLoad;
+    private ImageView imageStepsArt, imageSteps;
+    private TextView textIndicator;
 
     public BaseInterstitialFragment() {}
 
@@ -42,32 +42,32 @@ public abstract class BaseInterstitialFragment extends BaseFragment {
     @Override
     public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_common_interstitial, container, false);
-        mContext = getActivity();
+        context = getActivity();
 
-        mProgressLoading = view.findViewById(R.id.progress_loading);
-        mProgressStepsArt = view.findViewById(R.id.progress_steps_art);
-        mImageStepsArt = view.findViewById(R.id.img_steps_art);
-        mImageSteps = view.findViewById(R.id.img_step_progress);
-        mButtonLoad = view.findViewById(R.id.button_load);
-        mTextIndicator = view.findViewById(R.id.text_step_indicator);
+        progressLoading = view.findViewById(R.id.progress_loading);
+        progressStepsArt = view.findViewById(R.id.progress_steps_art);
+        imageStepsArt = view.findViewById(R.id.img_steps_art);
+        imageSteps = view.findViewById(R.id.img_step_progress);
+        buttonLoad = view.findViewById(R.id.button_load);
+        textIndicator = view.findViewById(R.id.text_step_indicator);
 
-        mCurrentState = STATE_UNLOADED;
-        mButtonLoad.setOnClickListener(new View.OnClickListener() {
+        currentState = STATE_UNLOADED;
+        buttonLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*
                  * Load/Show interstitial ads by current state
                  */
-                if (mCurrentState == STATE_UNLOADED) {
+                if (currentState == STATE_UNLOADED) {
                     Appier.log("[Sample App]", "====== load Appier Interstitial ======");
 
-                    createInterstitial(mContext);
+                    createInterstitial(context);
                     loadInterstitial();
 
-                    mCurrentState = getNextLoadingState(mCurrentState);
-                    updateLayoutByState(mCurrentState);
+                    currentState = getNextLoadingState(currentState);
+                    updateLayoutByState(currentState);
 
-                } else if (mCurrentState == STATE_LOADED) {
+                } else if (currentState == STATE_LOADED) {
                     Appier.log("[Sample App]", "====== show Appier Interstitial ======");
 
                     showInterstitial();
@@ -81,38 +81,38 @@ public abstract class BaseInterstitialFragment extends BaseFragment {
 
     protected void updateLayoutByState(int state) {
         if (state == STATE_UNLOADED) {
-            mProgressLoading.setVisibility(View.INVISIBLE);
-            mProgressStepsArt.setVisibility(View.INVISIBLE);
-            mTextIndicator.setText("Step 1: Click load and load the ad.");
-            mTextIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
-            mButtonLoad.setText("LOAD");
-            mImageStepsArt.setImageResource(R.drawable.illustration_interstitial_step0_art);
-            mImageSteps.setImageResource(R.drawable.illustration_interstitial_step0);
+            progressLoading.setVisibility(View.INVISIBLE);
+            progressStepsArt.setVisibility(View.INVISIBLE);
+            textIndicator.setText("Step 1: Click load and load the ad.");
+            textIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
+            buttonLoad.setText("LOAD");
+            imageStepsArt.setImageResource(R.drawable.illustration_interstitial_step0_art);
+            imageSteps.setImageResource(R.drawable.illustration_interstitial_step0);
         } else if (state == STATE_LOADING) {
-            mProgressLoading.setVisibility(View.VISIBLE);
-            mProgressStepsArt.setVisibility(View.VISIBLE);
-            mTextIndicator.setText("Step 1: Click load and load the ad.");
-            mTextIndicator.setTextColor(getResources().getColor(R.color.colorTextFaded));
-            mButtonLoad.setText("");
-            mImageStepsArt.setImageResource(R.drawable.illustration_interstitial_step1_art);
-            mImageSteps.setImageResource(R.drawable.illustration_interstitial_step1);
+            progressLoading.setVisibility(View.VISIBLE);
+            progressStepsArt.setVisibility(View.VISIBLE);
+            textIndicator.setText("Step 1: Click load and load the ad.");
+            textIndicator.setTextColor(getResources().getColor(R.color.colorTextFaded));
+            buttonLoad.setText("");
+            imageStepsArt.setImageResource(R.drawable.illustration_interstitial_step1_art);
+            imageSteps.setImageResource(R.drawable.illustration_interstitial_step1);
         } else if (state == STATE_LOADED) {
-            mProgressLoading.setVisibility(View.INVISIBLE);
-            mProgressStepsArt.setVisibility(View.INVISIBLE);
-            mTextIndicator.setText("Step 2: Click show to see the ad.");
-            mTextIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
-            mButtonLoad.setText("SHOW");
-            mImageStepsArt.setImageResource(R.drawable.illustration_interstitial_step2_art);
-            mImageSteps.setImageResource(R.drawable.illustration_interstitial_step2);
+            progressLoading.setVisibility(View.INVISIBLE);
+            progressStepsArt.setVisibility(View.INVISIBLE);
+            textIndicator.setText("Step 2: Click show to see the ad.");
+            textIndicator.setTextColor(getResources().getColor(R.color.colorTextDefault));
+            buttonLoad.setText("SHOW");
+            imageStepsArt.setImageResource(R.drawable.illustration_interstitial_step2_art);
+            imageSteps.setImageResource(R.drawable.illustration_interstitial_step2);
         }
     }
 
     protected int getCurrentState() {
-        return mCurrentState;
+        return currentState;
     }
 
     protected void setCurrentState(int mCurrentState) {
-        this.mCurrentState = mCurrentState;
+        this.currentState = mCurrentState;
     }
 
     protected int getNextLoadingState(int currentState) {

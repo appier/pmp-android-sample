@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInterstitial.InterstitialAdListener {
 
-    private MoPubInterstitial moPubInterstitial;
+    private MoPubInterstitial videoAd;
 
     public MoPubVideoFragment() {}
 
@@ -56,22 +56,22 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
         // Set Appier video ad orientation through localExtras
         localExtras.put(AppierDataKeys.AD_ORIENTATION_LOCAL, Configuration.ORIENTATION_LANDSCAPE);
 
-        moPubInterstitial = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
+        videoAd = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
 
         // Prepare to load!
-        moPubInterstitial.setLocalExtras(localExtras);
-        moPubInterstitial.setInterstitialAdListener(this);
+        videoAd.setLocalExtras(localExtras);
+        videoAd.setInterstitialAdListener(this);
 
         Appier.log("[Sample App]", "====== make request ======");
 
         // Load video
-        moPubInterstitial.load();
+        videoAd.load();
     }
 
     @Override
     protected void showVideo() {
         // Pop up full-screen activity to show video
-        moPubInterstitial.show();
+        videoAd.show();
     }
 
     /*
@@ -112,6 +112,6 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
         updateLayoutByState(getCurrentState());
 
         // Destroy Interstitial properly to prevent from memory leak
-        moPubInterstitial.destroy();
+        videoAd.destroy();
     }
 }

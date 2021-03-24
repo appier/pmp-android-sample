@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class MoPubInterstitialFragment extends BaseInterstitialFragment implements MoPubInterstitial.InterstitialAdListener {
 
-    private MoPubInterstitial mMoPubInterstitial;
+    private MoPubInterstitial interstitialAd;
 
     public MoPubInterstitialFragment() {}
 
@@ -55,7 +55,7 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
-        mMoPubInterstitial = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
+        interstitialAd = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
 
         /*
          *  Optional: Required when integrating with Appier predict
@@ -67,23 +67,23 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
          *      appier_predict_ver:1
          */
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
-        mMoPubInterstitial.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
+        interstitialAd.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
 
         // Prepare to load!
-        mMoPubInterstitial.setLocalExtras(localExtras);
-        mMoPubInterstitial.setInterstitialAdListener(this);
+        interstitialAd.setLocalExtras(localExtras);
+        interstitialAd.setInterstitialAdListener(this);
 
         Appier.log("[Sample App]", "====== make request ======");
     }
 
     protected void loadInterstitial() {
         // Load interstitial
-        mMoPubInterstitial.load();
+        interstitialAd.load();
     }
 
     protected void showInterstitial() {
         // Pop up full-screen activity to show interstitial
-        mMoPubInterstitial.show();
+        interstitialAd.show();
     }
 
     /*
@@ -93,24 +93,24 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
     @Override
     public void onInterstitialLoaded(MoPubInterstitial interstitial) {
         Appier.log("[Sample App]", "Interstitial loaded");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdBid();
     }
 
     @Override
     public void onInterstitialFailed(MoPubInterstitial interstitial, MoPubErrorCode errorCode) {
         Appier.log("[Sample App]", "Interstitial load failed");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
     }
 
     @Override
     public void onInterstitialShown(MoPubInterstitial interstitial) {
         Appier.log("[Sample App]", "Interstitial shown");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
     }
 
     @Override
@@ -121,10 +121,10 @@ public class MoPubInterstitialFragment extends BaseInterstitialFragment implemen
     @Override
     public void onInterstitialDismissed(MoPubInterstitial interstitial) {
         Appier.log("[Sample App]", "Interstitial dismissed");
-        this.setCurrentState(this.STATE_UNLOADED);
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(STATE_UNLOADED);
+        updateLayoutByState(getCurrentState());
 
         // Destroy Interstitial properly to prevent from memory leak
-        this.mMoPubInterstitial.destroy();
+        interstitialAd.destroy();
     }
 }

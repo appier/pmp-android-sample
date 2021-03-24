@@ -19,15 +19,15 @@ import java.util.Map;
 
 public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragment implements MoPubView.BannerAdListener {
 
-    private LinearLayout mAdContainer;
-    private MoPubView mMoPubView;
+    private LinearLayout adContainer;
+    private MoPubView moPubView;
 
     public MoPubBannerFloatingWindowFragment() {}
 
     protected void loadAdInContainer(LinearLayout adContainer) {
 
         Context context = getActivity();
-        mAdContainer = adContainer;
+        this.adContainer = adContainer;
 
         /*
          * Apply Appier global settings
@@ -53,7 +53,7 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
-        mMoPubView = new MoPubView(getActivity());
+        moPubView = new MoPubView(getActivity());
 
         /*
          *  Optional: Required when integrating with Appier predict
@@ -65,24 +65,24 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
          *      appier_predict_ver:1
          */
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
-        mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
+        moPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
 
         // set layout parameter to remove the white margin
-        mMoPubView.setLayoutParams(new LinearLayout.LayoutParams(
+        moPubView.setLayoutParams(new LinearLayout.LayoutParams(
                 Dimension.dipsToIntPixels(300, context), Dimension.dipsToIntPixels(250, context))
         );
 
         // Load Ad!
-        mMoPubView.setLocalExtras(localExtras);
-        mMoPubView.setBannerAdListener(this);
-        mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
-        mMoPubView.loadAd();
+        moPubView.setLocalExtras(localExtras);
+        moPubView.setBannerAdListener(this);
+        moPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
+        moPubView.loadAd();
     }
 
     @Override
     protected void destroyAdView() {
-        if (mMoPubView != null) {
-            mMoPubView.destroy();
+        if (moPubView != null) {
+            moPubView.destroy();
         }
     }
 
@@ -93,12 +93,12 @@ public class MoPubBannerFloatingWindowFragment extends BaseFloatingWindowFragmen
     @Override
     public void onBannerLoaded(MoPubView banner) {
         Appier.log("[Sample App]", "onBannerLoaded()");
-        if (mAdContainer != null) {
+        if (adContainer != null) {
             mDemoFlowController.notifyAdBid();
 
             // Display banner in parent container
-            mAdContainer.removeAllViews();
-            mAdContainer.addView(banner);
+            adContainer.removeAllViews();
+            adContainer.addView(banner);
 
         }
     }

@@ -27,8 +27,8 @@ import java.util.Arrays;
 
 public class MoPubNativeRecyclerViewFragment extends BaseFragment {
 
-    private Context mContext;
-    private RecyclerView mRecyclerView;
+    private Context context;
+    private RecyclerView recyclerView;
 
     public MoPubNativeRecyclerViewFragment() {}
 
@@ -45,21 +45,21 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
     @Override
     public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_recycler_view, container, false);
-        mRecyclerView = view.findViewById(R.id.recycler);
+        recyclerView = view.findViewById(R.id.recycler);
 
         // add space between items
-        mRecyclerView.addItemDecoration(new MyRecyclerViewItemDecoration(Dimension.dipsToIntPixels(12, getContext())));
+        recyclerView.addItemDecoration(new MyRecyclerViewItemDecoration(Dimension.dipsToIntPixels(12, getContext())));
 
         return view;
     }
 
     @Override
     protected void onViewVisible(View view) {
-        mContext = getActivity();
+        context = getActivity();
         String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(mContext, Arrays.asList(items));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(context, Arrays.asList(items));
 
         /*
          * Apply Appier global settings
@@ -67,7 +67,7 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
         AppierAdHelper.setAppierGlobal();
 
         insertMoPubNativeRecyclerView(
-                myRecyclerViewAdapter, mRecyclerView, getString(R.string.mopub_adunit_predict_native)
+                myRecyclerViewAdapter, recyclerView, getString(R.string.mopub_adunit_predict_native)
         );
 
     }
@@ -100,7 +100,7 @@ public class MoPubNativeRecyclerViewFragment extends BaseFragment {
         AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
-        MoPubRecyclerAdapter moPubAdAdapter = new MoPubRecyclerAdapter((Activity) mContext, adapter);
+        MoPubRecyclerAdapter moPubAdAdapter = new MoPubRecyclerAdapter((Activity) context, adapter);
 
         // When using multiple line items with different networks, we need to register all AdRenderers
         moPubAdAdapter.registerAdRenderer(appierNativeAdRenderer);

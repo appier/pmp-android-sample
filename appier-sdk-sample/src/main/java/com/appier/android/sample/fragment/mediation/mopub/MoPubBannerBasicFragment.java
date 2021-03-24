@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.BannerAdListener {
 
-    private MoPubView mMoPubView;
+    private MoPubView moPubView;
 
     public MoPubBannerBasicFragment() {}
 
@@ -39,8 +39,8 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mMoPubView != null) {
-            mMoPubView.destroy();
+        if (moPubView != null) {
+            moPubView.destroy();
         }
     }
 
@@ -70,7 +70,7 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
         localExtras.put(AppierDataKeys.AD_WIDTH_LOCAL, AD_WIDTH);
         localExtras.put(AppierDataKeys.AD_HEIGHT_LOCAL, AD_HEIGHT);
 
-        mMoPubView = getView().findViewById(R.id.banner_container_300_250);
+        moPubView = getView().findViewById(R.id.banner_container_300_250);
 
         /*
          *  Optional: Required when integrating with Appier predict
@@ -83,13 +83,13 @@ public class MoPubBannerBasicFragment extends BaseFragment implements MoPubView.
          */
 
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
-        mMoPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
+        moPubView.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
 
         // Load Ad!
-        mMoPubView.setLocalExtras(localExtras);
-        mMoPubView.setBannerAdListener(this);
-        mMoPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
-        mMoPubView.loadAd();
+        moPubView.setLocalExtras(localExtras);
+        moPubView.setBannerAdListener(this);
+        moPubView.setAdUnitId(MOPUB_AD_UNIT_ID);
+        moPubView.loadAd();
     }
 
     /*

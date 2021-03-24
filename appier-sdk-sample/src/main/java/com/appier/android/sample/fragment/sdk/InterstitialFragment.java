@@ -13,7 +13,7 @@ import com.appier.android.sample.helper.AppierAdHelper;
 
 public class InterstitialFragment extends BaseInterstitialFragment implements AppierInterstitialAd.EventListener {
 
-    private AppierInterstitialAd mAppierInterstitialAd;
+    private AppierInterstitialAd interstitialAd;
 
     public InterstitialFragment() {}
 
@@ -25,8 +25,8 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
      */
 
     protected void createInterstitial(Context context) {
-        if (mAppierInterstitialAd != null) {
-            mAppierInterstitialAd.destroy();
+        if (interstitialAd != null) {
+            interstitialAd.destroy();
         }
 
         /*
@@ -39,25 +39,25 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
         /*
          * Create AppierInterstitialAd, waiting for load and show
          */
-        mAppierInterstitialAd = new AppierInterstitialAd(context, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), this);
-        mAppierInterstitialAd.setAdDimension(320, 480);
+        interstitialAd = new AppierInterstitialAd(context, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), this);
+        interstitialAd.setAdDimension(320, 480);
 
         // Set targeting should be done before loadAd()
-        AppierAdHelper.setTargeting(mAppierInterstitialAd);
+        AppierAdHelper.setTargeting(interstitialAd);
 
-        mAppierInterstitialAd.setZoneId(APPIER_ZONE_ID);
+        interstitialAd.setZoneId(APPIER_ZONE_ID);
     }
 
     protected void loadInterstitial() {
-        // Request for AD content
-        mAppierInterstitialAd.loadAd();
+        // Request for Ad content
+        interstitialAd.loadAd();
     }
 
     protected void showInterstitial() {
         // Check the ad is loaded
-        if (mAppierInterstitialAd.isLoaded()) {
+        if (interstitialAd.isLoaded()) {
             // Show the full screen interstitial activity
-            mAppierInterstitialAd.showAd();
+            interstitialAd.showAd();
         }
     }
 
@@ -68,24 +68,24 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
     @Override
     public void onAdLoaded(AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial loaded");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdBid();
     }
 
     @Override
     public void onAdNoBid(AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial ad returns no bid");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdNoBid();
     }
 
     @Override
     public void onAdLoadFail(AppierError appierError, AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial load failed");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdError(appierError);
     }
 
@@ -97,26 +97,26 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
     @Override
     public void onShown(AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial shown");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
     }
 
     @Override
     public void onShowFail(AppierError appierError, AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial show failed with error: " + appierError);
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdError(appierError);
     }
 
     @Override
     public void onDismiss(AppierInterstitialAd appierInterstitialAd) {
         Appier.log("[Sample App]", "Interstitial dismissed");
-        this.setCurrentState(this.STATE_UNLOADED);
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(STATE_UNLOADED);
+        updateLayoutByState(getCurrentState());
 
         // Destroy Interstitial properly to prevent from memory leak
-        this.mAppierInterstitialAd.destroy();
+        interstitialAd.destroy();
     }
 
 }

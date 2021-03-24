@@ -26,8 +26,8 @@ import java.util.Arrays;
 
 public class MoPubNativeListViewFragment extends BaseFragment {
 
-    private Context mContext;
-    private ListView mListView;
+    private Context context;
+    private ListView listView;
 
     public MoPubNativeListViewFragment() {}
 
@@ -44,23 +44,23 @@ public class MoPubNativeListViewFragment extends BaseFragment {
     @Override
     public View onCreateDemoView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_common_list_view, container, false);
-        mListView = view.findViewById(R.id.list);
+        listView = view.findViewById(R.id.list);
         return view;
     }
 
     @Override
     protected void onViewVisible(View view) {
-        mContext = getActivity();
+        context = getActivity();
         String[] items = new String[] {"", "", "", "", "", "", "", "", "", ""};
 
-        MyListViewAdapter myListViewAdapter = new MyListViewAdapter(mContext, Arrays.asList(items));
+        MyListViewAdapter myListViewAdapter = new MyListViewAdapter(context, Arrays.asList(items));
 
         /*
          * Apply Appier global settings
          */
         AppierAdHelper.setAppierGlobal();
 
-        insertMoPubNativeListView(myListViewAdapter, mListView, getString(R.string.mopub_adunit_predict_native));
+        insertMoPubNativeListView(myListViewAdapter, listView, getString(R.string.mopub_adunit_predict_native));
 
     }
 
@@ -92,7 +92,7 @@ public class MoPubNativeListViewFragment extends BaseFragment {
         AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
-        MoPubAdAdapter moPubAdAdapter = new MoPubAdAdapter((Activity) mContext, adapter);
+        MoPubAdAdapter moPubAdAdapter = new MoPubAdAdapter((Activity) context, adapter);
 
         // When using multiple line items with different networks, we need to register all AdRenderers
         moPubAdAdapter.registerAdRenderer(appierNativeAdRenderer);

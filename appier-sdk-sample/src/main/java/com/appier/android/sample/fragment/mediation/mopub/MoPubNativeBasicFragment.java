@@ -28,9 +28,9 @@ import java.util.Map;
 
 public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNative.MoPubNativeNetworkListener {
 
-    private Context mContext;
-    private LinearLayout mAdContainer;
-    private MoPubNative mMoPubNativeAd;
+    private Context context;
+    private LinearLayout adContainer;
+    private MoPubNative nativeAd;
 
     public static MoPubNativeBasicFragment newInstance(Context context) {
         return new MoPubNativeBasicFragment(context);
@@ -39,7 +39,7 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
     public MoPubNativeBasicFragment() {}
 
     private MoPubNativeBasicFragment(Context context) {
-        mContext = context;
+        this.context = context;
     }
 
     @Override
@@ -56,8 +56,8 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
     @Override
     protected void onViewVisible(View view) {
 
-        mAdContainer = view.findViewById(R.id.ad_container);
-        mAdContainer.removeAllViews();
+        adContainer = view.findViewById(R.id.ad_container);
+        adContainer.removeAllViews();
 
         /*
          * Apply Appier global settings
@@ -89,8 +89,8 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
         AppierNativeAdRenderer appierNativeAdRenderer = new AppierNativeAdRenderer(viewBinder);
         MoPubStaticNativeAdRenderer moPubStaticNativeAdRenderer = new MoPubStaticNativeAdRenderer(viewBinder);
 
-        mMoPubNativeAd = new MoPubNative(
-                mContext, MOPUB_AD_UNIT_ID, this
+        nativeAd = new MoPubNative(
+                context, MOPUB_AD_UNIT_ID, this
         );
 
         /*
@@ -104,19 +104,19 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
          */
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
-        mMoPubNativeAd.setLocalExtras(localExtras);
+        nativeAd.setLocalExtras(localExtras);
 
         RequestParameters parameters = new RequestParameters.Builder()
                 .keywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID))
                 .build();
 
         // Required for Appier MoPub Mediation, alone with other mediation line items
-        mMoPubNativeAd.registerAdRenderer(appierNativeAdRenderer);
-        mMoPubNativeAd.registerAdRenderer(moPubStaticNativeAdRenderer);
+        nativeAd.registerAdRenderer(appierNativeAdRenderer);
+        nativeAd.registerAdRenderer(moPubStaticNativeAdRenderer);
 
         // Load Ads with RequestParameters for Appier Predict.
         // use `mMoPubNativeAd.makeRequest();` if you are doing the basic integration (without Appier predict).
-        mMoPubNativeAd.makeRequest(parameters);
+        nativeAd.makeRequest(parameters);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
     public void onNativeLoad(final NativeAd nativeAd) {
         Appier.log("[Sample App]", "Native ad has loaded.");
 
-        final AdapterHelper adapterHelper = new AdapterHelper(mContext, 0, 3); // When standalone, any range will be fine.
+        final AdapterHelper adapterHelper = new AdapterHelper(context, 0, 3); // When standalone, any range will be fine.
 
         // Retrieve the pre-built ad view that AdapterHelper prepared for us.
         View adView = adapterHelper.getAdView(null, null, nativeAd, new ViewBinder.Builder(0).build());
@@ -152,7 +152,7 @@ public class MoPubNativeBasicFragment extends BaseFragment implements MoPubNativ
         });
 
         // Add the ad view to our view hierarchy
-        mAdContainer.addView(adView);
+        adContainer.addView(adView);
 
         mDemoFlowController.notifyAdBid();
     }
