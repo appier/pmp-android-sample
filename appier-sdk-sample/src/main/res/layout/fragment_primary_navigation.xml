@@ -10,8 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Interstitial -->
-
         <RelativeLayout
             android:id="@+id/button_group_layout"
             android:layout_width="match_parent"
@@ -34,6 +32,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/secondary_linear_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -67,9 +66,12 @@
         </com.appier.android.sample.common.NavigationListView>
 
         <TableRow
+            android:id="@+id/secondary_table_row_video"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="#d8d8d8" />
+
+        <!-- Interstitial -->
 
         <LinearLayout
             android:layout_width="match_parent"
