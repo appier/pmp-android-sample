@@ -54,8 +54,11 @@ public class InterstitialFragment extends BaseInterstitialFragment implements Ap
     }
 
     protected void showInterstitial() {
-        // Show the full screen interstitial activity
-        mAppierInterstitialAd.showAd();
+        // Check the ad is loaded
+        if (mAppierInterstitialAd.isLoaded()) {
+            // Show the full screen interstitial activity
+            mAppierInterstitialAd.showAd();
+        }
     }
 
     /*

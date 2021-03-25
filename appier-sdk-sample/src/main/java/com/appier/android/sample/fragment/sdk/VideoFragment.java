@@ -56,8 +56,11 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
 
     @Override
     protected void showVideo() {
-        // Show the full screen video activity
-        videoAd.showAd();
+        // Check the ad is loaded
+        if (videoAd.isLoaded()) {
+            // Show the full screen video activity
+            videoAd.showAd();
+        }
     }
 
     /*
