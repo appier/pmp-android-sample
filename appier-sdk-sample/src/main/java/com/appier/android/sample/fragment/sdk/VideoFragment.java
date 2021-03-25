@@ -22,7 +22,7 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
     protected void onViewVisible(View view) {}
 
     /*
-     * The functions to handle Appier Interstitial lifecycle
+     * The functions to handle Appier Video lifecycle
      */
     @Override
     protected void loadVideo(Context context) {
@@ -42,17 +42,21 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
          */
         videoAd = new VideoAd(context, new AppierAdUnitIdentifier(APPIER_AD_UNIT_ID), this);
 
+        // Set Appier video ad orientation
+        videoAd.setOrientation(Configuration.ORIENTATION_PORTRAIT);
+
         // Set targeting should be done before loadAd()
         AppierAdHelper.setTargeting(videoAd);
 
         videoAd.setZoneId(APPIER_ZONE_ID);
-        // Set Appier video ad orientation
-        videoAd.setOrientation(Configuration.ORIENTATION_PORTRAIT);
+
+        // Request for Ad content
         videoAd.loadAd();
     }
 
     @Override
     protected void showVideo() {
+        // Show the full screen video activity
         videoAd.showAd();
     }
 
@@ -63,24 +67,24 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
     @Override
     public void onAdLoaded(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video loaded");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdBid();
     }
 
     @Override
     public void onAdNoBid(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video ad returns no bid");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdNoBid();
     }
 
     @Override
     public void onAdLoadFail(AppierError appierError, VideoAd videoAd) {
         Appier.log("[Sample App]", "Video load failed");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdError(appierError);
     }
 
@@ -97,8 +101,8 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
     @Override
     public void onShown(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video shown");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
     }
 
     @Override
@@ -109,16 +113,16 @@ public class VideoFragment extends BaseVideoFragment implements VideoAd.EventLis
     @Override
     public void onShowFail(AppierError appierError, VideoAd videoAd) {
         Appier.log("[Sample App]", "Video show failed with error: " + appierError);
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdError(appierError);
     }
 
     @Override
     public void onDismiss(VideoAd videoAd) {
         Appier.log("[Sample App]", "Video dismissed");
-        this.setCurrentState(this.STATE_UNLOADED);
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(STATE_UNLOADED);
+        updateLayoutByState(getCurrentState());
 
         // Destroy Video properly to prevent from memory leak
         videoAd.destroy();

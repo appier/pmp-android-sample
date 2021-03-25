@@ -11,7 +11,6 @@ import com.appier.ads.common.AppierDataKeys;
 import com.appier.android.sample.R;
 import com.appier.android.sample.fragment.BaseVideoFragment;
 import com.appier.android.sample.helper.AppierAdHelper;
-import com.mopub.mobileads.AppierPredictHandler;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 
@@ -27,6 +26,9 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
     @Override
     protected void onViewVisible(View view) {}
 
+    /*
+     * The function handle MoPub Interstitial life cycle
+     */
     @Override
     protected void loadVideo(Context context) {
 
@@ -37,46 +39,65 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
 
         final String MOPUB_AD_UNIT_ID = getString(R.string.mopub_adunit_predict_video);
 
+        /*
+         * Initialize MoPub Interstitial
+         *
+         * To enable Appier MoPub Mediation, the AdUnit requires at least one "Network line item",
+         * with the following settings:
+         *
+         *   "Custom event class": "com.mopub.mobileads.AppierVideo".
+         *   "Custom event data": { "zoneId": "<THE ZONE ID PROVIDED BY APPIER>" }
+         *
+         */
+
         Map<String, Object> localExtras = new HashMap<>();
         localExtras.put(AppierDataKeys.AD_UNIT_ID_LOCAL, MOPUB_AD_UNIT_ID);
+
         // Set Appier video ad orientation through localExtras
         localExtras.put(AppierDataKeys.AD_ORIENTATION_LOCAL, Configuration.ORIENTATION_LANDSCAPE);
 
         moPubInterstitial = new MoPubInterstitial((Activity) context, MOPUB_AD_UNIT_ID);
-        moPubInterstitial.setKeywords(AppierPredictHandler.getKeywordTargeting(MOPUB_AD_UNIT_ID));
 
+        // Prepare to load!
         moPubInterstitial.setLocalExtras(localExtras);
         moPubInterstitial.setInterstitialAdListener(this);
+
         Appier.log("[Sample App]", "====== make request ======");
+
+        // Load video
         moPubInterstitial.load();
     }
 
     @Override
     protected void showVideo() {
+        // Pop up full-screen activity to show video
         moPubInterstitial.show();
     }
 
+    /*
+     * Override MoPubInterstitial.InterstitialAdListener functions to handle event callbacks
+     */
     @Override
     public void onInterstitialLoaded(MoPubInterstitial interstitial) {
         Appier.log("[Sample App]", "Video loaded");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdBid();
     }
 
     @Override
     public void onInterstitialFailed(MoPubInterstitial interstitial, MoPubErrorCode errorCode) {
         Appier.log("[Sample App]", "Video load failed");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
         mDemoFlowController.notifyAdError(AppierError.UNKNOWN_ERROR);
     }
 
     @Override
     public void onInterstitialShown(MoPubInterstitial interstitial) {
         Appier.log("[Sample App]", "Video shown");
-        this.setCurrentState(this.getNextLoadingState(this.getCurrentState()));
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(getNextLoadingState(getCurrentState()));
+        updateLayoutByState(getCurrentState());
     }
 
     @Override
@@ -87,10 +108,10 @@ public class MoPubVideoFragment extends BaseVideoFragment implements MoPubInters
     @Override
     public void onInterstitialDismissed(MoPubInterstitial interstitial) {
         Appier.log("[Sample App]", "Video dismissed");
-        this.setCurrentState(this.STATE_UNLOADED);
-        this.updateLayoutByState(this.getCurrentState());
+        setCurrentState(STATE_UNLOADED);
+        updateLayoutByState(getCurrentState());
 
         // Destroy Interstitial properly to prevent from memory leak
-        this.moPubInterstitial.destroy();
+        moPubInterstitial.destroy();
     }
 }
